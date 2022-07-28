@@ -359,7 +359,6 @@
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/InputManager.cs"
 "Assets/Scripts/PlayerController.cs"
-"Assets/Scripts/PlayerControlls.cs"
 -langversion:9.0
 
 /deterministic
