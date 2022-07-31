@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float upperLimit = -40f;
     [SerializeField] private float bottomLimit = 70f;
     [SerializeField] private float mouseSensitivity = 20f;
+    [SerializeField] private GameObject flashlight;
     private Rigidbody _playerRigidbody;
     private InputManager _inputManager;
     private Animator _animator;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private const float _walkSpeed = 4f;
     private const float _runSpeed = 6f;
     private Vector2 _currentVelocity;
+    private bool flashlightActive = false;
         
     private void Start() 
     {
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate() 
     {
         Move();
+        ChangeFlashlightState();
     }
     private void LateUpdate()
     {
@@ -70,6 +73,18 @@ public class PlayerController : MonoBehaviour
         _xRotation = Mathf.Clamp(_xRotation, upperLimit, bottomLimit);
         camera.localRotation = Quaternion.Euler(_xRotation, 0 , 0);
         _playerRigidbody.MoveRotation(_playerRigidbody.rotation * Quaternion.Euler(0, Mouse_X * mouseSensitivity * Time.smoothDeltaTime, 0));
+    }
+
+    private void ChangeFlashlightState()
+    {
+        if (_inputManager.Flashlight)
+        {
+            flashlight.SetActive(true);
+        }
+        else
+        {
+            flashlight.SetActive(false);
+        }
     }
 
     // private void Move()

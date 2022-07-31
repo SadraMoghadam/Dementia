@@ -357,8 +357,10 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/Camera/CameraShake.cs"
 "Assets/Scripts/CinemachinePOVExtension.cs"
+"Assets/Scripts/Managers/AudioManager.cs"
 "Assets/Scripts/Managers/GameManager.cs"
 "Assets/Scripts/Managers/InputManager.cs"
+"Assets/Scripts/Managers/Sound.cs"
 "Assets/Scripts/Player/PlayerController.cs"
 -langversion:9.0
 
