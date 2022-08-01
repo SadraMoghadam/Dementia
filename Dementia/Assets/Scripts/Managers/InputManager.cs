@@ -23,7 +23,7 @@ public class InputManager : MonoBehaviour
 
         private void Awake()
         {
-            // HideCursor();
+            HideCursor();
             _currentMap = PlayerInput.currentActionMap;
             _moveAction = _currentMap.FindAction("Move");
             _lookAction = _currentMap.FindAction("Look");
