@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float animBlendSpeed = 8.9f;
     [SerializeField] private Transform cameraRoot;
     [SerializeField] private Transform camera;
+    [SerializeField] private GameObject stickyCamera;
     [SerializeField] private float upperLimit = -40f;
     [SerializeField] private float bottomLimit = 70f;
     [SerializeField] private float mouseSensitivity = 20f;
@@ -38,6 +39,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate() 
     {
+        if (GameController.instance.DamageController.isPlayerDead)
+        {
+            stickyCamera.SetActive(true);
+            camera.gameObject.SetActive(false);
+            return;
+        }
         Move();
         ChangeFlashlightState();
     }
@@ -64,6 +71,11 @@ public class PlayerController : MonoBehaviour
 
     private void CameraMovement()
     {
+        if (GameController.instance.DamageController.isPlayerDead)
+        {
+            camera.localRotation = Quaternion.Euler(0, 0 , 0);
+            return;
+        }
         if(!_hasAnimator) 
             return;
         var Mouse_X = _inputManager.Look.x;
