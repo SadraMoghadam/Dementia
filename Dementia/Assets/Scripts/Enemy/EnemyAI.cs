@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private LayerMask obstacleMask;
     [SerializeField] private GameObject eyeLights;
-    [SerializeField] private Collider punchArea;
+    [SerializeField] private GameObject punchArea;
     [SerializeField] private float waitTime = 5.15f;
     private Animator _enemyAnimator;
     private List<Transform> waypoints;
@@ -59,6 +59,7 @@ public class EnemyAI : MonoBehaviour
         _agent.speed = walkSpeed;
         _waitTime = waitTime;
         eyeLights.SetActive(false);
+        punchArea.SetActive(false);
         waypoints = waypointsContainer.GetComponentsInChildren<Transform>().ToList();
         waypoints.RemoveAt(0);
         choosingDestination = true;
@@ -67,26 +68,26 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        if (GameController.instance.DamageController.isPlayerDead)
+        {
+            _enemyAnimator.SetBool(EnemyAnimatorParameters.Punch.ToString(), false);
+            Stop();
+            return;   
+        }
+        
         EnviromentView();
         
-        if (!_isPatrol)
-        {
-            Chase();
-        }
-        else
+        if (_isPatrol)
         {
             _startOfChase = true;
             Patrol();
         }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.CompareTag("Player"))
+        else
         {
-            Debug.Log("___________Damage");
+            Chase();
         }
     }
+
 
     private void Patrol()
     {
@@ -106,6 +107,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (_startOfChase)
         {
+            punchArea.SetActive(true);
             eyeLights.SetActive(true);
             _enemyAnimator.SetBool(EnemyAnimatorParameters.Agony.ToString(), true);
             _agent.isStopped = true;
@@ -126,7 +128,8 @@ public class EnemyAI : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, player.position) < _agent.stoppingDistance + 3)
             {
-                transform.rotation = Quaternion.LookRotation(player.position - transform.position );
+                punchArea.SetActive(true);
+                transform.rotation = Quaternion.LookRotation(player.position - transform.position);
                 _enemyAnimator.SetBool(EnemyAnimatorParameters.Punch.ToString(), true);
             }
             else if (_waitTime <= 0 && !_playerCaught && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)
@@ -144,6 +147,7 @@ public class EnemyAI : MonoBehaviour
                 {
                     Stop();
                     _chaseFinished = true;
+                    punchArea.SetActive(false);
                 }
                 _waitTime -= Time.deltaTime;
             }
@@ -170,8 +174,6 @@ public class EnemyAI : MonoBehaviour
         _enemyAnimator.SetBool(EnemyAnimatorParameters.Walk.ToString(), true);
         Debug.Log(_waypointIndex);
         target = waypoints[_waypointIndex].position;
-        // Vector3 direction = target - transform.position;
-        // transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(direction), .1f);
         Debug.Log(target);
         Move(walkSpeed);
         _agent.SetDestination(target);
@@ -187,9 +189,14 @@ public class EnemyAI : MonoBehaviour
         {
             player = playerInRange[i].transform;
             Vector3 dirToPlayer = (player.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, dirToPlayer) < viewAngle / 2)
+            float dstToPlayer = Vector3.Distance(transform.position, player.position);
+            if (dstToPlayer < 2)
             {
-                float dstToPlayer = Vector3.Distance(transform.position, player.position);
+                _playerInViewRange = true;
+                _isPatrol = false;
+            }
+            else if (Vector3.Angle(transform.forward, dirToPlayer) < viewAngle / 2)
+            {
                 if (!Physics.Raycast(transform.position, dirToPlayer, dstToPlayer, obstacleMask))
                 {
                     _playerInViewRange = true;
