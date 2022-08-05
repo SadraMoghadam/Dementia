@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
         public bool Run {get; private set;}
         public bool Crouch {get; private set;}
         public bool Flashlight {get; private set;}
+        public bool Interact {get; private set;}
 
         private InputActionMap _currentMap;
         private InputAction _moveAction;
@@ -20,6 +21,7 @@ public class InputManager : MonoBehaviour
         private InputAction _runAction;
         private InputAction _crouchAction;
         private InputAction _flashlight;
+        private InputAction _interact;
 
         private void Awake()
         {
@@ -30,18 +32,21 @@ public class InputManager : MonoBehaviour
             _runAction = _currentMap.FindAction("Run");
             _crouchAction = _currentMap.FindAction("Crouch");
             _flashlight = _currentMap.FindAction("Flashlight");
+            _interact = _currentMap.FindAction("Interact");
 
             _moveAction.performed += onMove;
             _lookAction.performed += onLook;
             _runAction.performed += onRun;
             _crouchAction.started += onCrouch;
             _flashlight.started += onFlashLightStateChange;
+            _interact.started += onInteract;
 
             _moveAction.canceled += onMove;
             _lookAction.canceled += onLook;
             _runAction.canceled += onRun;
             _crouchAction.canceled += onCrouch;
             _flashlight.canceled += onFlashLightStateChange;
+            _interact.canceled += onInteract;
         }
 
         private void HideCursor()
@@ -78,6 +83,16 @@ public class InputManager : MonoBehaviour
                 return;
             }
             Flashlight = context.ReadValueAsButton();
+        }
+        
+        private void onInteract(InputAction.CallbackContext context)
+        {
+            if(Interact)
+            {
+                Interact = false;
+                return;
+            }
+            Interact = context.ReadValueAsButton();
         }
 
         private void OnEnable() 

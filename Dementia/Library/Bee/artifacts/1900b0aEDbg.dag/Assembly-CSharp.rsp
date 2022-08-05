@@ -115,6 +115,8 @@
 -define:ENABLE_TILEMAP
 -define:ENABLE_TIMELINE
 -define:ENABLE_INPUT_SYSTEM
+-define:ENABLE_LEGACY_INPUT_MANAGER
+-define:PROBUILDER_EXPERIMENTAL_FEATURES
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
 -r:"D:/Projects/Dementia/Dementia/Library/PackageCache/com.unity.cinemachine@2.8.6/Runtime/ThirdParty/clipper_library.dll"
@@ -359,6 +361,7 @@
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/Unity.VSCode.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aEDbg.dag/UnityEngine.UI.ref.dll"
+"Assets/Scripts/AsylumObjects/Door.cs"
 "Assets/Scripts/Camera/CameraShake.cs"
 "Assets/Scripts/CinemachinePOVExtension.cs"
 "Assets/Scripts/Enemy/EnemyAI.cs"
@@ -369,6 +372,7 @@
 "Assets/Scripts/Managers/Sound.cs"
 "Assets/Scripts/Player/DamageController.cs"
 "Assets/Scripts/Player/PlayerController.cs"
+"Assets/Scripts/Player/PlayerRaycast.cs"
 -langversion:9.0
 
 /deterministic
