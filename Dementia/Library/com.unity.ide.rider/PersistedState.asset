@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: Unity.Rider.Editor:Packages.Rider.Editor:RiderScriptEditorPersistedState
+<<<<<<< HEAD
   lastWriteTicks: -8585420859764815541
+=======
+  lastWriteTicks: -8585420517615074685
+>>>>>>> c408aed05c92caf50ecccbb3a6aae8235d7162bf
