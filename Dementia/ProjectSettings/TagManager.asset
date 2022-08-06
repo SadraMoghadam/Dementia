@@ -6,6 +6,8 @@ TagManager:
   tags:
   - EnemyHit
   - Door
+  - LeftDoor
+  - RightDoor
   layers:
   - Default
   - TransparentFX

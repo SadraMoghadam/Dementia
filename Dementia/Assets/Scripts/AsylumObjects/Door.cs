@@ -15,15 +15,22 @@ public class Door : MonoBehaviour
 
     public void ChangeDoorState()
     {
-        if (!IsOpen)
+        try
         {
-            animator.SetBool("Open", true);
-            IsOpen = true;
+            if (!IsOpen)
+            {
+                animator.SetBool("Open", true);
+                IsOpen = true;
+            }
+            else
+            {
+                animator.SetBool("Open", false);
+                IsOpen = false;
+            }
         }
-        else
+        catch (Exception e)
         {
-            animator.SetBool("Open", false);
-            IsOpen = false;
+            Console.WriteLine("Door");
         }
     }
     

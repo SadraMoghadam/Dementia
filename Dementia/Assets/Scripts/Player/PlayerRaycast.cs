@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public enum InteractableObjects
 {
     Door,
+    LeftDoor,
+    RightDoor,
     Battery
 }
 
@@ -34,8 +36,8 @@ public class PlayerRaycast : MonoBehaviour
     private void Update()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, camera.forward, out hit, rayLength, layerMaskInteract))
-        {
+        if (Physics.Raycast(camera.position, camera.forward, out hit, rayLength, layerMaskInteract))
+        { 
             leftMouseClickImage.gameObject.SetActive(true);
             _keyDownTimer += Time.deltaTime;
             if (_keyDownTimer < KeyDownCooldown)
@@ -49,9 +51,57 @@ public class PlayerRaycast : MonoBehaviour
                 _keyDownTimer = 0;
                 if (hit.collider.CompareTag(InteractableObjects.Door.ToString()))
                 {
-                    _door = hit.collider.gameObject.GetComponent<Door>();
-                    _door.ChangeDoorState();
-
+                    try
+                    {
+                        _door = hit.collider.gameObject.GetComponent<Door>();
+                        _door.ChangeDoorState();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("PlayerRaycast");
+                    }
+                }
+                else if (hit.collider.CompareTag(InteractableObjects.LeftDoor.ToString()))
+                {
+                    Transform leftDoor = hit.collider.GetComponent<Transform>();
+                    Vector3 temp = leftDoor.localEulerAngles;
+                    switch (temp.y)
+                    {
+                        case 0:
+                            temp.y = 280;
+                            break;
+                        case 280:
+                            temp.y = 0;
+                            break;
+                        case 180:
+                            temp.y = 260;
+                            break;
+                        case 260:
+                            temp.y = 180;
+                            break;
+                    }
+                    leftDoor.localEulerAngles = temp;
+                }
+                else if (hit.collider.CompareTag(InteractableObjects.RightDoor.ToString()))
+                {
+                    Transform rightDoor = hit.collider.GetComponent<Transform>();
+                    Vector3 temp = rightDoor.localEulerAngles;
+                    switch (temp.y)
+                    {
+                        case 0:
+                            temp.y = 280;
+                            break;
+                        case 280:
+                            temp.y = 0;
+                            break;
+                        case 180:
+                            temp.y = 260;
+                            break;
+                        case 260:
+                            temp.y = 180;
+                            break;
+                    }
+                    rightDoor.localEulerAngles = temp;
                 }
             }
         }
