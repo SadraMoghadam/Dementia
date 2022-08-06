@@ -47,11 +47,7 @@ D:/Projects/Dementia/Dementia
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-<<<<<<< HEAD:Dementia/Logs/AssetImportWorker3.log
-Refreshing native plugins compatible for Editor in 592.56 ms, found 3 plugins.
-=======
 Refreshing native plugins compatible for Editor in 142.47 ms, found 3 plugins.
->>>>>>> c408aed05c92caf50ecccbb3a6aae8235d7162bf:Dementia/Logs/AssetImportWorker9-prev.log
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.4f1 (cb45f9cae8b7)
 [Subsystems] Discovering subsystems at path D:/Unity/Versions/2021.3.4f1/Editor/Data/Resources/UnitySubsystems
@@ -67,27 +63,11 @@ Initialize mono
 Mono path[0] = 'D:/Unity/Versions/2021.3.4f1/Editor/Data/Managed'
 Mono path[1] = 'D:/Unity/Versions/2021.3.4f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'D:/Unity/Versions/2021.3.4f1/Editor/Data/MonoBleedingEdge/etc'
-<<<<<<< HEAD:Dementia/Logs/AssetImportWorker3.log
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56728
-=======
 Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56528
->>>>>>> c408aed05c92caf50ecccbb3a6aae8235d7162bf:Dementia/Logs/AssetImportWorker9-prev.log
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: D:/Unity/Versions/2021.3.4f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: D:/Unity/Versions/2021.3.4f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-<<<<<<< HEAD:Dementia/Logs/AssetImportWorker3.log
-Registered in 0.014275 seconds.
-Native extension for WindowsStandalone target not found
-Native extension for Android target not found
-Refreshing native plugins compatible for Editor in 570.38 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  3.297 seconds
-Domain Reload Profiling:
-	ReloadAssembly (3300ms)
-		BeginReloadAssembly (323ms)
-=======
 Registered in 0.004024 seconds.
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
@@ -98,28 +78,10 @@ Mono: successfully reloaded assembly
 Domain Reload Profiling:
 	ReloadAssembly (992ms)
 		BeginReloadAssembly (73ms)
->>>>>>> c408aed05c92caf50ecccbb3a6aae8235d7162bf:Dementia/Logs/AssetImportWorker9-prev.log
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-<<<<<<< HEAD:Dementia/Logs/AssetImportWorker3.log
-			CreateAndSetChildDomain (4ms)
-		EndReloadAssembly (2478ms)
-			LoadAssemblies (319ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (540ms)
-			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (152ms)
-			SetupLoadedEditorAssemblies (1542ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (266ms)
-				SetLoadedEditorAssemblies (6ms)
-				RefreshPlugins (571ms)
-				BeforeProcessingInitializeOnLoad (9ms)
-				ProcessInitializeOnLoadAttributes (476ms)
-				ProcessInitializeOnLoadMethodAttributes (213ms)
-=======
 			CreateAndSetChildDomain (1ms)
 		EndReloadAssembly (771ms)
 			LoadAssemblies (72ms)
@@ -135,32 +97,18 @@ Domain Reload Profiling:
 				BeforeProcessingInitializeOnLoad (3ms)
 				ProcessInitializeOnLoadAttributes (141ms)
 				ProcessInitializeOnLoadMethodAttributes (88ms)
->>>>>>> c408aed05c92caf50ecccbb3a6aae8235d7162bf:Dementia/Logs/AssetImportWorker9-prev.log
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-<<<<<<< HEAD:Dementia/Logs/AssetImportWorker3.log
-Registered in 0.018149 seconds.
-=======
 Registered in 0.004390 seconds.
->>>>>>> c408aed05c92caf50ecccbb3a6aae8235d7162bf:Dementia/Logs/AssetImportWorker9-prev.log
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image D:\Projects\Dementia\Dementia\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image D:\Projects\Dementia\Dementia\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
-<<<<<<< HEAD:Dementia/Logs/AssetImportWorker3.log
-Refreshing native plugins compatible for Editor in 513.39 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  6.252 seconds
-Domain Reload Profiling:
-	ReloadAssembly (6256ms)
-		BeginReloadAssembly (598ms)
-=======
 Refreshing native plugins compatible for Editor in 156.81 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
@@ -168,42 +116,10 @@ Mono: successfully reloaded assembly
 Domain Reload Profiling:
 	ReloadAssembly (2176ms)
 		BeginReloadAssembly (275ms)
->>>>>>> c408aed05c92caf50ecccbb3a6aae8235d7162bf:Dementia/Logs/AssetImportWorker9-prev.log
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (29ms)
+			DisableScriptedObjects (8ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-<<<<<<< HEAD:Dementia/Logs/AssetImportWorker3.log
-			CreateAndSetChildDomain (209ms)
-		EndReloadAssembly (5105ms)
-			LoadAssemblies (319ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (1402ms)
-			ReleaseScriptCaches (3ms)
-			RebuildScriptCaches (314ms)
-			SetupLoadedEditorAssemblies (2844ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (58ms)
-				SetLoadedEditorAssemblies (1ms)
-				RefreshPlugins (514ms)
-				BeforeProcessingInitializeOnLoad (492ms)
-				ProcessInitializeOnLoadAttributes (1655ms)
-				ProcessInitializeOnLoadMethodAttributes (111ms)
-				AfterProcessingInitializeOnLoad (12ms)
-				EditorAssembliesLoaded (1ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (20ms)
-Platform modules already initialized, skipping
-========================================================================
-Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.17 seconds
-Refreshing native plugins compatible for Editor in 3.20 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 4250 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 45 unused Assets / (232.9 KB). Loaded Objects now: 4709.
-Memory consumption went from 152.6 MB to 152.3 MB.
-Total: 13.051800 ms (FindLiveObjects: 0.710200 ms CreateObjectMapping: 0.425900 ms MarkObjects: 11.321000 ms  DeleteObjects: 0.591500 ms)
-=======
 			CreateAndSetChildDomain (151ms)
 		EndReloadAssembly (1741ms)
 			LoadAssemblies (130ms)
@@ -233,7 +149,6 @@ Unloading 4250 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 45 unused Assets / (224.6 KB). Loaded Objects now: 4710.
 Memory consumption went from 153.2 MB to 153.0 MB.
 Total: 5.095300 ms (FindLiveObjects: 0.434300 ms CreateObjectMapping: 0.213700 ms MarkObjects: 4.186900 ms  DeleteObjects: 0.258700 ms)
->>>>>>> c408aed05c92caf50ecccbb3a6aae8235d7162bf:Dementia/Logs/AssetImportWorker9-prev.log
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -247,282 +162,6 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-<<<<<<< HEAD:Dementia/Logs/AssetImportWorker3.log
-  Time since last request: 68387.645716 seconds.
-  path: Assets/Abandoned_Asylum/Prefabs/Bed.prefab
-  artifactKey: Guid(a1b837996a21bb943a5841f13506e823) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Prefabs/Bed.prefab using Guid(a1b837996a21bb943a5841f13506e823) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a0e92f8fc2c188fb23e1407e9e32d6e') in 0.781789 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000068 seconds.
-  path: Assets/Abandoned_Asylum/Prefabs/Bench.prefab
-  artifactKey: Guid(b1057c1396491c24b8af552a78f20b1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Prefabs/Bench.prefab using Guid(b1057c1396491c24b8af552a78f20b1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd65ba7780a79634e148bc1f491035604') in 0.239001 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000130 seconds.
-  path: Assets/Abandoned_Asylum/Prefabs/Antlers.prefab
-  artifactKey: Guid(384b38a855788624e80965806ed237fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Prefabs/Antlers.prefab using Guid(384b38a855788624e80965806ed237fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9e315f1dedd4f978f77430e6feb31662') in 0.295922 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000076 seconds.
-  path: Assets/Abandoned_Asylum/Models/Antlers.fbx
-  artifactKey: Guid(bdf9d5b0bac0d704683c0569db0807f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Models/Antlers.fbx using Guid(bdf9d5b0bac0d704683c0569db0807f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '27106e702bc3fd9276593d64b3e9cf03') in 0.240184 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000101 seconds.
-  path: Assets/Abandoned_Asylum/Prefabs/SmallMetalicCase.prefab
-  artifactKey: Guid(5c9889a07401b4949ba13e39cc59f810) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Prefabs/SmallMetalicCase.prefab using Guid(5c9889a07401b4949ba13e39cc59f810) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a5c2bef74692e9e65d8ec7a78ecc1216') in 0.315214 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000082 seconds.
-  path: Assets/Abandoned_Asylum/Prefabs/BigBoiler.prefab
-  artifactKey: Guid(feff3f6fda7319640bfa52922140c7ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Prefabs/BigBoiler.prefab using Guid(feff3f6fda7319640bfa52922140c7ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '351c8337aa7cdad968677230906870db') in 0.189302 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000114 seconds.
-  path: Assets/Abandoned_Asylum/Prefabs/Sink_V1.prefab
-  artifactKey: Guid(30577724fca9edb43bab2188e72a1cc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Prefabs/Sink_V1.prefab using Guid(30577724fca9edb43bab2188e72a1cc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c10cffd386b3cb62f0b47484c67f4868') in 0.360533 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000050 seconds.
-  path: Assets/Abandoned_Asylum/Prefabs/Board.prefab
-  artifactKey: Guid(de29bac6b529e1746ab58baa5e1b8910) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Prefabs/Board.prefab using Guid(de29bac6b529e1746ab58baa5e1b8910) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c7c54c80c8bb6b1e49458fc3a542f7d') in 0.323705 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000077 seconds.
-  path: Assets/Abandoned_Asylum/Models/CupboardLight_Broken.fbx
-  artifactKey: Guid(f6fe9d0eecf7e244e81236bfea665e9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Models/CupboardLight_Broken.fbx using Guid(f6fe9d0eecf7e244e81236bfea665e9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb82c010a121209e0bfaf4fe1f5b3eac') in 0.288727 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000070 seconds.
-  path: Assets/Abandoned_Asylum/Models/BigHangs.fbx
-  artifactKey: Guid(0c68e83bf7b48c241933d43bd55b9c38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Models/BigHangs.fbx using Guid(0c68e83bf7b48c241933d43bd55b9c38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '008b6e4cf65f18f5f521dd9a83167581') in 1.238650 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000077 seconds.
-  path: Assets/Abandoned_Asylum/Prefabs/DoorD_V1.prefab
-  artifactKey: Guid(140d308f14d8b9541bc37080c8a2213f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Prefabs/DoorD_V1.prefab using Guid(140d308f14d8b9541bc37080c8a2213f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ca38be2eb2c237e0c00903b3d86e94c3') in 0.516942 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000061 seconds.
-  path: Assets/Abandoned_Asylum/Models/DiningRoom_EnterFrame.fbx
-  artifactKey: Guid(eb52226ee3d3ba343b0725a06ae4d9e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Models/DiningRoom_EnterFrame.fbx using Guid(eb52226ee3d3ba343b0725a06ae4d9e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd58fd9e0a592540b4ca1e00ff0a23c71') in 1.078762 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000108 seconds.
-  path: Assets/Abandoned_Asylum/Prefabs/NeonLamp 1.prefab
-  artifactKey: Guid(58f390f526d63fa4d86583592629af90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Prefabs/NeonLamp 1.prefab using Guid(58f390f526d63fa4d86583592629af90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '621cb1657bcf102fccf61fce9a748db0') in 0.732163 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000077 seconds.
-  path: Assets/Abandoned_Asylum/Models/Fridge.fbx
-  artifactKey: Guid(7661b0d73cd9aa144a2fcbed3f216530) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Models/Fridge.fbx using Guid(7661b0d73cd9aa144a2fcbed3f216530) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22f3373dfd8cc0113e840fa1459366c5') in 1.044045 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000126 seconds.
-  path: Assets/Abandoned_Asylum/Prefabs/Bathroom_ToiletsWall.prefab
-  artifactKey: Guid(6bd6752157d086646a4dd11ecbe3905c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Prefabs/Bathroom_ToiletsWall.prefab using Guid(6bd6752157d086646a4dd11ecbe3905c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '14579edf228bb03f037604ac98b6d3b7') in 0.267800 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000061 seconds.
-  path: Assets/Abandoned_Asylum/Models/CanOld_Damaged.fbx
-  artifactKey: Guid(17498f638ad3eb042b62190a076bf3bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Models/CanOld_Damaged.fbx using Guid(17498f638ad3eb042b62190a076bf3bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b6a74273bc5b552497b112c4dcf375a0') in 0.229784 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000096 seconds.
-  path: Assets/Abandoned_Asylum/Models/CanOld.fbx
-  artifactKey: Guid(d0ab8dd36f22162418f329eaed161d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Models/CanOld.fbx using Guid(d0ab8dd36f22162418f329eaed161d4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '36fc6fbce191b36f946acee1bf71040d') in 0.133926 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000090 seconds.
-  path: Assets/Abandoned_Asylum/Prefabs/Mug.prefab
-  artifactKey: Guid(e654e87e122044a489128addf80b0613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Prefabs/Mug.prefab using Guid(e654e87e122044a489128addf80b0613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '209eb6b1925eb72d982b4931cc910b40') in 0.182913 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000074 seconds.
-  path: Assets/Abandoned_Asylum/Prefabs/Tank.prefab
-  artifactKey: Guid(c877372ff1967b643abbc85801fc3ce2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Prefabs/Tank.prefab using Guid(c877372ff1967b643abbc85801fc3ce2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6834a78712256864bc03f08391bb641') in 0.311890 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000070 seconds.
-  path: Assets/Abandoned_Asylum/Prefabs/BigHangs.prefab
-  artifactKey: Guid(1c59f912edd0dc948ac2c2cb88158068) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Prefabs/BigHangs.prefab using Guid(1c59f912edd0dc948ac2c2cb88158068) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '71ce26c59f8ba772e6cbb6bc7ffbfd9b') in 0.228559 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000077 seconds.
-  path: Assets/Abandoned_Asylum/Models/DoorD_V1.fbx
-  artifactKey: Guid(386fb276c56b1794aa3cb06650db7b78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Models/DoorD_V1.fbx using Guid(386fb276c56b1794aa3cb06650db7b78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f6c65c605603764505438a88f28a9363') in 0.439359 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000082 seconds.
-  path: Assets/Abandoned_Asylum/Prefabs/TableWhite.prefab
-  artifactKey: Guid(9e2aa9a3cd770304790380d81be38190) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Prefabs/TableWhite.prefab using Guid(9e2aa9a3cd770304790380d81be38190) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fbe4e9029b8a8f071cb8098ddb9f00f6') in 0.371861 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000058 seconds.
-  path: Assets/Abandoned_Asylum/Models/Heater.fbx
-  artifactKey: Guid(f11bf7a9bb8ca404381a4495268b9a9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Models/Heater.fbx using Guid(f11bf7a9bb8ca404381a4495268b9a9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2955f31a33c814bc7ec3a895a903fd9d') in 0.424137 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000104 seconds.
-  path: Assets/Abandoned_Asylum/Prefabs/Asylum.prefab
-  artifactKey: Guid(beef3bcde1610f04aa96275436147bb9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Prefabs/Asylum.prefab using Guid(beef3bcde1610f04aa96275436147bb9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e47d880565a44e67d8b3b5eb544a8da1') in 25.918715 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 2.840844 seconds.
-  path: Assets/Abandoned_Asylum/Textures/Antlers_Albedo.png
-  artifactKey: Guid(f327ada5c7c78b24a96f7309ff0480c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Textures/Antlers_Albedo.png using Guid(f327ada5c7c78b24a96f7309ff0480c3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6526a0f42bfbd285d37bae1f88765e06') in 0.198180 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000052 seconds.
-  path: Assets/Abandoned_Asylum/Textures/BigShelf_Stock_Normal.png
-  artifactKey: Guid(65c3c4daa0f7d9844ac2a9241c4ab43d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Textures/BigShelf_Stock_Normal.png using Guid(65c3c4daa0f7d9844ac2a9241c4ab43d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c621b115975757c631b9529b727195b9') in 0.131838 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000094 seconds.
-  path: Assets/Abandoned_Asylum/Textures/Bench_Albedo.png
-  artifactKey: Guid(6e224465334859e468f5b9ed8534b63a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Textures/Bench_Albedo.png using Guid(6e224465334859e468f5b9ed8534b63a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32551b873b704221335589f4e1bff231') in 0.082080 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000060 seconds.
-  path: Assets/Abandoned_Asylum/Textures/BigShelf_MetallicSmoothness.png
-  artifactKey: Guid(f27b6a2330ee6d1488acafa2cb1fcb2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Textures/BigShelf_MetallicSmoothness.png using Guid(f27b6a2330ee6d1488acafa2cb1fcb2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '391e8ea98a2a12366f914014c8305b02') in 0.115318 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000076 seconds.
-  path: Assets/Abandoned_Asylum/Textures/Box_V2_Normal.png
-  artifactKey: Guid(518debed481bc3d45a92e83a687262c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Textures/Box_V2_Normal.png using Guid(518debed481bc3d45a92e83a687262c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f7478683ed40187d3344435cb3e4e0d2') in 0.121285 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000069 seconds.
-  path: Assets/Abandoned_Asylum/Textures/Antlers_Wood_Normal.png
-  artifactKey: Guid(019f46a065c39564b9f6147125ad6d43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Textures/Antlers_Wood_Normal.png using Guid(019f46a065c39564b9f6147125ad6d43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd3471ff1f9a86a0b97aa2c973142f638') in 0.039208 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000065 seconds.
-  path: Assets/Abandoned_Asylum/Textures/BigShelf_Normal.png
-  artifactKey: Guid(fce6cb3aafccc484896ca3b79143d453) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Textures/BigShelf_Normal.png using Guid(fce6cb3aafccc484896ca3b79143d453) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac366251f5b5acc1e5291dc6283b48b8') in 0.086824 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000059 seconds.
-  path: Assets/Abandoned_Asylum/Textures/Antlers_Normal.png
-  artifactKey: Guid(04af8db615629d945b7ca63f55e82a39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Textures/Antlers_Normal.png using Guid(04af8db615629d945b7ca63f55e82a39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e567016357382cdb473201034f124b71') in 0.078133 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000072 seconds.
-  path: Assets/Abandoned_Asylum/Textures/BigKettle_Albedo.png
-  artifactKey: Guid(e8f4417ac0d07034a92905e3e2b68cc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Textures/BigKettle_Albedo.png using Guid(e8f4417ac0d07034a92905e3e2b68cc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b9ffb84e8324ac9db309c7d5b28a4ea') in 0.091218 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000093 seconds.
-  path: Assets/Abandoned_Asylum/Textures/BedFeather_MetallicSmoothness.png
-  artifactKey: Guid(a3bceef475cde014e9bea512a5d218c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Textures/BedFeather_MetallicSmoothness.png using Guid(a3bceef475cde014e9bea512a5d218c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c345b4e61a5aa5d875786fd71109736d') in 0.067835 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000057 seconds.
-  path: Assets/Abandoned_Asylum/Textures/CanOld_Damaged_MetallicSmoothness.png
-  artifactKey: Guid(ae845f329b6e1604095a85d2c789870a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Textures/CanOld_Damaged_MetallicSmoothness.png using Guid(ae845f329b6e1604095a85d2c789870a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2978f1ef4c2b00507fb074ed28c40fe2') in 0.070266 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000052 seconds.
-  path: Assets/Abandoned_Asylum/Textures/BigBoiler_MetallicSmoothness.png
-  artifactKey: Guid(e5a176c6c3a43764097c7537f4d193f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Textures/BigBoiler_MetallicSmoothness.png using Guid(e5a176c6c3a43764097c7537f4d193f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf3f4dfddff8cb45fe408ca3b15afc2d') in 0.104283 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000074 seconds.
-  path: Assets/Abandoned_Asylum/Textures/CanOld_Normal.png
-  artifactKey: Guid(9139fc811919f5b48904e7ee6f12c35f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Textures/CanOld_Normal.png using Guid(9139fc811919f5b48904e7ee6f12c35f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '81d6b2873a298f2bcfcf0b494a7d3090') in 0.076542 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000101 seconds.
-  path: Assets/Abandoned_Asylum/Textures/Bed_Albedo.png
-  artifactKey: Guid(ee8653f6b14438c4c8c9852fdf85358b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Textures/Bed_Albedo.png using Guid(ee8653f6b14438c4c8c9852fdf85358b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '19d671b85317ec727a59d9c44b1a2548') in 0.082587 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 1.273786 seconds.
-  path: Assets/Abandoned_Asylum/Show_Assets/Lightmap-0_comp_shadowmask.png
-  artifactKey: Guid(feb674945b2e69f4cbf3f9da53c95645) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Show_Assets/Lightmap-0_comp_shadowmask.png using Guid(feb674945b2e69f4cbf3f9da53c95645) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8e5990367339d232c99990f08dd36da2') in 0.054249 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000062 seconds.
-  path: Assets/Abandoned_Asylum/Show_Assets/Lightmap-2_comp_dir.png
-  artifactKey: Guid(afa606e44405aa043a5aaaf340127665) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Show_Assets/Lightmap-2_comp_dir.png using Guid(afa606e44405aa043a5aaaf340127665) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '43a0072336fa6d80e40c1dcc4dbfeb70') in 0.062831 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000072 seconds.
-  path: Assets/Abandoned_Asylum/Show_Assets/Lightmap-3_comp_light.exr
-  artifactKey: Guid(f31c98fb14f53734db13b6577e71fd37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Show_Assets/Lightmap-3_comp_light.exr using Guid(f31c98fb14f53734db13b6577e71fd37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7a8d0e1f309ff109da32acea603f9b2') in 0.316522 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000059 seconds.
-  path: Assets/Abandoned_Asylum/Show_Assets/Lightmap-7_comp_light.exr
-  artifactKey: Guid(5245d2509ced66c4581567f9c3e4c5ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Show_Assets/Lightmap-7_comp_light.exr using Guid(5245d2509ced66c4581567f9c3e4c5ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9231aba6cb125d07d3f761d244929072') in 0.064044 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000084 seconds.
-  path: Assets/Abandoned_Asylum/Show_Assets/Lightmap-5_comp_dir.png
-  artifactKey: Guid(13812a4b596333d4a895387031effbc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Show_Assets/Lightmap-5_comp_dir.png using Guid(13812a4b596333d4a895387031effbc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74ba08b7b1d0b96f8c9475d3b1039207') in 0.061396 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000069 seconds.
-  path: Assets/Abandoned_Asylum/Show_Assets/Lightmap-1_comp_dir.png
-  artifactKey: Guid(e89eb75a57b57074687699583d47cfca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Show_Assets/Lightmap-1_comp_dir.png using Guid(e89eb75a57b57074687699583d47cfca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd01bfb166142f8d2fb58f2860509291a') in 0.063096 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000071 seconds.
-  path: Assets/Abandoned_Asylum/Show_Assets/Lightmap-4_comp_dir.png
-  artifactKey: Guid(0f08255112c5bb044903ececf3f6b341) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Show_Assets/Lightmap-4_comp_dir.png using Guid(0f08255112c5bb044903ececf3f6b341) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a34fe700a07b9398c68fb09e012d700f') in 0.060569 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 168.405298 seconds.
-  path: Assets/Abandoned_Asylum/Materials/Tiled/Walls/Wall_2.mat
-  artifactKey: Guid(9784176b761b857469f9789c8782e875) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Abandoned_Asylum/Materials/Tiled/Walls/Wall_2.mat using Guid(9784176b761b857469f9789c8782e875) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b14bfd51d2f81323f36e51ffaf76bd61') in 0.374194 seconds 
-=======
   Time since last request: 87666.678742 seconds.
   path: Assets/Abandoned_Asylum/Textures/Tiled/Walls/Wall_1_Normal.png
   artifactKey: Guid(c70660fdf3939374dbf934f5f381b634) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
@@ -533,7 +172,6 @@ Received Import Request.
   path: Assets/Abandoned_Asylum/Textures/Tiled/Walls/Wall_6_Normal.png
   artifactKey: Guid(2a374926a8739034a8e1a3dd1c9e1310) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Abandoned_Asylum/Textures/Tiled/Walls/Wall_6_Normal.png using Guid(2a374926a8739034a8e1a3dd1c9e1310) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a98835aa8171768950d46317722d9fd') in 0.033456 seconds 
->>>>>>> c408aed05c92caf50ecccbb3a6aae8235d7162bf:Dementia/Logs/AssetImportWorker9-prev.log
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 AssetImportWorker is now disconnected from the server
 Process exiting
