@@ -45,13 +45,12 @@ public class DamageController : MonoBehaviour
             Debug.Log(_health);
         }
     }
-    
-    
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.collider.CompareTag("EnemyHit"))
+        if (other.CompareTag("EnemyHit"))
         {
-            Damage(50);
+            Damage(5);
         }
     }
 
