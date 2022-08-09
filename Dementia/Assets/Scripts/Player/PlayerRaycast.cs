@@ -19,7 +19,7 @@ public class PlayerRaycast : MonoBehaviour
     [SerializeField] private Image leftMouseClickImage;
     [SerializeField] private Sprite keyDownSprite;
     [SerializeField] private Sprite keyUpSprite;
-    [SerializeField] private int rayLength = 5;
+    [SerializeField] private int rayLength = 3;
     [SerializeField] private LayerMask layerMaskInteract;
     [SerializeField] private Transform camera;
     private Door _door;

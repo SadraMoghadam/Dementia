@@ -50,7 +50,7 @@ public class DamageController : MonoBehaviour
     {
         if (other.CompareTag("EnemyHit"))
         {
-            Damage(5);
+            Damage(34);
         }
     }
 

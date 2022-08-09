@@ -66,6 +66,34 @@ public class EnemyAI : MonoBehaviour
         StartCoroutine(UpdateDestination());
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("MutantInteractableArea"))
+        {
+            other.transform.parent.GetComponent<Door>().ChangeDoorState(true);
+        }
+    }
+    
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("MutantInteractableArea"))
+        {
+            Door door = other.transform.parent.GetComponent<Door>();
+            door.ChangeDoorState(true);  
+            // if (!door.IsOpen)
+            // { 
+            // }
+        }
+    }
+    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("MutantInteractableArea"))
+        {
+            other.transform.parent.GetComponent<Door>().ChangeDoorState(false);
+        }
+    }
+
     private void Update()
     {
         if (GameController.instance.DamageController.isPlayerDead)

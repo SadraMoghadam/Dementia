@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33400654289310176}
   - component: {fileID: 23574759475550582}
   - component: {fileID: 64053413180486298}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: DoorD_V2_Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 33992284592298162}
   - component: {fileID: 23862595882093406}
   - component: {fileID: 64161681147703388}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: DoorD_V2_Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 33085613640202482}
   - component: {fileID: 23764983916080852}
   - component: {fileID: 64037250782672568}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: DoorD_V2_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 33576591924204072}
   - component: {fileID: 23088877053522544}
   - component: {fileID: 64854967979305636}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: DoorD_V2_Window2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 33550380685485700}
   - component: {fileID: 23191419405090192}
   - component: {fileID: 64086888208593442}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: DoorD_V2_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 2944190524235511113}
   - component: {fileID: 7318117651929206922}
   - component: {fileID: 3438927837260605306}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: DoorD_V2
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -524,6 +524,7 @@ Transform:
   - {fileID: 4639701381762462}
   - {fileID: 6851336451724426675}
   - {fileID: 3323969238650034493}
+  - {fileID: 6000415269505003453}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -582,7 +583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6851336451724426675}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: DoorLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -606,6 +607,51 @@ Transform:
   m_Father: {fileID: 4238493164227154}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8179186764721998523
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6000415269505003453}
+  - component: {fileID: 51059884810888462}
+  m_Layer: 0
+  m_Name: MutantInteractableArea
+  m_TagString: MutantInteractableArea
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6000415269505003453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8179186764721998523}
+  m_LocalRotation: {x: 0.000000026692579, y: -0.70710576, z: -0.0000000266925, w: 0.70710784}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5999999, y: 1.54, z: 1.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4238493164227154}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &51059884810888462
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8179186764721998523}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 1.5, z: 3}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!1 &8500095173898537278
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +661,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3323969238650034493}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: DoorRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
