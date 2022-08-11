@@ -1,18 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableItem : MonoBehaviour
+public enum InteractableItemType
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    Key,
+    MedKit,
+    Battery,
+    Flashlight
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+[CreateAssetMenu(fileName = "InteractableItems", menuName = "Items/InteractableItem")]
+public class InteractableItem : ScriptableObject
+{
+    public string name;
+    public GameObject prefab;
+    public InteractableItemType type;
+    public float effect;
 }

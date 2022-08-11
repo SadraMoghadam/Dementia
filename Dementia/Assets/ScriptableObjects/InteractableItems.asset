@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b01a1087022d90e42889bebaf2d6ea96, type: 3}
+  m_Name: InteractableItems
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableItemsScriptableObjects
+  InteractableItems:
+  - {fileID: 11400000, guid: 7f532ef7e4db858419e475982cc07a7d, type: 2}
+  - {fileID: 11400000, guid: 70a0e29ca5bc87542834a2575a288f30, type: 2}
+  - {fileID: 11400000, guid: 4cbb32f549f1b454e973180a46850dc7, type: 2}
+  - {fileID: 11400000, guid: edc15143969c2224d9fee51cb40573b9, type: 2}

@@ -25,11 +25,15 @@ public class PlayerRaycast : MonoBehaviour
     private Door _door;
     private InputManager _inputManager;
     private float _keyDownTimer;
+    private GameController _gameController;
+    private GameManager _gameManager;
     
 
     private void Start()
     {
         _inputManager = GetComponent<InputManager>();
+        _gameController = GameController.instance;
+        _gameManager = GameManager.instance;
         _keyDownTimer = KeyDownCooldown;
     }
 
@@ -103,6 +107,7 @@ public class PlayerRaycast : MonoBehaviour
                     }
                     rightDoor.localEulerAngles = temp;
                 }
+                InteractableItemsProcess(hit);
             }
         }
         else
@@ -110,4 +115,34 @@ public class PlayerRaycast : MonoBehaviour
             leftMouseClickImage.gameObject.SetActive(false);
         }
     }
+
+
+    private void InteractableItemsProcess(RaycastHit hit)
+    {
+        if (hit.collider.CompareTag(InteractableItemType.MedKit.ToString()))
+        {
+            InteractableItemOnClick(hit, InteractableItemType.MedKit);
+        }
+        else if (hit.collider.CompareTag(InteractableItemType.Battery.ToString()))
+        {
+            InteractableItemOnClick(hit, InteractableItemType.Battery);
+        }
+        else if (hit.collider.CompareTag(InteractableItemType.Flashlight.ToString()))
+        {
+            InteractableItemOnClick(hit, InteractableItemType.Flashlight);
+        }
+        else if (hit.collider.CompareTag(InteractableItemType.Key.ToString()))
+        {
+            InteractableItemOnClick(hit, InteractableItemType.Key);
+        }
+    }
+
+    private void InteractableItemOnClick(RaycastHit hit, InteractableItemType type)
+    {
+        Destroy(hit.collider.gameObject);
+        _gameController.Inventory.AddItem(type);
+        int itemId = hit.collider.gameObject.GetComponent<InteractableItemInfo>().id;
+        _gameManager.playerPrefsManager.AddDestroyedInteractableItemId(itemId);
+    }
+    
 }

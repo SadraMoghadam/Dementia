@@ -26,7 +26,9 @@ public class PlayerController : MonoBehaviour
     private const float _walkSpeed = 4f;
     private const float _runSpeed = 6f;
     private Vector2 _currentVelocity;
-    private bool flashlightActive = false;
+    private GameController _gameController;
+    private GameManager _gameManager;
+    
         
     private void Start() 
     {
@@ -35,6 +37,8 @@ public class PlayerController : MonoBehaviour
         _inputManager = GetComponent<InputManager>();
         _xVelocityHash = Animator.StringToHash("XVelocity");
         _yVelocityHash = Animator.StringToHash("YVelocity");
+        _gameController = GameController.instance;
+        _gameManager = GameManager.instance;
     }
 
     private void FixedUpdate() 
@@ -89,7 +93,7 @@ public class PlayerController : MonoBehaviour
 
     private void ChangeFlashlightState()
     {
-        if (_inputManager.Flashlight)
+        if (_inputManager.Flashlight && _gameManager.playerPrefsManager.GetBool(PlayerPrefsKeys.HasFlashlight, false))
         {
             flashlight.SetActive(true);
         }

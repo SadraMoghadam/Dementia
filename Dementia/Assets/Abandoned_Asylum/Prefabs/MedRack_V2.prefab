@@ -110,7 +110,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.452976, y: 1.954031, z: 0.5}
+  m_Size: {x: 0.452976, y: 1.954031, z: 0.1}
   m_Center: {x: -0.221524, y: -0.10931137, z: 0.0075755}
 --- !u!1 &1189824710729598
 GameObject:
@@ -222,7 +222,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.452976, y: 1.954031, z: 0.5}
+  m_Size: {x: 0.452976, y: 1.954031, z: 0.1}
   m_Center: {x: -0.221524, y: -0.10931149, z: 0.0075755}
 --- !u!1 &1448292466349434
 GameObject:
@@ -233,12 +233,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4337983583695168}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: MedRack_V2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4337983583695168
 Transform:
@@ -270,12 +270,12 @@ GameObject:
   - component: {fileID: 33743236649995020}
   - component: {fileID: 23017280717364686}
   - component: {fileID: 64137574092402770}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: MedRack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4693709777703990
 Transform:

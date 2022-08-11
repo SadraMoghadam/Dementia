@@ -6,6 +6,8 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public DamageController DamageController;
+    [HideInInspector] public Inventory Inventory;
+    public InteractableItemsScriptableObject InteractableItemsScriptableObject;
 
     public static GameController instance;
 
@@ -15,5 +17,7 @@ public class GameController : MonoBehaviour
         {
             instance = this;
         }
+
+        Inventory = GetComponent<Inventory>();
     }
 }

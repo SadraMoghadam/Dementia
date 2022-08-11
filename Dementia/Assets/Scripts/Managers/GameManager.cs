@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     // [HideInInspector] public GameSetting gameSetting;
-    // [HideInInspector] public PlayerPrefsManager playerPrefsManager;
+    [HideInInspector] public PlayerPrefsManager playerPrefsManager;
     // [HideInInspector] public AudioController audioController;
     
     public static GameManager instance;
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
             }
         }
         // gameSetting = GetComponent<GameSetting>();
-        // playerPrefsManager = GetComponent<PlayerPrefsManager>();
+        playerPrefsManager = GetComponent<PlayerPrefsManager>();
         // audioController = GetComponent<AudioController>();
         DontDestroyOnLoad(this.gameObject);
         instance = this;
