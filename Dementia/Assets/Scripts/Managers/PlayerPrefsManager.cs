@@ -7,7 +7,8 @@ using UnityEngine;
 public enum PlayerPrefsKeys
 {
     HasFlashlight,
-    DestroyedInteractableItems
+    DestroyedInteractableItems,
+    InventoryInteractableItemsCount
 }
 
 public class PlayerPrefsManager : MonoBehaviour
@@ -75,6 +76,21 @@ public class PlayerPrefsManager : MonoBehaviour
     public void SetInteractableItem(InteractableItems item)
     {
         PlayerPrefs.SetInt(item.ItemScriptableObject.type.ToString(), item.count);
+        int currentInventoryItems = GetInt(PlayerPrefsKeys.InventoryInteractableItemsCount, 0);
+        SetInt(PlayerPrefsKeys.InventoryInteractableItemsCount, ++currentInventoryItems);
+    }
+
+    public List<InteractableItemType> GetInventoryItemsType()
+    {
+        List<InteractableItemType> inventoryItems = new List<InteractableItemType>();
+        for (int i = 0; i < Enum.GetValues(typeof(InteractableItemType)).Length; i++)
+        {
+            InteractableItemType type = (InteractableItemType)i;
+            int numOfItems = PlayerPrefs.GetInt(type.ToString(), 0);
+            if(numOfItems > 0)
+                inventoryItems.Add(type);
+        }
+        return inventoryItems;
     }
     
     public int GetInteractableItemCount(InteractableItemType type)
@@ -84,30 +100,69 @@ public class PlayerPrefsManager : MonoBehaviour
         return PlayerPrefs.GetInt(type.ToString()); 
     }
 
-    public void AddDestroyedInteractableItemId(int itemId)
+    
+    [Serializable]
+    private struct InteractableItemsInfo
     {
-        List<int> itemsId = new List<int>();
+        public List<ItemInfo> items;
+    } 
+    
+    public void AddDestroyedInteractableItem(InteractableItemInfo itemInfo)
+    {
+        List<ItemInfo> itemsInfo = new List<ItemInfo>();
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.DestroyedInteractableItems.ToString()))
-            itemsId = GetDestroyedInteractableItemsId();
+            itemsInfo = GetDestroyedInteractableItems();
         string itemsString = "";
-        itemsId.Add(itemId);
-        itemsString = String.Join(',', itemsId);
+        ItemInfo info = new ItemInfo();
+        info.id = itemInfo.itemInfo.id;
+        info.type = itemInfo.itemInfo.type;
+        itemsInfo.Add(info);
+        InteractableItemsInfo interactableItemsInfo = new InteractableItemsInfo();
+        interactableItemsInfo.items = itemsInfo;
+        itemsString = JsonUtility.ToJson(interactableItemsInfo);
         SetString(PlayerPrefsKeys.DestroyedInteractableItems, itemsString);
     }
     
-    public List<int> GetDestroyedInteractableItemsId()
+    public List<ItemInfo> GetDestroyedInteractableItems()
     {
         string itemsString = "";
         if (PlayerPrefs.HasKey(PlayerPrefsKeys.DestroyedInteractableItems.ToString()))
         {
             itemsString = GetString(PlayerPrefsKeys.DestroyedInteractableItems, "");
-            List<string> idsString = itemsString.Split( new [] {','} ).ToList();
-            List<int> ids = new List<int>();
-            for (int i = 0; i < idsString.Count; i++)
+            InteractableItemsInfo interactableItemsInfo = JsonUtility.FromJson<InteractableItemsInfo>(itemsString);
+            return interactableItemsInfo.items;
+        }
+        return null;
+    }
+    
+    public List<int> GetDestroyedInteractableItemsId()
+    {
+        List<ItemInfo> infos = GetDestroyedInteractableItems();
+        List<int> ids = new List<int>();
+        if (infos == null)
+            return null;
+        
+        for (int i = 0; i < infos.Count; i++)
+        {
+            ids.Add(infos[i].id);
+        }
+
+        return ids;
+    }
+
+    
+    public List<ItemInfo> GetInventoryInteractableItems()
+    {
+        if (PlayerPrefs.HasKey(PlayerPrefsKeys.DestroyedInteractableItems.ToString()))
+        {
+            List<ItemInfo> destroyedItemsInfo = GetDestroyedInteractableItems();
+            List<ItemInfo> inventoryItemsInfo = new List<ItemInfo>();
+            int lowerBoundLoop = destroyedItemsInfo.Count < 6 ? 0 : destroyedItemsInfo.Count - 6;
+            for (int i = destroyedItemsInfo.Count - 1; i >= lowerBoundLoop; i--)
             {
-                ids.Add(Int16.Parse(idsString[i])); 
+                inventoryItemsInfo.Add(destroyedItemsInfo[i]);
             }
-            return ids;
+            return inventoryItemsInfo;
         }
         return null;
     }

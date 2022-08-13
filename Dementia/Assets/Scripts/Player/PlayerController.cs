@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour
         _gameManager = GameManager.instance;
     }
 
+    private void Update()
+    {
+        CheckPlayerInput();
+    }
+
     private void FixedUpdate() 
     {
         if (GameController.instance.DamageController.isPlayerDead)
@@ -54,6 +59,8 @@ public class PlayerController : MonoBehaviour
     }
     private void LateUpdate()
     {
+        if(_gameController.Inventory.inventoryPanel.gameObject.activeSelf)
+            return;
         CameraMovement();
     }
     
@@ -100,6 +107,21 @@ public class PlayerController : MonoBehaviour
         else
         {
             flashlight.SetActive(false);
+        }
+    }
+
+    private void CheckPlayerInput()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if(!_gameController.Inventory.inventoryPanel.gameObject.activeSelf)
+            {
+                _gameController.Inventory.OpenInventory();
+            }
+            else
+            {
+                _gameController.Inventory.CloseInventory();
+            }
         }
     }
 

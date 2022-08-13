@@ -6,13 +6,16 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public List<InteractableItems> inventoryItems;
-    private int _inventorySpace;
+    public int inventorySpace = 6;
+    public InventoryPanel inventoryPanel;
     private GameManager _gameManager;
+    private GameController _gameController;
 
 
     private void Start()
     {
         _gameManager = GameManager.instance;
+        _gameController = GameController.instance;
         InitItemsCount();
     }
 
@@ -57,9 +60,31 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void ShowItems()
+    public InteractableItems ConvertTypeToScriptableObject(InteractableItemType type)
     {
-        
+        InteractableItems item = new InteractableItems();
+        for (int i = 0; i < inventoryItems.Count; i++)
+        {
+            if (inventoryItems[i].ItemScriptableObject.type == type)
+            {
+                item = inventoryItems[i];
+                break;
+            }
+        }
+
+        return item;
+    }
+
+    public void OpenInventory()
+    {
+        _gameController.ShowCursor();
+        inventoryPanel.gameObject.SetActive(true);
+    }
+
+    public void CloseInventory()
+    {
+        _gameController.HideCursor();
+        inventoryPanel.gameObject.SetActive(false);
     }
     
 }

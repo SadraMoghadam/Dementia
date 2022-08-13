@@ -16,3 +16,5 @@ MonoBehaviour:
   prefab: {fileID: 1582621612835726801, guid: 1436513f7b239264f9d74995c0c0b042, type: 3}
   type: 0
   effect: 0
+  sprite: {fileID: 21300000, guid: 5f8956868f8fe3a458fea0897dc7188a, type: 3}
+  description: This is a Key

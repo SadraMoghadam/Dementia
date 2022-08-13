@@ -19,4 +19,6 @@ public class InteractableItem : ScriptableObject
     public GameObject prefab;
     public InteractableItemType type;
     public float effect;
+    public Sprite sprite;
+    public string description;
 }

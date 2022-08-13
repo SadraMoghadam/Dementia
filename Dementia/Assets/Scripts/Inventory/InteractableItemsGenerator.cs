@@ -52,7 +52,7 @@ public class InteractableItemsGenerator : MonoBehaviour
             }
             GameObject InstantiatedGO;
             InstantiatedGO = Instantiate(_gameController.InteractableItemsScriptableObject.InteractableItems[(int)type].prefab, _itemsPlaces[i]);
-            InstantiatedGO.GetComponent<InteractableItemInfo>().id = i;
+            InstantiatedGO.GetComponent<InteractableItemInfo>().itemInfo.id = i;
             InstantiatedGO.gameObject.name = type.ToString();
         }
     }

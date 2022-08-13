@@ -9,6 +9,9 @@ public class GameController : MonoBehaviour
     [HideInInspector] public Inventory Inventory;
     public InteractableItemsScriptableObject InteractableItemsScriptableObject;
 
+    [HideInInspector]
+    public bool isInInventory;
+
     public static GameController instance;
 
     private void Awake()
@@ -19,5 +22,19 @@ public class GameController : MonoBehaviour
         }
 
         Inventory = GetComponent<Inventory>();
+        isInInventory = false;
+    }
+    
+    
+    public void HideCursor()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+    
+    public void ShowCursor()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }

@@ -119,6 +119,9 @@ public class PlayerRaycast : MonoBehaviour
 
     private void InteractableItemsProcess(RaycastHit hit)
     {
+        int currentInventoryItemsCount = _gameManager.playerPrefsManager.GetInt(PlayerPrefsKeys.InventoryInteractableItemsCount, 0);
+        if(currentInventoryItemsCount >= _gameController.Inventory.inventorySpace)
+            return;
         if (hit.collider.CompareTag(InteractableItemType.MedKit.ToString()))
         {
             InteractableItemOnClick(hit, InteractableItemType.MedKit);
@@ -139,10 +142,10 @@ public class PlayerRaycast : MonoBehaviour
 
     private void InteractableItemOnClick(RaycastHit hit, InteractableItemType type)
     {
-        Destroy(hit.collider.gameObject);
+        Destroy(hit.collider.gameObject, .1f);
         _gameController.Inventory.AddItem(type);
-        int itemId = hit.collider.gameObject.GetComponent<InteractableItemInfo>().id;
-        _gameManager.playerPrefsManager.AddDestroyedInteractableItemId(itemId);
+        InteractableItemInfo itemInfo = hit.collider.gameObject.GetComponent<InteractableItemInfo>();
+        _gameManager.playerPrefsManager.AddDestroyedInteractableItem(itemInfo);
     }
     
 }
