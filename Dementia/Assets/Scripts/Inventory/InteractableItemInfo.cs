@@ -9,6 +9,7 @@ public class ItemInfo
 {
     public int id;
     public InteractableItemType type;
+    public bool deletedFromInventory;
 }
 
 public class InteractableItemInfo : MonoBehaviour

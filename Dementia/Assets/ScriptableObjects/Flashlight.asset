@@ -16,5 +16,5 @@ MonoBehaviour:
   prefab: {fileID: 1275266641364890, guid: e3109ccf9db0f54408d5c02b496761c1, type: 3}
   type: 3
   effect: 0
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: f42787289fb6871458ba26adad561aa2, type: 3}
   description: This is a Flashlight

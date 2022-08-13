@@ -39,9 +39,12 @@ public class Inventory : MonoBehaviour
                 {
                     _gameManager.playerPrefsManager.SetBool(PlayerPrefsKeys.HasFlashlight, true);
                 }
-                inventoryItems[i].count++;
-                _gameManager.playerPrefsManager.SetInteractableItem(inventoryItems[i]);
-                Debug.Log("Added " + type.ToString());
+                else
+                {
+                    inventoryItems[i].count++;
+                    _gameManager.playerPrefsManager.SetInteractableItem(inventoryItems[i]);
+                    Debug.Log("Added " + type.ToString());   
+                }
                 break;
             }
         }

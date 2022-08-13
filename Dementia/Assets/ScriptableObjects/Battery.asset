@@ -16,5 +16,5 @@ MonoBehaviour:
   prefab: {fileID: 1123693314251274, guid: b741fa043c0908c499bb320804aa111b, type: 3}
   type: 2
   effect: 100
-  sprite: {fileID: 21300000, guid: eddc6e9ae6782504daf3716f81778342, type: 3}
+  sprite: {fileID: 21300000, guid: 36afc9c8de1acd247aabc7e3dc84ea1b, type: 3}
   description: This is a Battery

@@ -123,6 +123,15 @@ public class PlayerController : MonoBehaviour
                 _gameController.Inventory.CloseInventory();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            InventoryPanel inventoryPanel = _gameController.Inventory.inventoryPanel;
+            if (inventoryPanel.gameObject.activeSelf)
+            {
+                inventoryPanel.DeleteItem();
+            }
+        }
     }
 
     // private void Move()

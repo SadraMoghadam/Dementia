@@ -120,6 +120,11 @@ public class PlayerRaycast : MonoBehaviour
     private void InteractableItemsProcess(RaycastHit hit)
     {
         int currentInventoryItemsCount = _gameManager.playerPrefsManager.GetInt(PlayerPrefsKeys.InventoryInteractableItemsCount, 0);
+        
+        if (hit.collider.CompareTag(InteractableItemType.Flashlight.ToString()))
+        {
+            InteractableItemOnClick(hit, InteractableItemType.Flashlight);
+        }
         if(currentInventoryItemsCount >= _gameController.Inventory.inventorySpace)
             return;
         if (hit.collider.CompareTag(InteractableItemType.MedKit.ToString()))
@@ -129,10 +134,6 @@ public class PlayerRaycast : MonoBehaviour
         else if (hit.collider.CompareTag(InteractableItemType.Battery.ToString()))
         {
             InteractableItemOnClick(hit, InteractableItemType.Battery);
-        }
-        else if (hit.collider.CompareTag(InteractableItemType.Flashlight.ToString()))
-        {
-            InteractableItemOnClick(hit, InteractableItemType.Flashlight);
         }
         else if (hit.collider.CompareTag(InteractableItemType.Key.ToString()))
         {

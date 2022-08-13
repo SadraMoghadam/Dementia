@@ -79,6 +79,11 @@ public class PlayerPrefsManager : MonoBehaviour
         int currentInventoryItems = GetInt(PlayerPrefsKeys.InventoryInteractableItemsCount, 0);
         SetInt(PlayerPrefsKeys.InventoryInteractableItemsCount, ++currentInventoryItems);
     }
+    
+    public void SetInteractableItem(InteractableItemType type, int count)
+    {
+        PlayerPrefs.SetInt(type.ToString(), count);
+    }
 
     public List<InteractableItemType> GetInventoryItemsType()
     {
@@ -158,14 +163,50 @@ public class PlayerPrefsManager : MonoBehaviour
             List<ItemInfo> destroyedItemsInfo = GetDestroyedInteractableItems();
             List<ItemInfo> inventoryItemsInfo = new List<ItemInfo>();
             int lowerBoundLoop = destroyedItemsInfo.Count < 6 ? 0 : destroyedItemsInfo.Count - 6;
-            for (int i = destroyedItemsInfo.Count - 1; i >= lowerBoundLoop; i--)
+            int i = destroyedItemsInfo.Count - 1;
+            while (inventoryItemsInfo.Count < 6)
             {
+                if(i == -1)
+                    break;
+                if (destroyedItemsInfo[i].type == InteractableItemType.Flashlight || destroyedItemsInfo[i].deletedFromInventory)
+                {
+                    i--;
+                    continue;
+                }
                 inventoryItemsInfo.Add(destroyedItemsInfo[i]);
+                i--;
             }
-            return inventoryItemsInfo;
+            return inventoryItemsInfo;    
         }
         return null;
     }
+
+    public void DeleteItemFromInventory(int id)
+    {
+        List<ItemInfo> itemsInfo = GetDestroyedInteractableItems();
+        for (int i = 0; i < itemsInfo.Count; i++)
+        {
+            if (itemsInfo[i].id == id)
+            {
+                if (itemsInfo[i].type == InteractableItemType.Flashlight)
+                {
+                    return;
+                }
+                itemsInfo[i].deletedFromInventory = true;
+                int inventoryItemsCount = GetInt(PlayerPrefsKeys.InventoryInteractableItemsCount, 0);
+                SetInt(PlayerPrefsKeys.InventoryInteractableItemsCount, --inventoryItemsCount);
+                int itemCount = GetInteractableItemCount(itemsInfo[i].type);
+                SetInteractableItem(itemsInfo[i].type, --itemCount);
+                break;
+            }
+        }
+
+        InteractableItemsInfo interactableItemsInfo = new InteractableItemsInfo();
+        interactableItemsInfo.items = itemsInfo;
+        string itemsString = JsonUtility.ToJson(interactableItemsInfo);
+        SetString(PlayerPrefsKeys.DestroyedInteractableItems, itemsString);
+    }
+    
     
     // [Serializable]
     // public struct CurrentInteractableItems
