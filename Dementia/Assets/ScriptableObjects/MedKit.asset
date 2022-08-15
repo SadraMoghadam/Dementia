@@ -16,5 +16,5 @@ MonoBehaviour:
   prefab: {fileID: 1987713744733760, guid: b55df95fa6211964e8ad561501250fac, type: 3}
   type: 1
   effect: 100
-  sprite: {fileID: 21300000, guid: 98c877830a20d2148bd1b4c3084ae82a, type: 3}
+  sprite: {fileID: 21300000, guid: 156c61f89e08b834fbb7111e06d74ea1, type: 3}
   description: This is a MedKit

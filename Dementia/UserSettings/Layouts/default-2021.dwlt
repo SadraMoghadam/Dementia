@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1706.6667
     height: 877.3334
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Inspector
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -282,7 +282,7 @@ MonoBehaviour:
   - {fileID: 23}
   - {fileID: 24}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 2
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -354,10 +354,10 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: f6830200
-      m_LastClickedID: 0
-      m_ExpandedIDs: 84c8fdff2c21feff7a0bffff744bfffff850ffff7e64ffffe673ffff9674ffffa475ffff0ca2ffff10fbffffe8030100a00401001e06010082060100160801001e090100ea640200
+      scrollPos: {x: 0, y: 50.666687}
+      m_SelectedIDs: 14e5feff
+      m_LastClickedID: -72428
+      m_ExpandedIDs: 803affff2a6dffff10fbffffee7f000028810000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -580,7 +580,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 25.333334}
+      snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-transform-toolbar
@@ -613,7 +613,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 0
-      snapOffset: {x: 0, y: 24.666666}
+      snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Scene View/Camera
@@ -728,9 +728,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -3.498321, y: 3.3751292, z: 29.360819}
+    m_Target: {x: 11.2026005, y: 3.0283766, z: 0.02659979}
     speed: 2
-    m_Value: {x: -3.498321, y: 3.3751292, z: 29.360819}
+    m_Value: {x: 11.2026005, y: 3.0283766, z: 0.026599806}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -777,13 +777,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.10196284, y: -0.5508876, z: 0.06775801, w: 0.8256886}
+    m_Target: {x: 0.12504904, y: -0.7369949, z: 0.14184818, w: 0.6491175}
     speed: 2
-    m_Value: {x: 0.10091329, y: -0.5484466, z: 0.066621326, w: 0.8273962}
+    m_Value: {x: 0.12697788, y: -0.73646533, z: 0.14403936, w: 0.64865094}
   m_Size:
-    m_Target: 2.4231195
+    m_Target: 0.59851
     speed: 2
-    m_Value: 2.537298
+    m_Value: 0.59851
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -849,22 +849,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Art/Sprites/Blood
+    - Assets/Prefabs/Bloods
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 49
   m_LastFolders:
-  - Assets/Art/Sprites/Blood
+  - Assets/Prefabs/Bloods
   m_LastFoldersGridSize: 49
   m_LastProjectPath: D:\Projects\Dementia\Dementia
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 133}
-    m_SelectedIDs: e4830200
-    m_LastClickedID: 164836
-    m_ExpandedIDs: 000000006ae000006ce000006ee0000070e0000072e0000074e00000d2e30000eae30000f6e3000098f20000e483020000ca9a3b
+    scrollPos: {x: 0, y: 261}
+    m_SelectedIDs: 30de0000
+    m_LastClickedID: 56880
+    m_ExpandedIDs: 00000000fcda0000feda000000db000002db000004db000006db000008db00000adb00000cdb00000edb000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -892,7 +892,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000006ae000006ce000006ee0000070e0000072e0000074e00000
+    m_ExpandedIDs: 00000000fcda0000feda000000db000002db000004db000006db000008db00000adb00000cdb00000edb0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
