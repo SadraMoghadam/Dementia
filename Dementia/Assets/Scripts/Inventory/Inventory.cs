@@ -89,5 +89,24 @@ public class Inventory : MonoBehaviour
         _gameController.HideCursor();
         inventoryPanel.gameObject.SetActive(false);
     }
+
+    public InteractableItems GetItemInfo(InteractableItemType type)
+    {
+        for (int i = 0; i < inventoryItems.Count; i++)
+        {
+            if (inventoryItems[i].ItemScriptableObject.type == type)
+            {
+                return inventoryItems[i];
+            }
+        }
+
+        return inventoryItems[0];
+    }
+    
+    public void UpdateUsedItemOnPlayerPrefs(InteractableItemType type)
+    {
+        int itemCount = _gameManager.playerPrefsManager.GetInteractableItemCount(type);
+        _gameManager.playerPrefsManager.SetInteractableItem(type, --itemCount);
+    }
     
 }

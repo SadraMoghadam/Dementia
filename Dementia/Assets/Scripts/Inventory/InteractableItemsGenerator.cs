@@ -46,6 +46,10 @@ public class InteractableItemsGenerator : MonoBehaviour
             {
                 type = InteractableItemType.Flashlight;
             }
+            else if (_itemsPlaces[i].gameObject.CompareTag(InteractableItemType.Pills.ToString()))
+            {
+                type = InteractableItemType.Pills;
+            }
             else
             {
                 break;

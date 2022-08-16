@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public DamageController DamageController;
+    public StaminaController StaminaController;
     [HideInInspector] public Inventory Inventory;
     public InteractableItemsScriptableObject InteractableItemsScriptableObject;
 

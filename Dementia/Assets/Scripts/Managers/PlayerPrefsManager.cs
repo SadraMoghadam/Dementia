@@ -75,7 +75,7 @@ public class PlayerPrefsManager : MonoBehaviour
 
     public void SetInteractableItem(InteractableItems item)
     {
-        PlayerPrefs.SetInt(item.ItemScriptableObject.type.ToString(), item.count);
+        SetInteractableItem(item.ItemScriptableObject.type, item.count);
         int currentInventoryItems = GetInt(PlayerPrefsKeys.InventoryInteractableItemsCount, 0);
         SetInt(PlayerPrefsKeys.InventoryInteractableItemsCount, ++currentInventoryItems);
     }
@@ -197,6 +197,7 @@ public class PlayerPrefsManager : MonoBehaviour
                 SetInt(PlayerPrefsKeys.InventoryInteractableItemsCount, --inventoryItemsCount);
                 int itemCount = GetInteractableItemCount(itemsInfo[i].type);
                 SetInteractableItem(itemsInfo[i].type, --itemCount);
+                GameController.instance.Inventory.DeleteItem(itemsInfo[i].type);
                 break;
             }
         }
@@ -205,6 +206,21 @@ public class PlayerPrefsManager : MonoBehaviour
         interactableItemsInfo.items = itemsInfo;
         string itemsString = JsonUtility.ToJson(interactableItemsInfo);
         SetString(PlayerPrefsKeys.DestroyedInteractableItems, itemsString);
+    }
+
+    public List<int> GetItemsInInventoryIds(InteractableItemType type)
+    {
+        List<int> ids = new List<int>();
+        var inventoryItems = GetInventoryInteractableItems();
+        for (int i = 0; i < inventoryItems.Count; i++)
+        {
+            if (inventoryItems[i].type == type)
+            {
+                ids.Add(inventoryItems[i].id);
+            }
+        }
+
+        return ids;
     }
     
     

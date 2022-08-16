@@ -1122,6 +1122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6785797101187137725}
   - component: {fileID: 5430949050461443100}
+  - component: {fileID: 340570976}
   m_Layer: 6
   m_Name: Flashlight
   m_TagString: Untagged
@@ -1162,7 +1163,7 @@ Light:
   m_InnerSpotAngle: 1
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 0
@@ -1190,7 +1191,7 @@ Light:
   m_Cookie: {fileID: 2800000, guid: 0af034e66473d9b46a4212f8784641fa, type: 3}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1206,6 +1207,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &340570976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4064132427232507305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &4590575907935335691
 GameObject:
   m_ObjectHideFlags: 0
@@ -2253,6 +2274,7 @@ GameObject:
   - component: {fileID: 469959688}
   - component: {fileID: 1109629197}
   - component: {fileID: 1109629198}
+  - component: {fileID: 3851386622817693860}
   m_Layer: 6
   m_Name: MainPlayer
   m_TagString: Player
@@ -2419,7 +2441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2983e6684bc5f42b92635b4b0f649b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyDownCooldown: 0.2
+  KeyDownCooldown: 0.1
   leftMouseClickImage: {fileID: 0}
   keyDownSprite: {fileID: 21300000, guid: 936515dd9b1858a4a983fae754b7c4c8, type: 3}
   keyUpSprite: {fileID: 21300000, guid: 121be8788605f474085e32397d870156, type: 3}
@@ -2428,6 +2450,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1792
   camera: {fileID: 7336961855177154696}
+--- !u!114 &3851386622817693860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7571525411234056726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0749272f007e4f94c8b4fb81db3c8b72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInStaminaMode: 0
+  maxStamina: 100
+  staminaModeTime: 20
+  regenerationDelay: 2
 --- !u!1 &7698656669681772877
 GameObject:
   m_ObjectHideFlags: 0

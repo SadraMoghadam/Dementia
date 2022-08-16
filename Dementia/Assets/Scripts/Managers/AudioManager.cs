@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 
     public void play(string name)

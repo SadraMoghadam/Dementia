@@ -27,24 +27,24 @@ public class DamageController : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        if (_health >= maxHealth)
-        {
-            return;
-        }
-        _damageStartTime += Time.deltaTime;
-        _counter++;
-        if (_damageStartTime >= _healingTimeOut && _counter >= regenerationDelay)
-        {
-            _counter = 0;
-            _health = _health < maxHealth ? _health + 5 : maxHealth;
-            Color tempColor = damageBackground.color;
-            tempColor.a = 1 - (float)_health / maxHealth;
-            damageBackground.color = tempColor;
-            Debug.Log(_health);
-        }
-    }
+    // private void Update()
+    // {
+    //     if (_health >= maxHealth)
+    //     {
+    //         return;
+    //     }
+    //     _damageStartTime += Time.deltaTime;
+    //     _counter++;
+    //     if (_damageStartTime >= _healingTimeOut && _counter >= regenerationDelay)
+    //     {
+    //         _counter = 0;
+    //         _health = _health < maxHealth ? _health + 5 : maxHealth;
+    //         Color tempColor = damageBackground.color;
+    //         tempColor.a = 1 - (float)_health / maxHealth;
+    //         damageBackground.color = tempColor;
+    //         Debug.Log(_health);
+    //     }
+    // }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -72,4 +72,22 @@ public class DamageController : MonoBehaviour
         }
         Debug.Log(_health);
     }
+
+    public void Heal(float amount)
+    {
+        _health += amount;
+        if (_health >= maxHealth)
+        {
+            _health = maxHealth;
+        }
+        Color tempColor = damageBackground.color;
+        tempColor.a = 1 - (float)_health / maxHealth;
+        damageBackground.color = tempColor;
+    }
+
+    public float GetHealth()
+    {
+        return _health;
+    }
+    
 }

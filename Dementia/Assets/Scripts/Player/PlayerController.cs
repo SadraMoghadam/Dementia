@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -23,8 +24,8 @@ public class PlayerController : MonoBehaviour
     private int _xVelocityHash;
     private int _yVelocityHash;
     private float _xRotation;
-    private const float _walkSpeed = 4f;
-    private const float _runSpeed = 6f;
+    private const float _walkSpeed = 3f;
+    private const float _runSpeed = 7f;
     private Vector2 _currentVelocity;
     private GameController _gameController;
     private GameManager _gameManager;
@@ -78,6 +79,10 @@ public class PlayerController : MonoBehaviour
         transform.position += transform.TransformDirection (newPos / 40);
         _animator.SetFloat(_xVelocityHash, _currentVelocity.x);
         _animator.SetFloat(_yVelocityHash, _currentVelocity.y);
+        if (_inputManager.Run)
+        {
+            _gameController.StaminaController.ReduceStaminaOverTime(.1f);
+        }
     }
 
     private void CameraMovement()
@@ -123,8 +128,7 @@ public class PlayerController : MonoBehaviour
                 _gameController.Inventory.CloseInventory();
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.X))
+        else if (Input.GetKeyDown(KeyCode.X))
         {
             InventoryPanel inventoryPanel = _gameController.Inventory.inventoryPanel;
             if (inventoryPanel.gameObject.activeSelf)
@@ -132,7 +136,33 @@ public class PlayerController : MonoBehaviour
                 inventoryPanel.DeleteItem();
             }
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            InteractableItemType type = InteractableItemType.MedKit;
+            int itemCount = _gameManager.playerPrefsManager.GetInteractableItemCount(type);
+            float health = _gameController.DamageController.GetHealth();
+            if (itemCount > 0 && health < 100)
+            {
+                int firstItemId = _gameManager.playerPrefsManager.GetItemsInInventoryIds(type).Last();
+                _gameManager.playerPrefsManager.DeleteItemFromInventory(firstItemId);
+                _gameController.DamageController.Heal(_gameController.Inventory.GetItemInfo(type).ItemScriptableObject.effect);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            InteractableItemType type = InteractableItemType.Pills;
+            int itemCount = _gameManager.playerPrefsManager.GetInteractableItemCount(type);
+            if (itemCount > 0 && !_gameController.StaminaController.isInStaminaMode)
+            {
+                int firstItemId = _gameManager.playerPrefsManager.GetItemsInInventoryIds(type).Last();
+                _gameManager.playerPrefsManager.DeleteItemFromInventory(firstItemId);
+                _gameController.StaminaController.StaminaMode();
+            }
+        }
+        
     }
+    
+    
 
     // private void Move()
     // {

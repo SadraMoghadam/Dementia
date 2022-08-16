@@ -139,6 +139,10 @@ public class PlayerRaycast : MonoBehaviour
         {
             InteractableItemOnClick(hit, InteractableItemType.Key);
         }
+        else if (hit.collider.CompareTag(InteractableItemType.Pills.ToString()))
+        {
+            InteractableItemOnClick(hit, InteractableItemType.Pills);
+        }
     }
 
     private void InteractableItemOnClick(RaycastHit hit, InteractableItemType type)

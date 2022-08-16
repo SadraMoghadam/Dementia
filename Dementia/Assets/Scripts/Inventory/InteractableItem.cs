@@ -8,7 +8,8 @@ public enum InteractableItemType
     Key,
     MedKit,
     Battery,
-    Flashlight
+    Flashlight,
+    Pills
 }
 
 
