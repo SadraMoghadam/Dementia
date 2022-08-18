@@ -70,6 +70,10 @@ public class PlayerController : MonoBehaviour
         if(!_hasAnimator) 
             return;
         float targetSpeed = _inputManager.Run ? _runSpeed : _walkSpeed;
+        if (_gameController.StaminaController.GetStamina() < 1)
+        {
+            targetSpeed = _walkSpeed;
+        }
         if(_inputManager.Move ==Vector2.zero) 
             targetSpeed = 0;
         _currentVelocity.x = Mathf.Lerp(_currentVelocity.x, _inputManager.Move.x * targetSpeed, animBlendSpeed * Time.fixedDeltaTime);
@@ -81,7 +85,8 @@ public class PlayerController : MonoBehaviour
         _animator.SetFloat(_yVelocityHash, _currentVelocity.y);
         if (_inputManager.Run)
         {
-            _gameController.StaminaController.ReduceStaminaOverTime(.1f);
+            _gameController.StaminaController.ReduceStaminaOverTime(.15f);
+            
         }
     }
 

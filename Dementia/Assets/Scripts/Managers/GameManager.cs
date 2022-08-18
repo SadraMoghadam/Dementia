@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     // [HideInInspector] public GameSetting gameSetting;
     [HideInInspector] public PlayerPrefsManager playerPrefsManager;
-    // [HideInInspector] public AudioController audioController;
+    [HideInInspector] public AudioManager AudioManager;
     
     public static GameManager instance;
     private void Awake()
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         }
         // gameSetting = GetComponent<GameSetting>();
         playerPrefsManager = GetComponent<PlayerPrefsManager>();
-        // audioController = GetComponent<AudioController>();
+        AudioManager = GetComponent<AudioManager>();
         DontDestroyOnLoad(this.gameObject);
         instance = this;
     }

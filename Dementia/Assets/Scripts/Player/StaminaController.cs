@@ -47,7 +47,7 @@ public class StaminaController : MonoBehaviour
             if (_staminaRegenStartTime >= _staminaTimeOut)
             {
                 // _counter = 0;
-                _stamina = _stamina < maxStamina ? _stamina + .1f : maxStamina;
+                _stamina = _stamina < maxStamina ? _stamina + .2f : maxStamina;
                 staminaBar.slider.value = _stamina;
                 Debug.Log(_stamina);
             }    
@@ -72,6 +72,12 @@ public class StaminaController : MonoBehaviour
     {
         isInStaminaMode = true;
         _stamina = maxStamina;
+    }
+    
+    
+    public float GetStamina()
+    {
+        return _stamina;
     }
     
 }

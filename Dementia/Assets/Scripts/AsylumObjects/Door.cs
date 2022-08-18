@@ -10,7 +10,7 @@ public class Door : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        animator = transform.parent.GetComponent<Animator>();
     }
 
     public void ChangeDoorState()

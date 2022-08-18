@@ -6,22 +6,15 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
-    public AudioManager instance;
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
         DontDestroyOnLoad(gameObject);
         for (int i = 0; i < sounds.Length; i++)
         {
-            sounds[i].source = gameObject.AddComponent<AudioSource>();
+            // sounds[i].source = gameObject.GetComponent<AudioSource>();
+            // if(sounds[i].source == null)
+            //     gameObject.AddComponent<AudioSource>();
             sounds[i].source.clip = sounds[i].clip;
             sounds[i].source.volume = sounds[i].volume;
             sounds[i].source.pitch = sounds[i].pitch;

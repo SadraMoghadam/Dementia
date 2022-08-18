@@ -288,5 +288,10 @@ public class EnemyAI : MonoBehaviour
     {
         _playerCaught = true;
     }
+
+    public void Steps()
+    {
+        GameManager.instance.AudioManager.play("FootStep");
+    }
     
 }

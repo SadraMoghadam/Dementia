@@ -14,6 +14,7 @@ TagManager:
   - Battery
   - Flashlight
   - Pills
+  - MutantFoot
   layers:
   - Default
   - TransparentFX

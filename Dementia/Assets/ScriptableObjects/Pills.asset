@@ -16,5 +16,5 @@ MonoBehaviour:
   prefab: {fileID: 1985338178271116, guid: 48ec186542777474bb236dff1694340c, type: 3}
   type: 4
   effect: 100
-  sprite: {fileID: 21300000, guid: f3e4d45cf49c31947b5c23c38ebc8323, type: 3}
+  sprite: {fileID: 21300000, guid: 8cc29255a23a6304c958daa2952d6f41, type: 3}
   description: Pills make you run for 30 seconds without stamina reduction
