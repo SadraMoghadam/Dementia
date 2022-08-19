@@ -112,11 +112,20 @@ public class PlayerController : MonoBehaviour
     {
         if (_inputManager.Flashlight && _gameManager.playerPrefsManager.GetBool(PlayerPrefsKeys.HasFlashlight, false))
         {
+            if (_gameController.FlashlightController.GetBatteryAmount() <= 1)
+            {
+                flashlight.SetActive(false);
+                _gameController.FlashlightController.ChangeFlashlightState(false);
+                return;
+            }
             flashlight.SetActive(true);
+            _gameController.FlashlightController.ReduceBatteryOverTime(0.022f);
+            _gameController.FlashlightController.ChangeFlashlightState(true);
         }
         else
         {
             flashlight.SetActive(false);
+            _gameController.FlashlightController.ChangeFlashlightState(false);
         }
     }
 
@@ -151,6 +160,17 @@ public class PlayerController : MonoBehaviour
                 int firstItemId = _gameManager.playerPrefsManager.GetItemsInInventoryIds(type).Last();
                 _gameManager.playerPrefsManager.DeleteItemFromInventory(firstItemId);
                 _gameController.DamageController.Heal(_gameController.Inventory.GetItemInfo(type).ItemScriptableObject.effect);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            InteractableItemType type = InteractableItemType.Battery;
+            int itemCount = _gameManager.playerPrefsManager.GetInteractableItemCount(type);
+            if (itemCount > 0)
+            {
+                int firstItemId = _gameManager.playerPrefsManager.GetItemsInInventoryIds(type).Last();
+                _gameManager.playerPrefsManager.DeleteItemFromInventory(firstItemId);
+                _gameController.FlashlightController.ReloadBattery();
             }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))

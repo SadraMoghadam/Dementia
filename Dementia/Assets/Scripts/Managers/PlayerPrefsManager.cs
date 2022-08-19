@@ -8,7 +8,8 @@ public enum PlayerPrefsKeys
 {
     HasFlashlight,
     DestroyedInteractableItems,
-    InventoryInteractableItemsCount
+    InventoryInteractableItemsCount,
+    BatteryAmount
 }
 
 public class PlayerPrefsManager : MonoBehaviour

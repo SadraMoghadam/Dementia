@@ -7,8 +7,10 @@ public class GameController : MonoBehaviour
 {
     public DamageController DamageController;
     public StaminaController StaminaController;
-    [HideInInspector] public Inventory Inventory;
     public InteractableItemsScriptableObject InteractableItemsScriptableObject;
+    [HideInInspector] public Inventory Inventory;
+    [HideInInspector] public FlashlightController FlashlightController;
+    
 
     [HideInInspector]
     public bool isInInventory;
@@ -23,6 +25,7 @@ public class GameController : MonoBehaviour
         }
 
         Inventory = GetComponent<Inventory>();
+        FlashlightController = GetComponent<FlashlightController>(); 
         isInInventory = false;
     }
     
