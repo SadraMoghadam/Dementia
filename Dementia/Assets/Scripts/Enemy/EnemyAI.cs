@@ -16,7 +16,6 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private LayerMask obstacleMask;
     [SerializeField] private GameObject eyeLights;
-    [SerializeField] private GameObject punchArea;
     [SerializeField] private float waitTime = 5.15f;
     private Animator _enemyAnimator;
     private List<Transform> waypoints;
@@ -34,6 +33,8 @@ public class EnemyAI : MonoBehaviour
     private bool _chaseFinished;
     private bool _startOfChase;
     private Transform player;
+    private GameController _gameController;
+    private GameManager _gameManager;
 
     private enum EnemyAnimatorParameters
     {
@@ -58,8 +59,9 @@ public class EnemyAI : MonoBehaviour
         _startOfChase = true;
         _agent.speed = walkSpeed;
         _waitTime = waitTime;
+        _gameController = GameController.instance;
+        _gameManager = GameManager.instance;
         eyeLights.SetActive(false);
-        punchArea.SetActive(false);
         waypoints = waypointsContainer.GetComponentsInChildren<Transform>().ToList();
         waypoints.RemoveAt(0);
         choosingDestination = true;
@@ -88,7 +90,7 @@ public class EnemyAI : MonoBehaviour
     
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("MutantInteractableArea"))
+        if (other.CompareTag("MutantInteractableArea") && _isPatrol)
         {
             other.transform.parent.GetComponent<Door>().ChangeDoorState(false);
         }
@@ -96,7 +98,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        if (GameController.instance.DamageController.isPlayerDead)
+        if (_gameController.DamageController.isPlayerDead)
         {
             _enemyAnimator.SetBool(EnemyAnimatorParameters.Punch.ToString(), false);
             Stop();
@@ -135,7 +137,6 @@ public class EnemyAI : MonoBehaviour
     {
         if (_startOfChase)
         {
-            punchArea.SetActive(true);
             eyeLights.SetActive(true);
             _enemyAnimator.SetBool(EnemyAnimatorParameters.Agony.ToString(), true);
             _agent.isStopped = true;
@@ -154,9 +155,8 @@ public class EnemyAI : MonoBehaviour
         }
         if (_agent.remainingDistance <= _agent.stoppingDistance)
         {
-            if (Vector3.Distance(transform.position, player.position) < _agent.stoppingDistance + 3)
+            if (Vector3.Distance(transform.position, player.position) < _agent.stoppingDistance)
             {
-                punchArea.SetActive(true);
                 transform.rotation = Quaternion.LookRotation(player.position - transform.position);
                 _enemyAnimator.SetBool(EnemyAnimatorParameters.Punch.ToString(), true);
             }
@@ -175,7 +175,6 @@ public class EnemyAI : MonoBehaviour
                 {
                     Stop();
                     _chaseFinished = true;
-                    punchArea.SetActive(false);
                 }
                 _waitTime -= Time.deltaTime;
             }
@@ -291,7 +290,12 @@ public class EnemyAI : MonoBehaviour
 
     public void Steps()
     {
-        GameManager.instance.AudioManager.play("FootStep");
+        _gameManager.AudioManager.play("FootStep");
+    }
+
+    public void Punch()
+    {
+        _gameController.DamageController.Damage(34);
     }
     
 }

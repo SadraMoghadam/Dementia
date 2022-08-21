@@ -46,14 +46,6 @@ public class DamageController : MonoBehaviour
     //     }
     // }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("EnemyHit"))
-        {
-            Damage(34);
-        }
-    }
-
     public void Damage(float damageAmount)
     {
         _damageStartTime = 0;

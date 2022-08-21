@@ -15889,7 +15889,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3120171338585033899, guid: 99b6dddbdc596584c9c268de4727b72b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3278203063664739552, guid: 99b6dddbdc596584c9c268de4727b72b, type: 3}
       propertyPath: m_Layer
@@ -15909,7 +15909,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5681371082650783319, guid: 99b6dddbdc596584c9c268de4727b72b, type: 3}
       propertyPath: m_VersionIndex
-      value: 1581
+      value: 1584
       objectReference: {fileID: 0}
     - target: {fileID: 5681371082650783319, guid: 99b6dddbdc596584c9c268de4727b72b, type: 3}
       propertyPath: m_Tangents.Array.data[84].z

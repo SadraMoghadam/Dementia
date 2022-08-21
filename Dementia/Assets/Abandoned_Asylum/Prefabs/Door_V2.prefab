@@ -129,7 +129,6 @@ Transform:
   m_Children:
   - {fileID: 4196377141253066}
   - {fileID: 4464667911447888}
-  - {fileID: 6414232824549432709}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180.00002, z: 0}
@@ -167,6 +166,7 @@ GameObject:
   - component: {fileID: 64619257792541486}
   - component: {fileID: 3935440836263184238}
   - component: {fileID: 3362570998096046077}
+  - component: {fileID: 889255819603252920}
   m_Layer: 8
   m_Name: Door
   m_TagString: Door
@@ -185,7 +185,8 @@ Transform:
   m_LocalPosition: {x: 0.53001726, y: 1.9714341, z: -0.08199704}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6414232824549432709}
   m_Father: {fileID: 4004346039268598}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -279,6 +280,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsOpen: 0
+--- !u!208 &889255819603252920
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744751282808826}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.528, y: 1.049, z: 0.079}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.527, y: -0.90900004, z: 0.028}
+  m_TimeToStationary: 0.5
 --- !u!1 &6886016712363070299
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,13 +320,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6886016712363070299}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.00000003774895, y: 6.7055607e-23, z: -1.7763568e-15, w: 1}
+  m_LocalPosition: {x: -0.53001726, y: -1.9714341, z: 0.08199689}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4004346039268598}
-  m_RootOrder: 2
+  m_Father: {fileID: 4196377141253066}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &8615670204642347226
 BoxCollider:
