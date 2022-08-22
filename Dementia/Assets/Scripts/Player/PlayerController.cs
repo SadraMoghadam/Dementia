@@ -121,11 +121,13 @@ public class PlayerController : MonoBehaviour
             flashlight.SetActive(true);
             _gameController.FlashlightController.ReduceBatteryOverTime(0.022f);
             _gameController.FlashlightController.ChangeFlashlightState(true);
+            _gameController.LightsController.TurnLightOfPlaceOnOrOff(Places.HallwayFirstFloor, false);
         }
         else
         {
             flashlight.SetActive(false);
             _gameController.FlashlightController.ChangeFlashlightState(false);
+            _gameController.LightsController.TurnLightOfPlaceOnOrOff(Places.HallwayFirstFloor, true);
         }
     }
 

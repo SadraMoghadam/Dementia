@@ -32,6 +32,7 @@ public class EnemyAI : MonoBehaviour
     private float _waitTime;
     private bool _chaseFinished;
     private bool _startOfChase;
+    private bool _isInAgony;
     private Transform player;
     private GameController _gameController;
     private GameManager _gameManager;
@@ -57,6 +58,7 @@ public class EnemyAI : MonoBehaviour
         _playerCaught = false;
         _chaseFinished = false;
         _startOfChase = true;
+        _isInAgony = false;
         _agent.speed = walkSpeed;
         _waitTime = waitTime;
         _gameController = GameController.instance;
@@ -82,9 +84,6 @@ public class EnemyAI : MonoBehaviour
         {
             Door door = other.transform.parent.GetComponent<Door>();
             door.ChangeDoorState(true);  
-            // if (!door.IsOpen)
-            // { 
-            // }
         }
     }
     
@@ -148,7 +147,7 @@ public class EnemyAI : MonoBehaviour
         _isPatrol = false;
         _playerNear = false;
  
-        if (!_playerCaught)
+        if (!_playerCaught && !_isInAgony)
         {
             Move(runSpeed);
             _agent.SetDestination(_playerPosition);
@@ -159,6 +158,15 @@ public class EnemyAI : MonoBehaviour
             {
                 transform.rotation = Quaternion.LookRotation(player.position - transform.position);
                 _enemyAnimator.SetBool(EnemyAnimatorParameters.Punch.ToString(), true);
+                _isInAgony = true;
+                yield return new WaitForSeconds(.8f);
+                _enemyAnimator.SetBool(EnemyAnimatorParameters.Agony.ToString(), true);
+                _enemyAnimator.SetBool(EnemyAnimatorParameters.Punch.ToString(), false);
+                _agent.isStopped = true;
+                yield return new WaitForSeconds(3.35f);
+                _enemyAnimator.SetBool(EnemyAnimatorParameters.Agony.ToString(), false);
+                _isInAgony = false;
+                
             }
             else if (_waitTime <= 0 && !_playerCaught && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)
             {

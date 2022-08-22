@@ -3,6 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum Places
+{
+    HallwayFirstFloor,
+    KitchenFirstFloor,
+    DiningRoomFirstFloor,
+    BathRoomFirstFloor,
+    Park,
+    PatientRoomFirstFloor
+}
+
 public class GameController : MonoBehaviour
 {
     public DamageController DamageController;
@@ -10,6 +21,7 @@ public class GameController : MonoBehaviour
     public InteractableItemsScriptableObject InteractableItemsScriptableObject;
     [HideInInspector] public Inventory Inventory;
     [HideInInspector] public FlashlightController FlashlightController;
+    [HideInInspector] public LightsController LightsController;
     
 
     [HideInInspector]
@@ -25,7 +37,8 @@ public class GameController : MonoBehaviour
         }
 
         Inventory = GetComponent<Inventory>();
-        FlashlightController = GetComponent<FlashlightController>(); 
+        FlashlightController = GetComponent<FlashlightController>();
+        LightsController = GetComponent<LightsController>();
         isInInventory = false;
     }
     
