@@ -41,8 +41,12 @@ public class GameController : MonoBehaviour
         LightsController = GetComponent<LightsController>();
         isInInventory = false;
     }
-    
-    
+
+    private void Start()
+    {
+        StartCoroutine(LightsController.RandomFlickeryLightInPlace(Places.HallwayFirstFloor, 20));
+    }
+
     public void HideCursor()
     {
         Cursor.visible = false;

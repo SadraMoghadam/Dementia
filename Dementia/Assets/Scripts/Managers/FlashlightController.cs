@@ -12,7 +12,7 @@ public class FlashlightController : MonoBehaviour
     private void Start()
     {
         _gameManager = GameManager.instance;
-        _battery = _gameManager.playerPrefsManager.GetFloat(PlayerPrefsKeys.BatteryAmount, 100);
+        _battery = _gameManager.playerPrefsManager.GetFloat(PlayerPrefsKeys.BatteryAmount, 0);
         flashlightPanel.batterySlider.value = _battery;
     }
 

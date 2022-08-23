@@ -303,7 +303,7 @@ public class EnemyAI : MonoBehaviour
 
     public void Punch()
     {
-        _gameController.DamageController.Damage(34);
+        _gameController.DamageController.Damage(25);
     }
     
 }
