@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(LightsController.RandomFlickeryLightInPlace(Places.HallwayFirstFloor, 20));
+        //StartCoroutine(LightsController.RandomFlickeryLightInPlace(Places.HallwayFirstFloor, 20));
     }
 
     public void HideCursor()

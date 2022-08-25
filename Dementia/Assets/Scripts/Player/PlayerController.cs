@@ -83,9 +83,9 @@ public class PlayerController : MonoBehaviour
         transform.position += transform.TransformDirection (newPos / 40);
         _animator.SetFloat(_xVelocityHash, _currentVelocity.x);
         _animator.SetFloat(_yVelocityHash, _currentVelocity.y);
-        if (_inputManager.Run)
+        if (_inputManager.Run && (_currentVelocity.x > 1 || _currentVelocity.y > 1))
         {
-            _gameController.StaminaController.ReduceStaminaOverTime(.15f);
+            _gameController.StaminaController.ReduceStaminaOverTime(.1f);
             
         }
     }

@@ -24,10 +24,17 @@ public class InteractableItemsGenerator : MonoBehaviour
     {
         _itemsPlaces = itemsPlacementContainer.GetComponentsInChildren<Transform>().ToList();
         _itemsPlaces.RemoveAt(0);
+        for (int i = 0; i < _itemsPlaces.Count; i++)
+        {
+            if (_itemsPlaces[i].GetComponent<InteractableItemInfo>() != null)
+            {
+                _itemsPlaces.RemoveAt(i);
+            }
+        }
         List<int> destroyedItemsId = _gameManager.playerPrefsManager.GetDestroyedInteractableItemsId();
         for (int i = 0; i < _itemsPlaces.Count; i++)
         {
-            if(destroyedItemsId != null && destroyedItemsId.Contains(i))
+            if ((destroyedItemsId != null && destroyedItemsId.Contains(i)))
                 continue;
             InteractableItemType type = InteractableItemType.Battery;
             if (_itemsPlaces[i].gameObject.CompareTag(InteractableItemType.Battery.ToString()))
@@ -55,10 +62,17 @@ public class InteractableItemsGenerator : MonoBehaviour
                 break;
             }
             GameObject InstantiatedGO;
-            InstantiatedGO = Instantiate(_gameController.InteractableItemsScriptableObject.InteractableItems[(int)type].prefab, _itemsPlaces[i]);
-            InstantiatedGO.GetComponent<InteractableItemInfo>().itemInfo.id = i;
+            int id = i;
+            if (_itemsPlaces[i].childCount > 0)
+            {
+                InstantiatedGO = _itemsPlaces[i].GetComponentInChildren<InteractableItemInfo>().gameObject;
+            }
+            else
+            {
+                InstantiatedGO = Instantiate(_gameController.InteractableItemsScriptableObject.InteractableItems[(int)type].prefab, _itemsPlaces[i]);   
+            }
+            InstantiatedGO.GetComponent<InteractableItemInfo>().itemInfo.id = id;
             InstantiatedGO.gameObject.name = type.ToString();
         }
     }
-    
 }

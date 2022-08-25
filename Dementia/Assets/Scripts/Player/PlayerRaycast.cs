@@ -72,9 +72,9 @@ public class PlayerRaycast : MonoBehaviour
                     switch (temp.y)
                     {
                         case 0:
-                            temp.y = 280;
+                            temp.y = 80;
                             break;
-                        case 280:
+                        case 80:
                             temp.y = 0;
                             break;
                         case 180:

@@ -118,7 +118,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.06, y: 0.3475596, z: 0.84}
+  m_Size: {x: 0.9, y: 0.3475596, z: 0.7}
   m_Center: {x: -0.0068259835, y: 0.1600316, z: 0.0025842488}
 --- !u!54 &3594543263346583951
 Rigidbody:
@@ -151,3 +151,4 @@ MonoBehaviour:
   itemInfo:
     id: 0
     type: 1
+    deletedFromInventory: 0
