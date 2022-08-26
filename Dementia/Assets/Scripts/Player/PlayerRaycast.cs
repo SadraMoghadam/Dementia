@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 
@@ -16,17 +17,19 @@ public enum InteractableObjects
 public class PlayerRaycast : MonoBehaviour
 {
     public float KeyDownCooldown = 1;
-    [SerializeField] private Image leftMouseClickImage;
-    [SerializeField] private Sprite keyDownSprite;
-    [SerializeField] private Sprite keyUpSprite;
     [SerializeField] private int rayLength = 3;
     [SerializeField] private LayerMask layerMaskInteract;
     [SerializeField] private Transform camera;
+    private Image _leftMouseClickImage;
+    private Sprite _keyDownSprite;
+    private Sprite _keyUpSprite;
     private Door _door;
     private InputManager _inputManager;
     private float _keyDownTimer;
     private GameController _gameController;
     private GameManager _gameManager;
+    private UIController _uiController;
+    private PlayerController _playerController;
     
 
     private void Start()
@@ -34,7 +37,12 @@ public class PlayerRaycast : MonoBehaviour
         _inputManager = GetComponent<InputManager>();
         _gameController = GameController.instance;
         _gameManager = GameManager.instance;
+        _playerController = GetComponent<PlayerController>();
         _keyDownTimer = KeyDownCooldown;
+        _uiController = UIController.instance;
+        _leftMouseClickImage = _uiController.leftMouseClickImage;
+        _keyDownSprite = _uiController.keyDownSprite;
+        _keyUpSprite = _uiController.keyUpSprite;
     }
 
     private void Update()
@@ -42,14 +50,14 @@ public class PlayerRaycast : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(camera.position, camera.forward, out hit, rayLength, layerMaskInteract))
         { 
-            leftMouseClickImage.gameObject.SetActive(true);
+            _leftMouseClickImage.gameObject.SetActive(true);
             _keyDownTimer += Time.deltaTime;
             if (_keyDownTimer < KeyDownCooldown)
             {
-                leftMouseClickImage.sprite = keyDownSprite;
+                _leftMouseClickImage.sprite = _keyDownSprite;
                 return;
             }
-            leftMouseClickImage.sprite = keyUpSprite;
+            _leftMouseClickImage.sprite = _keyUpSprite;
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 _keyDownTimer = 0;
@@ -112,7 +120,7 @@ public class PlayerRaycast : MonoBehaviour
         }
         else
         {
-            leftMouseClickImage.gameObject.SetActive(false);
+            _leftMouseClickImage.gameObject.SetActive(false);
         }
     }
 

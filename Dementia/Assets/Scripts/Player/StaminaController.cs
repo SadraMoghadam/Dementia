@@ -9,7 +9,7 @@ public class StaminaController : MonoBehaviour
     [HideInInspector] public float maxStamina = 100;
     [SerializeField] private float staminaModeTime = 20;
     [SerializeField] private float regenerationDelay = 0;
-    public StaminaBar staminaBar;
+    private StaminaBar _staminaBar;
     private float _stamina;
     private float _staminaTimeOut = 3;
     private float _staminaRegenStartTime;
@@ -19,6 +19,7 @@ public class StaminaController : MonoBehaviour
     private void Start()
     {
         _stamina = maxStamina;
+        _staminaBar = UIController.instance.staminaBar;
     }
     
     private void FixedUpdate()
@@ -27,7 +28,7 @@ public class StaminaController : MonoBehaviour
         {
             _staminaModeTimer -= Time.fixedDeltaTime;
             _stamina = maxStamina;
-            staminaBar.slider.value = maxStamina;
+            _staminaBar.slider.value = maxStamina;
             if (_staminaModeTimer <= 0)
             {
                 _staminaModeTimer = staminaModeTime;
@@ -39,7 +40,7 @@ public class StaminaController : MonoBehaviour
             if (_stamina >= maxStamina)
             {
                 _stamina = maxStamina;
-                staminaBar.FadeOut();
+                _staminaBar.FadeOut();
                 return;
             }
             _staminaRegenStartTime += Time.fixedDeltaTime;
@@ -48,8 +49,7 @@ public class StaminaController : MonoBehaviour
             {
                 // _counter = 0;
                 _stamina = _stamina < maxStamina ? _stamina + .2f : maxStamina;
-                staminaBar.slider.value = _stamina;
-                Debug.Log(_stamina);
+                _staminaBar.slider.value = _stamina;
             }    
         }
         
@@ -63,8 +63,8 @@ public class StaminaController : MonoBehaviour
         {
             _stamina = 0;
         }
-        staminaBar.slider.value = _stamina;
-        staminaBar.FadeIn();
+        _staminaBar.slider.value = _stamina;
+        _staminaBar.FadeIn();
         Debug.Log(_stamina);
     }
 

@@ -29,13 +29,17 @@ public class InteractableItemsGenerator : MonoBehaviour
             if (_itemsPlaces[i].GetComponent<InteractableItemInfo>() != null)
             {
                 _itemsPlaces.RemoveAt(i);
+                i--;
             }
         }
         List<int> destroyedItemsId = _gameManager.playerPrefsManager.GetDestroyedInteractableItemsId();
         for (int i = 0; i < _itemsPlaces.Count; i++)
         {
             if ((destroyedItemsId != null && destroyedItemsId.Contains(i)))
+            {
+                Destroy(_itemsPlaces[i].GetComponentInChildren<InteractableItemInfo>().gameObject);
                 continue;
+            }
             InteractableItemType type = InteractableItemType.Battery;
             if (_itemsPlaces[i].gameObject.CompareTag(InteractableItemType.Battery.ToString()))
             {

@@ -16,12 +16,14 @@ public class DamageController : MonoBehaviour
     private float _damageStartTime;
     private int _counter = 0;
     private CapsuleCollider _collider;
+    private UIController _uiController;
     
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _collider = GetComponent<CapsuleCollider>();
+        _uiController = UIController.instance;
         _health = maxHealth;
         isPlayerDead = false;
     }
@@ -61,6 +63,7 @@ public class DamageController : MonoBehaviour
             _collider.radius = .1f;
             _collider.height = .1f;
             Debug.Log("You Lost");
+            _uiController.ShowDiedPanel();
         }
         Debug.Log(_health);
     }

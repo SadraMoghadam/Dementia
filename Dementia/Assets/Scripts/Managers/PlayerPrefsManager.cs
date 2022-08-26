@@ -14,6 +14,11 @@ public enum PlayerPrefsKeys
 
 public class PlayerPrefsManager : MonoBehaviour
 {
+    public void DeletePlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+    
     public void SetBool(PlayerPrefsKeys playerPrefsKeys, bool value)
     {
         PlayerPrefs.SetInt(playerPrefsKeys.ToString(), value ? 1 : 0);

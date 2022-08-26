@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [HideInInspector] public bool isStopped;
     [SerializeField] private float animBlendSpeed = 8.9f;
     [SerializeField] private Transform cameraRoot;
     [SerializeField] private Transform camera;
@@ -16,6 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float bottomLimit = 70f;
     [SerializeField] private float mouseSensitivity = 20f;
     [SerializeField] private GameObject flashlight;
+    [SerializeField] private float _walkSpeed = 3f;
+    [SerializeField] private float _runSpeed = 7f;
     private Rigidbody _playerRigidbody;
     private InputManager _inputManager;
     private Animator _animator;
@@ -24,11 +27,10 @@ public class PlayerController : MonoBehaviour
     private int _xVelocityHash;
     private int _yVelocityHash;
     private float _xRotation;
-    private const float _walkSpeed = 3f;
-    private const float _runSpeed = 7f;
     private Vector2 _currentVelocity;
     private GameController _gameController;
     private GameManager _gameManager;
+    private UIController _uiController;
     
         
     private void Start() 
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
         _yVelocityHash = Animator.StringToHash("YVelocity");
         _gameController = GameController.instance;
         _gameManager = GameManager.instance;
+        _uiController = UIController.instance;
     }
 
     private void Update()
@@ -55,12 +58,13 @@ public class PlayerController : MonoBehaviour
             camera.gameObject.SetActive(false);
             return;
         }
-        Move();
+        if(!isStopped || !_uiController.pausePanel.gameObject.activeSelf)
+            Move();
         ChangeFlashlightState();
     }
     private void LateUpdate()
     {
-        if(_gameController.Inventory.inventoryPanel.gameObject.activeSelf)
+        if(_uiController.inventoryPanel.gameObject.activeSelf || _uiController.pausePanel.gameObject.activeSelf)
             return;
         CameraMovement();
     }
@@ -133,9 +137,20 @@ public class PlayerController : MonoBehaviour
 
     private void CheckPlayerInput()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(!_gameController.Inventory.inventoryPanel.gameObject.activeSelf)
+            if(!_uiController.pausePanel.gameObject.activeSelf)
+            {
+                _uiController.ShowPausePanel();
+            }
+            else
+            {
+                _uiController.HidePausePanel();
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.I))
+        {
+            if(!_uiController.inventoryPanel.gameObject.activeSelf)
             {
                 _gameController.Inventory.OpenInventory();
             }
@@ -146,7 +161,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {
-            InventoryPanel inventoryPanel = _gameController.Inventory.inventoryPanel;
+            InventoryPanel inventoryPanel = _uiController.inventoryPanel;
             if (inventoryPanel.gameObject.activeSelf)
             {
                 inventoryPanel.DeleteItem();

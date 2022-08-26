@@ -15,6 +15,8 @@ public class AudioManager : MonoBehaviour
             // sounds[i].source = gameObject.GetComponent<AudioSource>();
             // if(sounds[i].source == null)
             //     gameObject.AddComponent<AudioSource>();
+            if(sounds[i].source == null)
+                continue;
             sounds[i].source.clip = sounds[i].clip;
             sounds[i].source.volume = sounds[i].volume;
             sounds[i].source.pitch = sounds[i].pitch;

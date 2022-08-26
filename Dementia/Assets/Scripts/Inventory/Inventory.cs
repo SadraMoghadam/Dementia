@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
 {
     public List<InteractableItems> inventoryItems;
     public int inventorySpace = 6;
-    public InventoryPanel inventoryPanel;
+    private InventoryPanel _inventoryPanel;
     private GameManager _gameManager;
     private GameController _gameController;
 
@@ -16,6 +16,7 @@ public class Inventory : MonoBehaviour
     {
         _gameManager = GameManager.instance;
         _gameController = GameController.instance;
+        _inventoryPanel = UIController.instance.inventoryPanel;
         InitItemsCount();
     }
 
@@ -81,13 +82,13 @@ public class Inventory : MonoBehaviour
     public void OpenInventory()
     {
         _gameController.ShowCursor();
-        inventoryPanel.gameObject.SetActive(true);
+        _inventoryPanel.gameObject.SetActive(true);
     }
 
     public void CloseInventory()
     {
         _gameController.HideCursor();
-        inventoryPanel.gameObject.SetActive(false);
+        _inventoryPanel.gameObject.SetActive(false);
     }
 
     public InteractableItems GetItemInfo(InteractableItemType type)

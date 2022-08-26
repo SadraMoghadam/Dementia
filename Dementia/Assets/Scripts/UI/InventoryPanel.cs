@@ -44,6 +44,7 @@ public class InventoryPanel : MonoBehaviour
         _inventoryItemsInfo = _gameManager.playerPrefsManager.GetInventoryInteractableItems();
         if(_inventoryItemsInfo == null)
             return;
+        ClearInventoryItems();
         SetFlashlight();
         for (int i = 0; i < _inventoryItemsInfo.Count; i++)
         {
@@ -56,6 +57,16 @@ public class InventoryPanel : MonoBehaviour
             temp.a = 1;
             _inventoryItemsObj[i + 1].itemImage.color = temp;
             _inventoryItemsObj[i + 1].itemButton.onClick.AddListener(() => OnItemClick(item, info.id));
+        }
+    }
+
+    private void ClearInventoryItems()
+    {
+        for (int i = 0; i < _inventoryItemsObj.Count; i++)
+        {
+            Color temp = _inventoryItemsObj[i].itemImage.color;
+            temp.a = 0;
+            _inventoryItemsObj[i].itemImage.color = temp;
         }
     }
 
