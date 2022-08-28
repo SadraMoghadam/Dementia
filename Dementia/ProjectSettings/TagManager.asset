@@ -15,6 +15,7 @@ TagManager:
   - Flashlight
   - Pills
   - MutantFoot
+  - JumpScare
   layers:
   - Default
   - TransparentFX

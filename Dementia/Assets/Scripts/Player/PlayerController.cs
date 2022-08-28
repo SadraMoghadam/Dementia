@@ -58,13 +58,13 @@ public class PlayerController : MonoBehaviour
             camera.gameObject.SetActive(false);
             return;
         }
-        if(!isStopped || !_uiController.pausePanel.gameObject.activeSelf)
+        if(!isStopped)
             Move();
         ChangeFlashlightState();
     }
     private void LateUpdate()
     {
-        if(_uiController.inventoryPanel.gameObject.activeSelf || _uiController.pausePanel.gameObject.activeSelf)
+        if(_uiController.inventoryPanel.gameObject.activeSelf)
             return;
         CameraMovement();
     }
@@ -205,7 +205,16 @@ public class PlayerController : MonoBehaviour
     }
     
     
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("JumpScare"))
+        {
+            other.gameObject.SetActive(false);
+            _gameController.JumpScareController.SetJumpScare(time: 5, sticked: true, placementDegree: 180);
+            _gameManager.playerPrefsManager.SaveGame();
+        }
+    }
+    
     // private void Move()
     // {
     //     if(!_hasAnimator) 

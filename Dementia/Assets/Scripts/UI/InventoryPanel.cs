@@ -67,6 +67,7 @@ public class InventoryPanel : MonoBehaviour
             Color temp = _inventoryItemsObj[i].itemImage.color;
             temp.a = 0;
             _inventoryItemsObj[i].itemImage.color = temp;
+            _inventoryItemsObj[i].itemButton.onClick.RemoveAllListeners();
         }
     }
 

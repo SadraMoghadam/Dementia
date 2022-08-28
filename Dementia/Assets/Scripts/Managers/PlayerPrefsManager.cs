@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum PlayerPrefsKeys
@@ -9,14 +10,45 @@ public enum PlayerPrefsKeys
     HasFlashlight,
     DestroyedInteractableItems,
     InventoryInteractableItemsCount,
-    BatteryAmount
+    BatteryAmount,
+    Level,
+}
+
+public class SavedData
+{
+    public Transform playerTransform;
+    public int level;
 }
 
 public class PlayerPrefsManager : MonoBehaviour
 {
+
     public void DeletePlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
+    }
+
+    public void SaveGame()
+    {
+        Vector3 playerPosition = GameController.instance.GetPlayerTransform().position;
+        PlayerPrefs.SetFloat("PlayerPositionX", playerPosition.x);
+        PlayerPrefs.SetFloat("PlayerPositionY", playerPosition.y);
+        PlayerPrefs.SetFloat("PlayerPositionZ", playerPosition.z);
+        SetInt(PlayerPrefsKeys.Level, 0);
+    }
+    
+    public SavedData LoadGame()
+    {
+        SavedData savedData = new SavedData();
+        Vector3 playerPosition = GameController.instance.GetPlayerTransform().position;
+        savedData.level = 0;
+        savedData.playerTransform = GameController.instance.GetPlayerTransform();  
+        
+        float x = PlayerPrefs.GetFloat("PlayerPositionX", playerPosition.x);
+        float y = PlayerPrefs.GetFloat("PlayerPositionY", playerPosition.y);
+        float z = PlayerPrefs.GetFloat("PlayerPositionZ", playerPosition.z);
+        savedData.playerTransform.position = new Vector3(x, y, z);
+        return savedData;
     }
     
     public void SetBool(PlayerPrefsKeys playerPrefsKeys, bool value)

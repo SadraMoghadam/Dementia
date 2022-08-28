@@ -43,6 +43,7 @@ public class UIController : MonoBehaviour
         darkBackground.gameObject.SetActive(true);
         pausePanel.gameObject.SetActive(true);
         _gameController.ShowCursor();
+        Time.timeScale = 0;
     }
     
     public void HidePausePanel()
@@ -50,6 +51,7 @@ public class UIController : MonoBehaviour
         darkBackground.gameObject.SetActive(false);
         pausePanel.gameObject.SetActive(false);
         _gameController.HideCursor();
+        Time.timeScale = 1;
     }
     
 }

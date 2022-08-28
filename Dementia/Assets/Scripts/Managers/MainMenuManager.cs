@@ -13,6 +13,10 @@ public class MainMenuManager : MonoBehaviour
     private void OnEnable()
     {
         _gameManager = GameManager.instance;
+        if (!PlayerPrefs.HasKey(PlayerPrefsKeys.HasFlashlight.ToString()))
+        {
+            resumeButton.gameObject.SetActive(false);
+        }
         resumeButton.onClick.AddListener(OnResumeClick);
         newGameButton.onClick.AddListener(OnNewGameClick);
         quitButton.onClick.AddListener(OnQuitClick);
