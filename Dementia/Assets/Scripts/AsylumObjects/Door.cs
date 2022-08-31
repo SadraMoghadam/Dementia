@@ -48,7 +48,7 @@ public class Door : MonoBehaviour
 
     private IEnumerator NavMeshObstacleCarving(bool carve)
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(10f);
         _navMeshObstacle.carving = carve;
         StopCoroutine(NavMeshObstacleCarving(carve));
     }

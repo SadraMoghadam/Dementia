@@ -144,8 +144,9 @@ public class EnemyAI : MonoBehaviour
         {
             eyeLights.SetActive(true);
             _agent.isStopped = true;
-            SetAnimation(speedWalk:true, agony:true);
-            yield return new WaitForSeconds(5.1f);
+            SetAnimation(agony:true);
+            yield return new WaitForSeconds(4f);
+            SetAnimation(speedWalk:true);
             _startOfChase = false;
         }
         _isPatrol = false;
@@ -163,8 +164,10 @@ public class EnemyAI : MonoBehaviour
                 transform.rotation = Quaternion.LookRotation(player.position - transform.position);
                 _isInAgony = true;
                 _agent.isStopped = true;
-                ChooseAttackAnimation();
-                yield return new WaitForSeconds(5.1f);
+                float timeToWait = ChooseAttackAnimation();
+                yield return new WaitForSeconds(timeToWait/2);
+                SetAnimation(agony:true);
+                yield return new WaitForSeconds(5.84f);
                 _agent.isStopped = false;
                 _isInAgony = false;
                 
@@ -273,17 +276,22 @@ public class EnemyAI : MonoBehaviour
         }
     }
     
-    private void ChooseAttackAnimation()
+    private float ChooseAttackAnimation()
     {
         float rnd = Random.Range(0, 100);
+        float timeToWait = 0;
         if (rnd > 50)
         {
-            SetAnimation(attackType1:true, agony:true);
+            SetAnimation(attackType1:true);
+            timeToWait = 2.416f;
         }
         else
         {
-            SetAnimation(attackType2:true, agony:true);
+            SetAnimation(attackType2:true);
+            timeToWait = 2.25f;
         }
+
+        return timeToWait;
     }
  
     void Move(float speed)
@@ -325,8 +333,7 @@ public class EnemyAI : MonoBehaviour
         _enemyAnimator.SetBool(EnemyAnimatorParameters.SpeedWalk.ToString(), speedWalk);
         _enemyAnimator.SetBool(EnemyAnimatorParameters.AttackType1.ToString(), attackType1);
         _enemyAnimator.SetBool(EnemyAnimatorParameters.AttackType2.ToString(), attackType2);
-        if(agony)
-            _enemyAnimator.SetTrigger(EnemyAnimatorParameters.Agony.ToString());
+        _enemyAnimator.SetBool(EnemyAnimatorParameters.Agony.ToString(), agony);
     }
     
 }
