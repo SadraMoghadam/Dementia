@@ -9,11 +9,26 @@ public class Door : MonoBehaviour
     [HideInInspector] public bool IsOpen;
     private Animator animator;
     private NavMeshObstacle _navMeshObstacle;
+    private float _timer;
+    private float _timeToGetClosed = 50f;
 
     private void Awake()
     {
         animator = transform.parent.GetComponent<Animator>();
         _navMeshObstacle = GetComponent<NavMeshObstacle>();
+    }
+
+    private void LateUpdate()
+    {
+        if (IsOpen)
+        {
+            _timer += Time.fixedDeltaTime;
+            if (_timer > _timeToGetClosed)
+            {
+                ChangeDoorState(false);
+                _timer = 0;
+            }
+        } 
     }
 
     public void ChangeDoorState()
@@ -48,7 +63,7 @@ public class Door : MonoBehaviour
 
     private IEnumerator NavMeshObstacleCarving(bool carve)
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(2f);
         _navMeshObstacle.carving = carve;
         StopCoroutine(NavMeshObstacleCarving(carve));
     }

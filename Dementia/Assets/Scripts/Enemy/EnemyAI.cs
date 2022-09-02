@@ -79,22 +79,22 @@ public class EnemyAI : MonoBehaviour
         }
     }
     
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("MutantInteractableArea"))
-        {
-            Door door = other.transform.parent.GetComponent<Door>();
-            door.ChangeDoorState(true);  
-        }
-    }
-    
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("MutantInteractableArea") && _isPatrol)
-        {
-            other.transform.parent.GetComponent<Door>().ChangeDoorState(false);
-        }
-    }
+    // private void OnTriggerStay(Collider other)
+    // {
+    //     if (other.CompareTag("MutantInteractableArea"))
+    //     {
+    //         Door door = other.transform.parent.GetComponent<Door>();
+    //         door.ChangeDoorState(true);  
+    //     }
+    // }
+    //
+    // private void OnTriggerExit(Collider other)
+    // {
+    //     if (other.CompareTag("MutantInteractableArea") && _isPatrol)
+    //     {
+    //         other.transform.parent.GetComponent<Door>().ChangeDoorState(false);
+    //     }
+    // }
 
     private void Update()
     {
