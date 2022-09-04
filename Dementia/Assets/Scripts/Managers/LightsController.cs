@@ -48,8 +48,7 @@ public class LightsController : MonoBehaviour
             {
                 float rnd = Random.Range(0, 10);
                 bool on = rnd < 5 ? true : false;
-                _lights[i].gameObject.SetActive(on);
-                SetLightsMaterialBrightOrDark(_lights[i], on);
+                SetLightOnOrOff(_lights[i], enabled);
                 yield return new WaitForSeconds(Random.Range(.1f, .5f));
             }
         }
@@ -62,23 +61,33 @@ public class LightsController : MonoBehaviour
         _lights = GetLightsOfPlace(place);
         for (int i = 0; i < _lights.Count; i++)
         {
-            _lights[i].gameObject.SetActive(on);
-            SetLightsMaterialBrightOrDark(_lights[i], on);
+            SetLightOnOrOff(_lights[i], enabled);
             // _lights[i].transform.parent.GetComponent<MeshRenderer>().material.
         }
     }
     
-    public void TurnLightOfPlacesOnOrOff(List<Places> places, bool on)
+    public void TurnLightOfPlacesOnOrOff(List<Places> places, bool enabled)
     {
-        _lights = new List<Light>();
         for (int i = 0; i < places.Count; i++)
         {
-            _lights.Concat(GetLightsOfPlace(places[i]));
+            List<Light> lights = GetLightsOfPlace(places[i]);
+            for (int j = 0; j < lights.Count; j++)
+            {
+                SetLightOnOrOff(lights[j], enabled);
+            }
         }
-        for (int i = 0; i < _lights.Count; i++)
-        {
-            _lights[i].gameObject.SetActive(on);
-        }
+        
+    }
+
+    private void SetLightOnOrOff(Light light, bool enabled)
+    {
+        light.gameObject.SetActive(enabled);
+        SetLightsMaterialBrightOrDark(light, enabled);
+    }
+
+    public void TurnAllLightsOnOrOff(bool enabled)
+    {
+        TurnLightOfPlacesOnOrOff(Enum.GetValues(typeof(Places)).Cast<Places>().ToList(), enabled);
     }
     
     private List<Light> GetLightsOfPlace(Places place)

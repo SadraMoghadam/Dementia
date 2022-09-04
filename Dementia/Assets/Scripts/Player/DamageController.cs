@@ -60,8 +60,8 @@ public class DamageController : MonoBehaviour
             _health = 0;
             isPlayerDead = true;
             _animator.SetBool("Dead", true);
-            _collider.radius = .1f;
-            _collider.height = .1f;
+            // _collider.radius = .1f;
+            // _collider.height = .1f;
             Debug.Log("You Lost");
             _uiController.ShowDiedPanel();
         }

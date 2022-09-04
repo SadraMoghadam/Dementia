@@ -47,15 +47,18 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if(_gameController.KeysDisabled)
+            return;
         CheckPlayerInput();
     }
 
     private void FixedUpdate() 
     {
+        if(_gameController.KeysDisabled)
+            return;
         if (GameController.instance.DamageController.isPlayerDead)
         {
-            stickyCamera.SetActive(true);
-            camera.gameObject.SetActive(false);
+            SetStickyCamera(true);
             return;
         }
         if(!isStopped)
@@ -64,6 +67,8 @@ public class PlayerController : MonoBehaviour
     }
     private void LateUpdate()
     {
+        if(_gameController.KeysDisabled)
+            return;
         if(_uiController.inventoryPanel.gameObject.activeSelf)
             return;
         CameraMovement();
@@ -213,6 +218,12 @@ public class PlayerController : MonoBehaviour
             _gameController.JumpScareController.SetJumpScare(time: 5, sticked: true, placementDegree: 180);
             _gameManager.playerPrefsManager.SaveGame();
         }
+    }
+
+    public void SetStickyCamera(bool enable)
+    {
+        stickyCamera.SetActive(enable);
+        camera.gameObject.SetActive(!enable);
     }
     
     // private void Move()

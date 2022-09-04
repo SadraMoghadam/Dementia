@@ -12,6 +12,7 @@ public enum PlayerPrefsKeys
     InventoryInteractableItemsCount,
     BatteryAmount,
     Level,
+    LightsEnabled
 }
 
 public class SavedData
@@ -143,7 +144,6 @@ public class PlayerPrefsManager : MonoBehaviour
         return PlayerPrefs.GetInt(type.ToString()); 
     }
 
-    
     [Serializable]
     private struct InteractableItemsInfo
     {
