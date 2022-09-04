@@ -48,6 +48,7 @@ public class Level0 : MonoBehaviour, ILevels
             _gameController.EnableAllKeys();
             _playerAnimator.Play("BaseState");
             _gameController.PlayerController.SetStickyCamera(false);
+            _gameController.QuestAndHintController.ShowQuest(0);
         }
         bool hasFlashlight = _gameManager.playerPrefsManager.GetBool(PlayerPrefsKeys.HasFlashlight, false);
         bool lightsEnabled = _gameManager.playerPrefsManager.GetBool(PlayerPrefsKeys.LightsEnabled, true);
@@ -56,7 +57,8 @@ public class Level0 : MonoBehaviour, ILevels
             _gameController.LightsController.TurnAllLightsOnOrOff(false);
             collider.SetActive(false);
             _gameManager.playerPrefsManager.SetBool(PlayerPrefsKeys.LightsEnabled, false);
-            Debug.Log("explore the first floor for clues.");
+            _gameController.QuestAndHintController.ShowHint(0);
+            EndOfLevel();
         }
     }
 
@@ -65,5 +67,6 @@ public class Level0 : MonoBehaviour, ILevels
         _gameController.EnableAllKeys();
         _gameManager.playerPrefsManager.SetInt(PlayerPrefsKeys.Level, _level);
         _gameManager.playerPrefsManager.SaveGame();
+        _gameController.LevelsController.SetLevelActive(_level + 1);
     }
 }

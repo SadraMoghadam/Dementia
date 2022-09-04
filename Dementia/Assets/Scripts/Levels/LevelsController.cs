@@ -5,16 +5,42 @@ using UnityEngine;
 
 public class LevelsController : MonoBehaviour
 {
-    [HideInInspector] public Level0 level0;
+    [HideInInspector] public List<GameObject> levels;
     private GameManager _gameManager;
+    private int _currentLevel;
 
-    private void Start()
+    private void Awake()
     {
         _gameManager = GameManager.instance;
-        level0 = GetComponentInChildren<Level0>();
-        if (_gameManager.playerPrefsManager.GetInt(PlayerPrefsKeys.Level, -1) == 0)
+        GetLevels();
+        _currentLevel = _gameManager.playerPrefsManager.GetInt(PlayerPrefsKeys.Level, -1) + 1;
+        SetLevelActive(_currentLevel);
+    }
+
+    private void GetLevels()
+    {
+        Transform[] levelChildren = GetComponentsInChildren<Transform>();
+        for (int i = 0; i < levelChildren.Length; i++)
         {
-            level0.gameObject.SetActive(false);
+            if (levelChildren[i].CompareTag("Level"))
+            {
+                levels.Add(levelChildren[i].gameObject);
+            }
+        }
+    }
+    
+    public void SetLevelActive(int level)
+    {
+        for (int i = 0; i < levels.Count; i++)
+        {
+            if (i == level)
+            {
+                levels[i].SetActive(true);
+            }
+            else
+            {
+                levels[i].SetActive(false);
+            }
         }
     }
     
