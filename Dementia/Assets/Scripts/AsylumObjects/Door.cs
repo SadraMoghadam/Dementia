@@ -14,6 +14,7 @@ public class Door : MonoBehaviour
     private float _timer;
     private float _timeToGetClosed = 50f;
     private GameController _gameController;
+    private GameManager _gameManager;
 
     private void Awake()
     {
@@ -24,11 +25,11 @@ public class Door : MonoBehaviour
     private void Start()
     {
         _gameController = GameController.instance;
-        List<int> keysIds = _gameController.Inventory.GetKeysIds();
-        if (KeyId < keysIds.Count && IsLocked)
+        _gameManager = GameManager.instance;
+        if (IsLocked)
         {
-            IsLocked = false;
-        }
+            UnlockDoor();
+        }        
     }
 
     private void LateUpdate()
@@ -42,18 +43,9 @@ public class Door : MonoBehaviour
                 _timer = 0;
             }
         }
-
-        if (IsLocked)
-        {
-            List<int> keysIds = _gameController.Inventory.GetKeysIds();
-            if (KeyId < keysIds.Count)
-            {
-                IsLocked = false;
-            }   
-        }
     }
 
-    public void ChangeDoorState()
+    public void ChangeDoorState(bool unlockDoor = false)
     {
         try
         {
@@ -81,7 +73,7 @@ public class Door : MonoBehaviour
         }
     }
     
-    public void ChangeDoorState(bool open)
+    public void ChangeDoorState(bool open, bool unlockDoor = false)
     {
         if (IsLocked)
         {
@@ -98,6 +90,16 @@ public class Door : MonoBehaviour
         yield return new WaitForSeconds(2f);
         _navMeshObstacle.carving = carve;
         StopCoroutine(NavMeshObstacleCarving(carve));
+    }
+
+    public void UnlockDoor()
+    {
+        List<int> keysIds = _gameController.Inventory.GetKeysIds();
+        if (KeyId < keysIds.Count)
+        {
+            _gameManager.playerPrefsManager.DeleteItemFromInventory(keysIds[KeyId], true);
+            IsLocked = false;
+        }   
     }
 
 }

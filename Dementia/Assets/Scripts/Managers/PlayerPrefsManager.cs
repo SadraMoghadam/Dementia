@@ -219,14 +219,14 @@ public class PlayerPrefsManager : MonoBehaviour
         return null;
     }
 
-    public void DeleteItemFromInventory(int id)
+    public void DeleteItemFromInventory(int id, bool usedKey = false)
     {
         List<ItemInfo> itemsInfo = GetDestroyedInteractableItems();
         for (int i = 0; i < itemsInfo.Count; i++)
         {
             if (itemsInfo[i].id == id)
             {
-                if (itemsInfo[i].type == InteractableItemType.Flashlight || itemsInfo[i].type == InteractableItemType.Key)
+                if (itemsInfo[i].type == InteractableItemType.Flashlight || (itemsInfo[i].type == InteractableItemType.Key && !usedKey))
                 {
                     return;
                 }

@@ -141,5 +141,5 @@ public class InventoryPanel : MonoBehaviour
         SetInventory();
     }
 
-    
+
 }

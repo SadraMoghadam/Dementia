@@ -47,6 +47,8 @@ public class PlayerRaycast : MonoBehaviour
 
     private void Update()
     {
+        if(_gameController.KeysDisabled)
+            return;
         RaycastHit hit;
         if (Physics.Raycast(camera.position, camera.forward, out hit, rayLength, layerMaskInteract))
         { 
@@ -66,6 +68,10 @@ public class PlayerRaycast : MonoBehaviour
                     try
                     {
                         _door = hit.collider.gameObject.GetComponent<Door>();
+                        if (_door.IsLocked)
+                        {
+                            _door.UnlockDoor();
+                        }
                         _door.ChangeDoorState();
                     }
                     catch (Exception e)
