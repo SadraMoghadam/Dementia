@@ -22,6 +22,7 @@ public class InventoryPanel : MonoBehaviour
     private GameController _gameController;
     private List<ItemInfo> _inventoryItemsInfo;
     private float _magnifyCoefficient = 1.2f;
+    private List<int> _keys;
 
     private void OnEnable()
     {
@@ -29,6 +30,7 @@ public class InventoryPanel : MonoBehaviour
         _gameManager = GameManager.instance;
         _gameController = GameController.instance;
         _inventoryItemsInfo = new List<ItemInfo>();
+        _keys = _gameController.Inventory.GetKeysIds();
         SetInventory();
     }
 
@@ -74,10 +76,24 @@ public class InventoryPanel : MonoBehaviour
     private void OnItemClick(InteractableItems item, int id)
     {
         selectedItemId = id;
-        deleteKeyDescription.SetActive(true);
+        if(item.ItemScriptableObject.type == InteractableItemType.Flashlight || item.ItemScriptableObject.type == InteractableItemType.Key)
+            deleteKeyDescription.SetActive(false);
+        else
+        {
+            deleteKeyDescription.SetActive(true);
+        }
         itemImage.sprite = item.ItemScriptableObject.sprite;
-        itemName.text = item.ItemScriptableObject.name;
-        description.text = item.ItemScriptableObject.description;
+        if (item.ItemScriptableObject.type == InteractableItemType.Key)
+        {
+            KeyData data = _gameController.KeyDataReader.GetKeyData(_keys.IndexOf(id));
+            description.text = data.Description;   
+            itemName.text = data.Name;
+        }
+        else
+        {
+            description.text = item.ItemScriptableObject.description;   
+            itemName.text = item.ItemScriptableObject.name;
+        }
         Color temp = itemImage.color;
         temp.a = 1;
         itemImage.color = temp;
@@ -124,5 +140,6 @@ public class InventoryPanel : MonoBehaviour
         _inventoryItemsObj[_inventoryItemsInfo.Count].itemImage.color = temp;
         SetInventory();
     }
+
     
 }

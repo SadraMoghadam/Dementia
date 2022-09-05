@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -12,7 +13,7 @@ public class Inventory : MonoBehaviour
     private GameController _gameController;
 
 
-    private void Start()
+    private void Awake()
     {
         _gameManager = GameManager.instance;
         _gameController = GameController.instance;
@@ -108,6 +109,24 @@ public class Inventory : MonoBehaviour
     {
         int itemCount = _gameManager.playerPrefsManager.GetInteractableItemCount(type);
         _gameManager.playerPrefsManager.SetInteractableItem(type, --itemCount);
+    }
+    
+    
+    public List<int> GetKeysIds()
+    {
+        List<ItemInfo> destroyedItemsInfo = _gameManager.playerPrefsManager.GetDestroyedInteractableItems();
+        if (destroyedItemsInfo == null)
+            return new List<int>();
+        List<int> ids = new List<int>();
+        for (int i = 0; i < destroyedItemsInfo.Count; i++)
+        {
+            if (destroyedItemsInfo[i].type == InteractableItemType.Key)
+            {
+                ids.Add(destroyedItemsInfo[i].id);
+            }
+        }
+
+        return ids.OrderBy(i => i).ToList();
     }
     
 }

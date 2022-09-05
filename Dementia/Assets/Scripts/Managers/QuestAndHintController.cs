@@ -26,7 +26,7 @@ public class QuestAndHintController : MonoBehaviour
     public void ShowHint(int id)
     {
         hintPanel.gameObject.SetActive(true);
-        hintPanel.Show("This is a Hint");
+        hintPanel.Show("Find the security gate key.");
     }
     
 }

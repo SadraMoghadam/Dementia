@@ -17,4 +17,4 @@ MonoBehaviour:
   type: 0
   effect: 0
   sprite: {fileID: 21300000, guid: d57f78b5c5cf3634cb911cc48e3c8b1b, type: 3}
-  description: This is a Key
+  description: This is a key.

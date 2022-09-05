@@ -226,7 +226,7 @@ public class PlayerPrefsManager : MonoBehaviour
         {
             if (itemsInfo[i].id == id)
             {
-                if (itemsInfo[i].type == InteractableItemType.Flashlight)
+                if (itemsInfo[i].type == InteractableItemType.Flashlight || itemsInfo[i].type == InteractableItemType.Key)
                 {
                     return;
                 }

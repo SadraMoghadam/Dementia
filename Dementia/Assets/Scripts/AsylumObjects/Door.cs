@@ -6,16 +6,29 @@ using UnityEngine.AI;
 
 public class Door : MonoBehaviour
 {
+    public bool IsLocked = false;
+    public int KeyId = 0;
     [HideInInspector] public bool IsOpen;
     private Animator animator;
     private NavMeshObstacle _navMeshObstacle;
     private float _timer;
     private float _timeToGetClosed = 50f;
+    private GameController _gameController;
 
     private void Awake()
     {
         animator = transform.parent.GetComponent<Animator>();
         _navMeshObstacle = GetComponent<NavMeshObstacle>();
+    }
+
+    private void Start()
+    {
+        _gameController = GameController.instance;
+        List<int> keysIds = _gameController.Inventory.GetKeysIds();
+        if (KeyId < keysIds.Count && IsLocked)
+        {
+            IsLocked = false;
+        }
     }
 
     private void LateUpdate()
@@ -28,13 +41,27 @@ public class Door : MonoBehaviour
                 ChangeDoorState(false);
                 _timer = 0;
             }
-        } 
+        }
+
+        if (IsLocked)
+        {
+            List<int> keysIds = _gameController.Inventory.GetKeysIds();
+            if (KeyId < keysIds.Count)
+            {
+                IsLocked = false;
+            }   
+        }
     }
 
     public void ChangeDoorState()
     {
         try
         {
+            if (IsLocked)
+            {
+                _gameController.QuestAndHintController.ShowHint(0);
+                return;
+            }
             if (!IsOpen)
             {
                 animator.SetBool("Open", true);
@@ -56,6 +83,11 @@ public class Door : MonoBehaviour
     
     public void ChangeDoorState(bool open)
     {
+        if (IsLocked)
+        {
+            _gameController.QuestAndHintController.ShowHint(0);
+            return;
+        }
         animator.SetBool("Open", open);
         IsOpen = open;
         StartCoroutine(NavMeshObstacleCarving(open));

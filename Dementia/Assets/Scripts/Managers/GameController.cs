@@ -22,12 +22,14 @@ public class GameController : MonoBehaviour
     public StaminaController StaminaController;
     public PlayerController PlayerController;
     public LevelsController LevelsController;
+    public GameObject DataReaders;
     public InteractableItemsScriptableObject InteractableItemsScriptableObject;
     [HideInInspector] public Inventory Inventory;
     [HideInInspector] public FlashlightController FlashlightController;
     [HideInInspector] public LightsController LightsController;
     [HideInInspector] public JumpScareController JumpScareController;
     [HideInInspector] public QuestAndHintController QuestAndHintController;
+    [HideInInspector] public KeyDataReader KeyDataReader;
     [HideInInspector] public Transform PlayerTransform;
     [HideInInspector] public bool KeysDisabled;
 
@@ -53,6 +55,7 @@ public class GameController : MonoBehaviour
         LightsController = GetComponent<LightsController>();
         JumpScareController = GetComponent<JumpScareController>();
         QuestAndHintController = GetComponent<QuestAndHintController>();
+        KeyDataReader = DataReaders.GetComponent<KeyDataReader>();
         PlayerTransform = PlayerController.transform;
         isInInventory = false;
         Time.timeScale = 1;

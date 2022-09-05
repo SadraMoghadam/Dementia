@@ -17,4 +17,5 @@ MonoBehaviour:
   type: 4
   effect: 100
   sprite: {fileID: 21300000, guid: 8cc29255a23a6304c958daa2952d6f41, type: 3}
-  description: Pills make you run for 30 seconds without stamina reduction
+  description: Ephedrine pill will give you 30 seconds of infinite stamina and will
+    refill your stamina bar.

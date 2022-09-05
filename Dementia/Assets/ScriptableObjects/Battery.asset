@@ -17,4 +17,4 @@ MonoBehaviour:
   type: 2
   effect: 100
   sprite: {fileID: 21300000, guid: 36afc9c8de1acd247aabc7e3dc84ea1b, type: 3}
-  description: This is a Battery
+  description: "Used to refill the flashligh\u2019s charge."
