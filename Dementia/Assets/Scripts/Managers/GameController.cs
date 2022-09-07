@@ -30,6 +30,7 @@ public class GameController : MonoBehaviour
     [HideInInspector] public JumpScareController JumpScareController;
     [HideInInspector] public QuestAndHintController QuestAndHintController;
     [HideInInspector] public KeyDataReader KeyDataReader;
+    [HideInInspector] public QuestDataReader QuestDataReader;
     [HideInInspector] public Transform PlayerTransform;
     [HideInInspector] public bool KeysDisabled;
 
@@ -56,6 +57,7 @@ public class GameController : MonoBehaviour
         JumpScareController = GetComponent<JumpScareController>();
         QuestAndHintController = GetComponent<QuestAndHintController>();
         KeyDataReader = DataReaders.GetComponent<KeyDataReader>();
+        QuestDataReader = DataReaders.GetComponent<QuestDataReader>();
         PlayerTransform = PlayerController.transform;
         isInInventory = false;
         Time.timeScale = 1;

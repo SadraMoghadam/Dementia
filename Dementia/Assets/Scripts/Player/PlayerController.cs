@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using UnityEngine.Rendering.PostProcessing;
+using Random = UnityEngine.Random;
 
 
 public class PlayerController : MonoBehaviour
@@ -19,6 +20,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject flashlight;
     [SerializeField] private float _walkSpeed = 3f;
     [SerializeField] private float _runSpeed = 7f;
+    [SerializeField] private PostProcessVolume postProcessVolumeMainCam;
+    [SerializeField] private PostProcessVolume postProcessVolumeStickyCam;
     private Rigidbody _playerRigidbody;
     private InputManager _inputManager;
     private Animator _animator;
@@ -172,7 +175,7 @@ public class PlayerController : MonoBehaviour
                 inventoryPanel.DeleteItem();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha1))
+        else if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.M))
         {
             InteractableItemType type = InteractableItemType.MedKit;
             int itemCount = _gameManager.playerPrefsManager.GetInteractableItemCount(type);
@@ -184,7 +187,7 @@ public class PlayerController : MonoBehaviour
                 _gameController.DamageController.Heal(_gameController.Inventory.GetItemInfo(type).ItemScriptableObject.effect);
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.B))
         {
             InteractableItemType type = InteractableItemType.Battery;
             int itemCount = _gameManager.playerPrefsManager.GetInteractableItemCount(type);
@@ -195,7 +198,7 @@ public class PlayerController : MonoBehaviour
                 _gameController.FlashlightController.ReloadBattery();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.P))
         {
             InteractableItemType type = InteractableItemType.Pills;
             int itemCount = _gameManager.playerPrefsManager.GetInteractableItemCount(type);
@@ -224,6 +227,29 @@ public class PlayerController : MonoBehaviour
     {
         stickyCamera.SetActive(enable);
         camera.gameObject.SetActive(!enable);
+    }
+
+    public IEnumerator Blur(float maxVal, float minVal, float duration)
+    {
+        postProcessVolumeMainCam.enabled = true;
+        postProcessVolumeStickyCam.enabled = true;
+        PostProcessProfile postProcessProfile = stickyCamera.activeSelf ? postProcessVolumeStickyCam.profile : postProcessVolumeMainCam.profile;
+        DepthOfField dph;
+        float time = 0;
+        if (postProcessProfile.TryGetSettings<DepthOfField>(out dph))
+        {
+            float counter = 0;
+            while (counter < duration)
+            {
+                counter += Time.deltaTime;
+                float value = Mathf.Lerp(maxVal, minVal, counter / duration);
+
+                dph.focalLength.value = value;
+                yield return null;
+            }
+        }
+        postProcessVolumeMainCam.enabled = false;
+        postProcessVolumeStickyCam.enabled = false;
     }
     
     // private void Move()

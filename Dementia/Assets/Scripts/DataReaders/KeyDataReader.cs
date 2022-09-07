@@ -10,10 +10,10 @@ public class KeyDataReader : MonoBehaviour
     
     private void Awake()
     {
-        keysData = ReadLevelsData(fileName);
+        keysData = ReadKeysData(fileName);
     }
 
-    private List<KeyData> ReadLevelsData(string filename)
+    private List<KeyData> ReadKeysData(string filename)
     {
         int currentLineNumber = 0;
         int columnCount = 0;

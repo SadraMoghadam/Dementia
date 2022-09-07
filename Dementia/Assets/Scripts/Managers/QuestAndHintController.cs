@@ -20,7 +20,8 @@ public class QuestAndHintController : MonoBehaviour
     public void ShowQuest(int id)
     {
         questPanel.gameObject.SetActive(true);
-        questPanel.Show("Find the flashlight");
+        string quest = _gameController.QuestDataReader.GetQuestData(id).Quest;
+        questPanel.Show(quest);
     }
     
     public void ShowHint(int id)

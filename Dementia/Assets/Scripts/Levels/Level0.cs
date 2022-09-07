@@ -38,6 +38,7 @@ public class Level0 : MonoBehaviour, ILevels
         _gameController.SetPlayerTransform(spawnTransform);
         _playerAnimator = _gameController.PlayerController.transform.GetComponent<Animator>();
         _playerAnimator.Play("StandUp");
+        StartCoroutine(_gameController.PlayerController.Blur(40, 0, 15));
     }
 
     public void Process()
