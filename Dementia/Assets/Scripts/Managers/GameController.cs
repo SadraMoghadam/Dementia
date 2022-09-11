@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour
     [HideInInspector] public QuestAndHintController QuestAndHintController;
     [HideInInspector] public KeyDataReader KeyDataReader;
     [HideInInspector] public QuestDataReader QuestDataReader;
+    [HideInInspector] public EnemyStaticSystem EnemyStaticSystem;
     [HideInInspector] public Transform PlayerTransform;
     [HideInInspector] public bool KeysDisabled;
 
@@ -58,11 +59,13 @@ public class GameController : MonoBehaviour
         QuestAndHintController = GetComponent<QuestAndHintController>();
         KeyDataReader = DataReaders.GetComponent<KeyDataReader>();
         QuestDataReader = DataReaders.GetComponent<QuestDataReader>();
+        EnemyStaticSystem = GetComponent<EnemyStaticSystem>();
         PlayerTransform = PlayerController.transform;
         isInInventory = false;
         Time.timeScale = 1;
         KeysDisabled = false;
         LightsController.TurnAllLightsOnOrOff(_gameManager.playerPrefsManager.GetBool(PlayerPrefsKeys.LightsEnabled, true));
+        EnemyStaticSystem.MoveToPosition(new Vector3(24.3f, 0.8f, 1.25f), new Vector3(24.3f, 0.8f, 15f), 1);
         
     }
 

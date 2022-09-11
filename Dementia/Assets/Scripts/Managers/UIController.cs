@@ -11,6 +11,7 @@ public class UIController : MonoBehaviour
     public StaminaBar staminaBar;
     public DiedPanel diedPanel;
     public PausePanel pausePanel;
+    public SettingsPanel settingsPanel;
     public Image leftMouseClickImage;
     public Sprite keyDownSprite;
     public Sprite keyUpSprite;
@@ -50,8 +51,14 @@ public class UIController : MonoBehaviour
     {
         darkBackground.gameObject.SetActive(false);
         pausePanel.gameObject.SetActive(false);
+        settingsPanel.gameObject.SetActive(false);
         _gameController.HideCursor();
         Time.timeScale = 1;
+    }
+
+    public void ShowSettingsPanel()
+    {
+        settingsPanel.gameObject.SetActive(true);
     }
     
 }

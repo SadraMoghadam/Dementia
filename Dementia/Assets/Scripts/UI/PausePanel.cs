@@ -31,7 +31,7 @@ public class PausePanel : MonoBehaviour
     
     private void OnSettingsClicked()
     {
-        _uiController.HidePausePanel();
+        _uiController.ShowSettingsPanel();
     }
     
     private void OnCheckpointClick()

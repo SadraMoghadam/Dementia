@@ -1,5 +1,4 @@
 Level,Quest,Quest log
-0,walk out and pick up the flashlight.,pickup the flashlight.
-1,walk around the first floor and interact with the security gate.,turn on the power generator.
-2,finding the security gate's key in the kitchen .,explore the first floor.
-3,open the security gate using the key found in the kitchen.,open the security gates.
+0,walk out and pick up the flashlight.,Pickup the flashlight.
+1,walk around the first floor and interact with the security gate or pick up the key.,Find your way to the basement and turn on the power generator.
+2,open the security gate using the key found in the kitchen.,Open the security gates.
