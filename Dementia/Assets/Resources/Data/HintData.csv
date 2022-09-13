@@ -1,0 +1,9 @@
+id,Hint,Condition,Name
+0,Press 2 Or B to use battery when the flashlight is low on charge.,picked up for the first time.,Battery
+1,Press 1 Or M to consume medkit when low hp.,picked up for the first time.,Medkit
+2,Press 3 Or P to consume pills to boost your stamina for 90 seconds.,picked up for the first time.,Pills
+3,Press F to turn on the flashlight.,picked up for the first time.,Flashlight
+4,Press 2 Or B to use a battery to recharge your flashlight.,When low on flashlight charge (10% or lower) and not using a battery but having one.,Battery
+5,You have an unsed key that can be used somewhere.,When a key is in the inventory for more than 5 minutes.,Key
+6,Press 1 Or M to use medkit when low hp.,When low hp and not using a med kit but having one or more for 20 seconds or more.,Medkit
+7,Press F to turn on the flashlight.,When staying in the dark without turning on the flashlight for 20 seconds.,Flashlight

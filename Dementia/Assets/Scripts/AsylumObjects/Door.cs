@@ -12,7 +12,7 @@ public class Door : MonoBehaviour
     private Animator animator;
     private NavMeshObstacle _navMeshObstacle;
     private float _timer;
-    private float _timeToGetClosed = 50f;
+    private float _timeToGetClosed = 90f;
     private GameController _gameController;
     private GameManager _gameManager;
 
