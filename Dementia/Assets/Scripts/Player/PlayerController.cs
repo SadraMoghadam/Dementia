@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
             SetStickyCamera(true);
             return;
         }
+        CameraMovement();
         if(!isStopped)
             Move();
         if (flashlight.activeSelf)
@@ -84,7 +85,6 @@ public class PlayerController : MonoBehaviour
             return;
         if(_uiController.inventoryPanel.gameObject.activeSelf)
             return;
-        CameraMovement();
         CallHints();
     }
     
@@ -103,13 +103,15 @@ public class PlayerController : MonoBehaviour
         _currentVelocity.y = Mathf.Lerp(_currentVelocity.y, _inputManager.Move.y * targetSpeed, animBlendSpeed * Time.fixedDeltaTime);
         float step = targetSpeed * Time.deltaTime;
         var newPos = new Vector3(_currentVelocity.x, 0, _currentVelocity.y);
-        transform.position += transform.TransformDirection (newPos / 40);
+        _playerRigidbody.velocity = transform.TransformVector(newPos * step * 20);
+        // var direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+        // _playerRigidbody.AddForce(transform.TransformVector(direction * step * 10), ForceMode.VelocityChange);
+        // transform.position += transform.TransformDirection (newPos / 40);
         _animator.SetFloat(_xVelocityHash, _currentVelocity.x);
         _animator.SetFloat(_yVelocityHash, _currentVelocity.y);
         if (_inputManager.Run && (_currentVelocity.x > 1 || _currentVelocity.y > 1))
         {
-            _gameController.StaminaController.ReduceStaminaOverTime(.1f);
-            
+            _gameController.StaminaController.ReduceStaminaOverTime(.1f);   
         }
     }
 
@@ -125,10 +127,10 @@ public class PlayerController : MonoBehaviour
         var Mouse_X = _inputManager.Look.x;
         var Mouse_Y = _inputManager.Look.y;
         camera.position = cameraRoot.position;
-        _xRotation -= Mouse_Y * mouseSensitivity * Time.smoothDeltaTime;
+        _xRotation -= Mouse_Y * mouseSensitivity * Time.fixedDeltaTime;
         _xRotation = Mathf.Clamp(_xRotation, upperLimit, bottomLimit);
         camera.localRotation = Quaternion.Euler(_xRotation, 0 , 0);
-        _playerRigidbody.MoveRotation(_playerRigidbody.rotation * Quaternion.Euler(0, Mouse_X * mouseSensitivity * Time.smoothDeltaTime, 0));
+        _playerRigidbody.MoveRotation(_playerRigidbody.rotation * Quaternion.Euler(0, Mouse_X * mouseSensitivity * Time.fixedDeltaTime, 0));
     }
 
     // private void ChangeFlashlightState()
