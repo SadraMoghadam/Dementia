@@ -7,8 +7,8 @@ public class QuestAndHintController : MonoBehaviour
 {
     [SerializeField] private QuestPanel questPanel;
     [SerializeField] private HintPanel hintPanel;
-    public float duration = 2;
-    public float hintShowDuration = 5;
+    public float duration = 1;
+    public float hintShowDuration = 3;
     private GameController _gameController;
 
     private void Start()
@@ -27,7 +27,8 @@ public class QuestAndHintController : MonoBehaviour
     public void ShowHint(int id)
     {
         hintPanel.gameObject.SetActive(true);
-        hintPanel.Show("Find the security gate key.");
+        string hint = _gameController.HintDataReader.GetHintData(id).Hint;
+        hintPanel.Show(hint);
     }
     
 }

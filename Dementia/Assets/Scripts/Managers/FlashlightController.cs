@@ -20,6 +20,10 @@ public class FlashlightController : MonoBehaviour
     public void ReduceBatteryOverTime(float amount)
     {
         _battery -= amount;
+        if (Mathf.Round(_battery) == 10)
+        {
+            GameController.instance.QuestAndHintController.ShowHint(4);
+        }
         if (_battery < 0)
         {
             _battery = 0;

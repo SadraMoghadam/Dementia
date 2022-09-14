@@ -260,7 +260,21 @@ public class PlayerPrefsManager : MonoBehaviour
 
         return ids;
     }
-    
+
+    public bool IsTheFirstItemOfType(InteractableItemType type)
+    {
+        List<ItemInfo> destroyedInteractableItems = GetDestroyedInteractableItems();
+        int count = 0;
+        for (int i = 0; i < destroyedInteractableItems.Count; i++)
+        {
+            if (destroyedInteractableItems[i].type == type)
+                count++;
+            if (count > 1)
+                return false;
+        }
+
+        return true;
+    }
     
     // [Serializable]
     // public struct CurrentInteractableItems

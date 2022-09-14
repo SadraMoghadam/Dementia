@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using Random = UnityEngine.Random;
@@ -34,6 +35,11 @@ public class PlayerController : MonoBehaviour
     private GameController _gameController;
     private GameManager _gameManager;
     private UIController _uiController;
+    private float _medkitTimer;
+    private float _medkitNotificationTime = 20;
+    private float _keyTimer;
+    private float _keyNotificationTime = 5 * 60;
+    
     
         
     private void Start() 
@@ -66,7 +72,11 @@ public class PlayerController : MonoBehaviour
         }
         if(!isStopped)
             Move();
-        ChangeFlashlightState();
+        if (flashlight.activeSelf)
+        {
+            _gameController.FlashlightController.ReduceBatteryOverTime(0.022f);
+        }
+        // ChangeFlashlightState();
     }
     private void LateUpdate()
     {
@@ -75,6 +85,7 @@ public class PlayerController : MonoBehaviour
         if(_uiController.inventoryPanel.gameObject.activeSelf)
             return;
         CameraMovement();
+        CallHints();
     }
     
     private void Move()
@@ -120,32 +131,45 @@ public class PlayerController : MonoBehaviour
         _playerRigidbody.MoveRotation(_playerRigidbody.rotation * Quaternion.Euler(0, Mouse_X * mouseSensitivity * Time.smoothDeltaTime, 0));
     }
 
-    private void ChangeFlashlightState()
-    {
-        if (_inputManager.Flashlight && _gameManager.playerPrefsManager.GetBool(PlayerPrefsKeys.HasFlashlight, false))
-        {
-            if (_gameController.FlashlightController.GetBatteryAmount() <= 1)
-            {
-                flashlight.SetActive(false);
-                _gameController.FlashlightController.ChangeFlashlightState(false);
-                return;
-            }
-            flashlight.SetActive(true);
-            _gameController.FlashlightController.ReduceBatteryOverTime(0.022f);
-            _gameController.FlashlightController.ChangeFlashlightState(true);
-            // _gameController.LightsController.TurnLightOfPlaceOnOrOff(Places.HallwayFirstFloor, false);
-        }
-        else
-        {
-            flashlight.SetActive(false);
-            _gameController.FlashlightController.ChangeFlashlightState(false);
-            // _gameController.LightsController.TurnLightOfPlaceOnOrOff(Places.HallwayFirstFloor, true);
-        }
-    }
+    // private void ChangeFlashlightState()
+    // {
+    //     if (_inputManager.Flashlight && _gameManager.playerPrefsManager.GetBool(PlayerPrefsKeys.HasFlashlight, false))
+    //     {
+    //         if (_gameController.FlashlightController.GetBatteryAmount() <= 1)
+    //         {
+    //             flashlight.SetActive(false);
+    //             _gameController.FlashlightController.ChangeFlashlightState(false);
+    //             return;
+    //         }
+    //         // _gameController.LightsController.TurnLightOfPlaceOnOrOff(Places.HallwayFirstFloor, false);
+    //     }
+    //     else
+    //     {
+    //         flashlight.SetActive(false);
+    //         _gameController.FlashlightController.ChangeFlashlightState(false);
+    //         // _gameController.LightsController.TurnLightOfPlaceOnOrOff(Places.HallwayFirstFloor, true);
+    //     }
+    // }
 
     private void CheckPlayerInput()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (_gameManager.playerPrefsManager.GetBool(PlayerPrefsKeys.HasFlashlight, false))
+            {
+                if (_gameController.FlashlightController.GetBatteryAmount() <= 1)
+                {
+                    _gameController.QuestAndHintController.ShowHint(7);
+                }
+                else
+                {
+                    bool flashLightsOn = !flashlight.activeSelf;
+                    flashlight.SetActive(flashLightsOn);
+                    _gameController.FlashlightController.ChangeFlashlightState(flashLightsOn);   
+                }
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape))
         {
             if(!_uiController.pausePanel.gameObject.activeSelf)
             {
@@ -250,6 +274,39 @@ public class PlayerController : MonoBehaviour
         }
         postProcessVolumeMainCam.enabled = false;
         postProcessVolumeStickyCam.enabled = false;
+    }
+
+    private void CallHints()
+    {
+        int totalKeys = _gameManager.playerPrefsManager.GetInteractableItemCount(InteractableItemType.Key);
+        int totalMedkits = _gameManager.playerPrefsManager.GetInteractableItemCount(InteractableItemType.MedKit);
+        float health = _gameController.DamageController.GetHealth();
+        if (health < 100 && totalMedkits > 0)
+        {
+            _medkitTimer += Time.deltaTime;
+            if (_medkitTimer > _medkitNotificationTime)
+            {
+                _medkitTimer = 0;
+                _gameController.QuestAndHintController.ShowHint(6);
+            }
+        }
+        else
+        {
+            _medkitTimer = 0;
+        }
+        if (totalKeys > 0)
+        {
+            _keyTimer += Time.deltaTime;
+            if (_keyTimer > _keyNotificationTime)
+            {
+                _keyTimer = 0;
+                _gameController.QuestAndHintController.ShowHint(5);
+            }
+        }
+        else
+        {
+            _keyTimer = 0;
+        }
     }
     
     // private void Move()

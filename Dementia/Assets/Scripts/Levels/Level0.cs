@@ -58,7 +58,6 @@ public class Level0 : MonoBehaviour, ILevels
             _gameController.LightsController.TurnAllLightsOnOrOff(false);
             collider.SetActive(false);
             _gameManager.playerPrefsManager.SetBool(PlayerPrefsKeys.LightsEnabled, false);
-            _gameController.QuestAndHintController.ShowHint(0);
             EndOfLevel();
         }
     }

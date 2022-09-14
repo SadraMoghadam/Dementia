@@ -31,33 +31,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Crouch",
-                    "type": "Button",
-                    "id": "de9b33cd-f6b2-4787-a1a5-14df020c8330",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Flashlight",
-                    "type": "Button",
-                    "id": "4c8c5639-e216-4183-8aa1-9814b935f8ba",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Tap(duration=1)",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Interact",
-                    "type": "Button",
-                    "id": "5e3b6203-5d43-4eb4-aa3e-d45631cc8035",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Tap(duration=1)",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -190,39 +163,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Run",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5be01f28-8b8b-48fa-8236-e9bb402ff827",
-                    "path": "<Keyboard>/leftCtrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "77afb41f-e72f-46c7-8c98-9e4ac7da8447",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Flashlight",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f547cd0d-d086-4c46-8087-daab50b6abb7",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

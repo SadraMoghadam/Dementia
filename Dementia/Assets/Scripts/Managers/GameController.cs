@@ -213,5 +213,6 @@ public class GameController : MonoBehaviour
 
             yield return null;
         }
+        StopCoroutine(FadeInAndOut(objectToFade, fadeIn, duration, finalOpacity));
     }
 }

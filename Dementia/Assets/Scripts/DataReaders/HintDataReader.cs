@@ -36,7 +36,7 @@ public class HintDataReader : MonoBehaviour
             }
 
             int id = int.Parse(lineSplitted[0]);
-            string hint = lineSplitted[2];
+            string hint = lineSplitted[1];
 
             HintData data = new HintData(id, hint);
             hintsData.Add(data);

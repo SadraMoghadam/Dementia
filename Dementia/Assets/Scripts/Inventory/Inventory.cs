@@ -40,12 +40,28 @@ public class Inventory : MonoBehaviour
                 if (type == InteractableItemType.Flashlight)
                 {
                     _gameManager.playerPrefsManager.SetBool(PlayerPrefsKeys.HasFlashlight, true);
+                    _gameController.QuestAndHintController.ShowHint(3);
                 }
                 else
                 {
                     inventoryItems[i].count++;
                     _gameManager.playerPrefsManager.SetInteractableItem(inventoryItems[i]);
-                    Debug.Log("Added " + type.ToString());   
+                    // Debug.Log("Added " + type.ToString());   
+                    if (_gameManager.playerPrefsManager.IsTheFirstItemOfType(type))
+                    {
+                        switch (type)
+                        {
+                            case InteractableItemType.MedKit:
+                                _gameController.QuestAndHintController.ShowHint(0);
+                                break;
+                            case InteractableItemType.Battery:
+                                _gameController.QuestAndHintController.ShowHint(1);
+                                break;
+                            case InteractableItemType.Pills:
+                                _gameController.QuestAndHintController.ShowHint(2);
+                                break;
+                        }
+                    }
                 }
                 break;
             }
