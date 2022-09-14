@@ -17,14 +17,19 @@ public class DamageController : MonoBehaviour
     private int _counter = 0;
     private CapsuleCollider _collider;
     private UIController _uiController;
+    private GameManager _gameManager;
     
 
     private void Start()
     {
+        _gameManager = GameManager.instance;
         _animator = GetComponent<Animator>();
         _collider = GetComponent<CapsuleCollider>();
         _uiController = UIController.instance;
-        _health = maxHealth;
+        _health = _gameManager.playerPrefsManager.GetFloat(PlayerPrefsKeys.Health, maxHealth);
+        Color tempColor = damageBackground.color;
+        tempColor.a = 1 - (float)_health / maxHealth;
+        damageBackground.color = tempColor;
         isPlayerDead = false;
     }
 
@@ -52,6 +57,7 @@ public class DamageController : MonoBehaviour
     {
         _damageStartTime = 0;
         _health -= damageAmount;
+        _gameManager.playerPrefsManager.SetFloat(PlayerPrefsKeys.Health, _health);
         Color tempColor = damageBackground.color;
         tempColor.a = 1 - (float)_health / maxHealth;
         damageBackground.color = tempColor;
@@ -71,10 +77,13 @@ public class DamageController : MonoBehaviour
     public void Heal(float amount)
     {
         _health += amount;
+        
         if (_health >= maxHealth)
         {
             _health = maxHealth;
         }
+        
+        _gameManager.playerPrefsManager.SetFloat(PlayerPrefsKeys.Health, _health);
         Color tempColor = damageBackground.color;
         tempColor.a = 1 - (float)_health / maxHealth;
         damageBackground.color = tempColor;

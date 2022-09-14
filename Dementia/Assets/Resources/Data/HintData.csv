@@ -8,3 +8,4 @@ id,Hint,Condition,Name
 6,Press 1 Or M to use medkit when low hp.,When low hp and not using a med kit but having one or more for 20 seconds or more.,Medkit
 7,Pickup a battery,When player clicked on F and without having any battery,Battery
 8,Press F to turn on the flashlight.,When staying in the dark without turning on the flashlight for 20 seconds.,Flashlight
+,Doors,,

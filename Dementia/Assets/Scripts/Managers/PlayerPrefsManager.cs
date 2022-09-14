@@ -12,7 +12,8 @@ public enum PlayerPrefsKeys
     InventoryInteractableItemsCount,
     BatteryAmount,
     Level,
-    LightsEnabled
+    LightsEnabled,
+    Health
 }
 
 public class SavedData
@@ -79,6 +80,10 @@ public class PlayerPrefsManager : MonoBehaviour
         {
             value = PlayerPrefs.GetFloat(playerPrefsKeys.ToString());   
         }
+        else
+        {
+            SetFloat(playerPrefsKeys, defaultValue);
+        }
         return value;
     }
     
@@ -94,6 +99,10 @@ public class PlayerPrefsManager : MonoBehaviour
         {
             value = PlayerPrefs.GetInt(playerPrefsKeys.ToString());   
         }
+        else
+        {
+            SetInt(playerPrefsKeys, defaultValue);
+        }
         return value;
     }
     
@@ -108,6 +117,10 @@ public class PlayerPrefsManager : MonoBehaviour
         if (PlayerPrefs.HasKey(playerPrefsKeys.ToString()))
         {
             value = PlayerPrefs.GetString(playerPrefsKeys.ToString());   
+        }
+        else
+        {
+            SetString(playerPrefsKeys, defaultValue);
         }
         return value;
     }
