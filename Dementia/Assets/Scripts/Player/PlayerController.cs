@@ -159,9 +159,13 @@ public class PlayerController : MonoBehaviour
         {
             if (_gameManager.playerPrefsManager.GetBool(PlayerPrefsKeys.HasFlashlight, false))
             {
-                if (_gameController.FlashlightController.GetBatteryAmount() <= 1)
+                if (_gameController.FlashlightController.GetBatteryAmount() == 0)
                 {
                     _gameController.QuestAndHintController.ShowHint(7);
+                }
+                else if (_gameManager.playerPrefsManager.GetFloat(PlayerPrefsKeys.BatteryAmount, 0) < 1)
+                {
+                    _gameController.QuestAndHintController.ShowHint(4);
                 }
                 else
                 {
