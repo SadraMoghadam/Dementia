@@ -28,7 +28,7 @@ public class Door : MonoBehaviour
         _gameManager = GameManager.instance;
         if (IsLocked)
         {
-            UnlockDoor();
+            UnlockDoor(true);
         }        
     }
 
@@ -92,14 +92,26 @@ public class Door : MonoBehaviour
         StopCoroutine(NavMeshObstacleCarving(carve));
     }
 
-    public void UnlockDoor()
+    public void UnlockDoor(bool calledOnStart = false)
     {
         List<int> keysIds = _gameController.Inventory.GetKeysIds();
         if (KeyId < keysIds.Count)
         {
             _gameManager.playerPrefsManager.DeleteItemFromInventory(keysIds[KeyId], true);
             IsLocked = false;
-        }   
+        }
+        else if (KeyId == 0 && !calledOnStart)
+        {
+            Level1 level1 = null;
+            if (_gameController.LevelsController.levels[1].activeSelf)
+            {
+                level1 = _gameController.LevelsController.levels[1].GetComponent<Level1>();
+            }
+            if (level1 != null)
+            {
+                level1.EndOfLevel();
+            }
+        }
     }
 
 }

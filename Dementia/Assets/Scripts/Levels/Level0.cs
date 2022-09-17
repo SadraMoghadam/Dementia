@@ -65,8 +65,7 @@ public class Level0 : MonoBehaviour, ILevels
     public void EndOfLevel()
     {
         _gameController.EnableAllKeys();
-        _gameManager.playerPrefsManager.SetInt(PlayerPrefsKeys.Level, _level);
-        _gameManager.playerPrefsManager.SaveGame();
+        _gameManager.playerPrefsManager.SaveGame(_level);
         _gameController.LevelsController.SetLevelActive(_level + 1);
     }
 }

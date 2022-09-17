@@ -30,13 +30,14 @@ public class PlayerPrefsManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }
 
-    public void SaveGame()
+    public void SaveGame(int level = -100)
     {
         Vector3 playerPosition = GameController.instance.GetPlayerTransform().position;
         PlayerPrefs.SetFloat("PlayerPositionX", playerPosition.x);
         PlayerPrefs.SetFloat("PlayerPositionY", playerPosition.y);
         PlayerPrefs.SetFloat("PlayerPositionZ", playerPosition.z);
-        SetInt(PlayerPrefsKeys.Level, 0);
+        if(level != -100)
+            SetInt(PlayerPrefsKeys.Level, level);
     }
     
     public SavedData LoadGame()
