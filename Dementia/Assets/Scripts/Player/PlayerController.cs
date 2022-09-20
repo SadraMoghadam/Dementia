@@ -23,9 +23,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _runSpeed = 7f;
     [SerializeField] private PostProcessVolume postProcessVolumeMainCam;
     [SerializeField] private PostProcessVolume postProcessVolumeStickyCam;
+    [HideInInspector] public Animator animator;
     private Rigidbody _playerRigidbody;
     private InputManager _inputManager;
-    private Animator _animator;
     private bool _grounded = false;
     private bool _hasAnimator;
     private int _xVelocityHash;
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         
     private void Start() 
     {
-        _hasAnimator = TryGetComponent<Animator>(out _animator);
+        _hasAnimator = TryGetComponent<Animator>(out animator);
         _playerRigidbody = GetComponent<Rigidbody>();
         _inputManager = GetComponent<InputManager>();
         _xVelocityHash = Animator.StringToHash("XVelocity");
@@ -107,8 +107,8 @@ public class PlayerController : MonoBehaviour
         // var direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
         // _playerRigidbody.AddForce(transform.TransformVector(direction * step * 10), ForceMode.VelocityChange);
         // transform.position += transform.TransformDirection (newPos / 40);
-        _animator.SetFloat(_xVelocityHash, _currentVelocity.x);
-        _animator.SetFloat(_yVelocityHash, _currentVelocity.y);
+        animator.SetFloat(_xVelocityHash, _currentVelocity.x);
+        animator.SetFloat(_yVelocityHash, _currentVelocity.y);
         if (_inputManager.Run && (_currentVelocity.x > 1 || _currentVelocity.y > 1))
         {
             _gameController.StaminaController.ReduceStaminaOverTime(.1f);   
@@ -250,6 +250,16 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             _gameController.JumpScareController.SetJumpScare(time: 5, sticked: true, placementDegree: 180);
             _gameManager.playerPrefsManager.SaveGame();
+        }
+        else if (other.CompareTag("Cutscene"))
+        {
+            
+            int currentLevel = _gameManager.playerPrefsManager.GetInt(PlayerPrefsKeys.Level, -1) + 1;
+            GameObject currentLevelGO = _gameController.LevelsController.GetCurrentLevel();
+            if (other.name.Contains("2") && currentLevel == 2)
+            {
+                currentLevelGO.GetComponent<Level2>().cutsceneTriggered = true;
+            }
         }
     }
 

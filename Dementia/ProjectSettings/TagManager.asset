@@ -17,6 +17,7 @@ TagManager:
   - MutantFoot
   - JumpScare
   - Level
+  - Cutscene
   layers:
   - Default
   - TransparentFX

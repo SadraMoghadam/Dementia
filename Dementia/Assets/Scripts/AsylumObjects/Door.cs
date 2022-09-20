@@ -32,18 +32,18 @@ public class Door : MonoBehaviour
         }        
     }
 
-    private void LateUpdate()
-    {
-        if (IsOpen)
-        {
-            _timer += Time.fixedDeltaTime;
-            if (_timer > _timeToGetClosed)
-            {
-                ChangeDoorState(false);
-                _timer = 0;
-            }
-        }
-    }
+    // private void LateUpdate()
+    // {
+    //     if (IsOpen)
+    //     {
+    //         _timer += Time.fixedDeltaTime;
+    //         if (_timer > _timeToGetClosed)
+    //         {
+    //             ChangeDoorState(false);
+    //             _timer = 0;
+    //         }
+    //     }
+    // }
 
     public void ChangeDoorState(bool unlockDoor = false)
     {
@@ -51,7 +51,7 @@ public class Door : MonoBehaviour
         {
             if (IsLocked)
             {
-                _gameController.QuestAndHintController.ShowHint(0);
+                _gameController.QuestAndHintController.ShowHint(8);
                 return;
             }
             if (!IsOpen)
@@ -77,7 +77,7 @@ public class Door : MonoBehaviour
     {
         if (IsLocked)
         {
-            _gameController.QuestAndHintController.ShowHint(0);
+            _gameController.QuestAndHintController.ShowHint(8);
             return;
         }
         animator.SetBool("Open", open);

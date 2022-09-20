@@ -24,7 +24,7 @@ public class Level1 : MonoBehaviour, ILevels
 
     public void Setup()
     {
-        _gameController.QuestAndHintController.ShowQuest(1);
+        _gameController.QuestAndHintController.ShowQuest(_level);
     }
 
     public void Process()

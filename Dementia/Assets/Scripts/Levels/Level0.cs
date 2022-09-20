@@ -15,7 +15,6 @@ public class Level0 : MonoBehaviour, ILevels
     private GameManager _gameManager;
     private int _level = 0;
     private float _timer;
-    private Animator _playerAnimator;
 
     private void Start()
     {
@@ -36,8 +35,7 @@ public class Level0 : MonoBehaviour, ILevels
         _timer = 0;
         _gameController.PlayerController.SetStickyCamera(true);
         _gameController.SetPlayerTransform(spawnTransform);
-        _playerAnimator = _gameController.PlayerController.transform.GetComponent<Animator>();
-        _playerAnimator.Play("StandUp");
+        _gameController.PlayerController.animator.Play("StandUp");
         StartCoroutine(_gameController.PlayerController.Blur(40, 0, 15));
     }
 
@@ -47,7 +45,7 @@ public class Level0 : MonoBehaviour, ILevels
         if (_timer >= cutsceneTime && _gameController.KeysDisabled)
         {
             _gameController.EnableAllKeys();
-            _playerAnimator.Play("BaseState");
+            _gameController.PlayerController.animator.Play("BaseState");
             _gameController.PlayerController.SetStickyCamera(false);
             _gameController.QuestAndHintController.ShowQuest(0);
         }

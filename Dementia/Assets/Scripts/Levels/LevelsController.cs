@@ -43,5 +43,11 @@ public class LevelsController : MonoBehaviour
             }
         }
     }
+
+    public GameObject GetCurrentLevel()
+    {
+        _currentLevel = _gameManager.playerPrefsManager.GetInt(PlayerPrefsKeys.Level, -1) + 1;
+        return levels[_currentLevel];
+    }
     
 }

@@ -6,6 +6,8 @@ id,Hint,Condition,Name
 4,Press 2 Or B to use a battery to recharge your flashlight.,When low on flashlight charge (10% or lower) and not using a battery but having one.,Battery
 5,You have an unsed key that can be used somewhere.,When a key is in the inventory for more than 5 minutes.,Key
 6,Press 1 Or M to use medkit when low hp.,When low hp and not using a med kit but having one or more for 20 seconds or more.,Medkit
-7,Pickup a battery,When player clicked on F and without having any battery,Battery
-8,Press F to turn on the flashlight.,When staying in the dark without turning on the flashlight for 20 seconds.,Flashlight
-9,Doors,When staying in the dark without turning on the flashlight for 20 seconds.,Flashlight
+7,Find a battery first.,When player clicked on F and without having any battery.,Battery
+8,This door is locked. need a key to open.,Doors that can be opened by key when the player tries to open them without one.,Key
+9,This door is locked and can't be opened.,Doors that cannot be opened by keys and will be opened in the future.,Key
+10,This door is jammed.,Doors that cannot be opened ever and the player should find another way.,Key
+11,The doctor will lose you in the basement! Head there and hide.,Running away from the doctor in level 3.,in game
