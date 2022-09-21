@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     
     
         
-    private void Start() 
+    private void Awake() 
     {
         _hasAnimator = TryGetComponent<Animator>(out animator);
         _playerRigidbody = GetComponent<Rigidbody>();
@@ -256,7 +256,7 @@ public class PlayerController : MonoBehaviour
             
             int currentLevel = _gameManager.playerPrefsManager.GetInt(PlayerPrefsKeys.Level, -1) + 1;
             GameObject currentLevelGO = _gameController.LevelsController.GetCurrentLevel();
-            if (other.name.Contains("2") && currentLevel == 2)
+            if (other.name.Contains("2") && currentLevel == 2 && currentLevelGO.GetComponent<Level2>().cutsceneTrigger.activeSelf)
             {
                 currentLevelGO.GetComponent<Level2>().cutsceneTriggered = true;
             }

@@ -16,8 +16,10 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private LayerMask playerMask;
     [SerializeField] private LayerMask obstacleMask;
     [SerializeField] private GameObject eyeLights;
-    [SerializeField] private float waitTime = 5.1f;
-    [SerializeField] private float attackCoolDown = 5.15f;
+    private float waitTime = 10.15f;
+    private float attackCoolDown = 5.08f;
+    
+    
     private Animator _enemyAnimator;
     private List<Transform> waypoints;
     private NavMeshAgent _agent;
@@ -75,7 +77,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (other.CompareTag("MutantInteractableArea"))
         {
-            other.transform.parent.GetComponent<Door>().ChangeDoorState(true);
+            other.transform.parent.GetComponent<Door>().ChangeDoorState(true, false);
         }
     }
     

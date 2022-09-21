@@ -1,0 +1,648 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.AI;
+using Random = UnityEngine.Random;
+
+public class EnemyAI_Old : MonoBehaviour
+{
+    [SerializeField] private GameObject waypointsContainer;
+    [SerializeField] private float walkSpeed = 4;
+    [SerializeField] private float runSpeed = 7;
+    [SerializeField] private float viewRadius = 15;
+    [SerializeField] private float viewAngle = 90;
+    [SerializeField] private LayerMask playerMask;
+    [SerializeField] private LayerMask obstacleMask;
+    [SerializeField] private GameObject eyeLights;
+    [SerializeField] private float waitTime = 5.1f;
+    [SerializeField] private float attackCoolDown = 5.15f;
+    private Animator _enemyAnimator;
+    private List<Transform> waypoints;
+    private NavMeshAgent _agent;
+    private int _waypointIndex;
+    private Vector3 _playerPosition;
+    private Vector3 target;
+    private bool choosingDestination;
+    private bool _isPatrol;
+    private bool _playerInViewRange;
+    private bool _playerNear;
+    private bool _playerCaught;
+    private float _timeToRotate = 2;
+    private float _waitTime;
+    private bool _chaseFinished;
+    private bool _startOfChase;
+    private bool _isInAgony;
+    private Transform player;
+    private GameController _gameController;
+    private GameManager _gameManager;
+
+    private enum EnemyAnimatorParameters
+    {
+        Idle,
+        LookAround,
+        Walk,
+        SpeedWalk,
+        AttackType1,
+        AttackType2,
+        Agony
+    }
+
+    private void Start()
+    {
+        _agent = GetComponent<NavMeshAgent>();
+        _enemyAnimator = GetComponent<Animator>();
+        _isPatrol = true;
+        _playerInViewRange = false;
+        _playerNear = false;
+        _playerCaught = false;
+        _chaseFinished = false;
+        _startOfChase = true;
+        _isInAgony = false;
+        _agent.speed = walkSpeed;
+        _waitTime = waitTime;
+        _gameController = GameController.instance;
+        _gameManager = GameManager.instance;
+        eyeLights.SetActive(false);
+        waypoints = waypointsContainer.GetComponentsInChildren<Transform>().ToList();
+        waypoints.RemoveAt(0);
+        choosingDestination = true;
+        StartCoroutine(UpdateDestination());
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("MutantInteractableArea"))
+        {
+            other.transform.parent.GetComponent<Door>().ChangeDoorState(true, false);
+        }
+    }
+    
+    // private void OnTriggerStay(Collider other)
+    // {
+    //     if (other.CompareTag("MutantInteractableArea"))
+    //     {
+    //         Door door = other.transform.parent.GetComponent<Door>();
+    //         door.ChangeDoorState(true);  
+    //     }
+    // }
+    //
+    // private void OnTriggerExit(Collider other)
+    // {
+    //     if (other.CompareTag("MutantInteractableArea") && _isPatrol)
+    //     {
+    //         other.transform.parent.GetComponent<Door>().ChangeDoorState(false);
+    //     }
+    // }
+
+    private void Update()
+    {
+        if (_gameController.DamageController.isPlayerDead)
+        {
+            SetAnimation(idle:true);
+            Stop();
+            return;   
+        }
+            
+        
+        EnviromentView();
+        
+        if (_isPatrol)
+        {
+            _startOfChase = true;
+            Patrol();
+        }
+        else
+        {
+            Chase();
+        }
+        // if(Mathf.Round(_agent.velocity.magnitude) == 0)
+        // {
+        //     Stop();
+        // }
+    }
+
+
+    private void Patrol()
+    {
+        if (_chaseFinished || Vector3.Distance(transform.position, target) < _agent.stoppingDistance && !choosingDestination)
+        {
+            _chaseFinished = false;
+            StartCoroutine(UpdateDestination());
+        }   
+    }
+
+    private void Chase()
+    {
+        StartCoroutine(ChaseProcess());
+    }
+    
+    private IEnumerator ChaseProcess()
+    {
+        if (_startOfChase)
+        {
+            eyeLights.SetActive(true);
+            _agent.isStopped = true;
+            SetAnimation(agony:true);
+            yield return new WaitForSeconds(4f);
+            SetAnimation(speedWalk:true);
+            _startOfChase = false;
+        }
+        _isPatrol = false;
+        _playerNear = false;
+ 
+        if (!_playerCaught && !_isInAgony)
+        {
+            Move(runSpeed);
+            _agent.SetDestination(_playerPosition);
+        }
+        if (_agent.remainingDistance <= _agent.stoppingDistance)
+        {
+            if (Vector3.Distance(transform.position, player.position) < _agent.stoppingDistance)
+            {
+                transform.rotation = Quaternion.LookRotation(player.position - transform.position);
+                _isInAgony = true;
+                _agent.isStopped = true;
+                float timeToWait = ChooseAttackAnimation();
+                yield return new WaitForSeconds(timeToWait/2);
+                SetAnimation(agony:true);
+                yield return new WaitForSeconds(5.84f);
+                _agent.isStopped = false;
+                _isInAgony = false;
+                
+            }
+            else if (_waitTime <= 0 && !_playerCaught && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)
+            {
+                _isPatrol = true;
+                _playerNear = false;
+                _waitTime = waitTime;
+                eyeLights.SetActive(false);
+            }
+            else
+            {
+                if (Vector3.Distance(transform.position,
+                        GameObject.FindGameObjectWithTag("Player").transform.position) >= 2.5f)
+                {
+                    Stop();
+                    _chaseFinished = true;
+                }
+                _waitTime -= Time.deltaTime;
+            }
+        }
+    }
+    
+    private IEnumerator UpdateDestination()
+    {
+        ChooseIdleAnimation();
+        choosingDestination = true;
+        int newIndex = Random.Range(0, waypoints.Count);
+        if (_waypointIndex == newIndex)
+        {
+            if (newIndex == waypoints.Count - 1)
+                _waypointIndex--;
+            else
+                _waypointIndex++;
+        }
+        else
+        {
+            _waypointIndex = newIndex;
+        }
+        yield return new WaitForSeconds(_waitTime);
+        _enemyAnimator.SetBool(EnemyAnimatorParameters.Walk.ToString(), true);
+        Debug.Log(_waypointIndex);
+        target = waypoints[_waypointIndex].position;
+        Debug.Log(target);
+        Move(walkSpeed);
+        _agent.SetDestination(target);
+        yield return new WaitForSeconds(_timeToRotate);
+        choosingDestination = false;
+    }
+
+    void EnviromentView()
+    {
+        Collider[] playerInRange = Physics.OverlapSphere(transform.position, viewRadius, playerMask);
+ 
+        for (int i = 0; i < playerInRange.Length; i++)
+        {
+            player = playerInRange[i].transform;
+            Vector3 dirToPlayer = (player.position - transform.position).normalized;
+            float dstToPlayer = Vector3.Distance(transform.position, player.position);
+            if (dstToPlayer < 2)
+            {
+                _playerInViewRange = true;
+                _isPatrol = false;
+            }
+            else if (Vector3.Angle(transform.forward, dirToPlayer) < viewAngle / 2)
+            {
+                if (!Physics.Raycast(transform.position, dirToPlayer, dstToPlayer, obstacleMask))
+                {
+                    _playerInViewRange = true;
+                    _isPatrol = false;
+                }
+                else
+                {
+                    _playerInViewRange = false;
+                }
+            }
+            if (Vector3.Distance(transform.position, player.position) > viewRadius)
+            {
+                _playerInViewRange = false;
+            }
+            if (_playerInViewRange)
+            {
+                _playerPosition = player.transform.position;
+            }
+        }
+    }
+    
+    void Stop()
+    {
+        _agent.isStopped = true;
+        ChooseIdleAnimation();
+        _agent.speed = 0;
+    }
+
+    private void ChooseIdleAnimation()
+    {
+        float rnd = Random.Range(0, 100);
+        if (rnd > 50)
+        {
+            SetAnimation(idle:true);
+        }
+        else
+        {
+            SetAnimation(lookAround:true);
+        }
+    }
+    
+    private float ChooseAttackAnimation()
+    {
+        float rnd = Random.Range(0, 100);
+        float timeToWait = 0;
+        if (rnd > 50)
+        {
+            SetAnimation(attackType1:true);
+            timeToWait = 2.416f;
+        }
+        else
+        {
+            SetAnimation(attackType2:true);
+            timeToWait = 2.25f;
+        }
+
+        return timeToWait;
+    }
+ 
+    void Move(float speed)
+    {
+        _agent.isStopped = false;
+        _agent.speed = speed;
+        if (_playerInViewRange || _playerNear || speed == runSpeed)
+        {
+            SetAnimation(speedWalk:true);
+            
+        }
+        else
+        {
+            SetAnimation(walk:true);
+        }
+    }
+ 
+    void CaughtPlayer()
+    {
+        _playerCaught = true;
+    }
+
+    public void Steps()
+    {
+        _gameManager.AudioManager.play("FootStep");
+    }
+
+    public void Punch()
+    {
+        _gameController.DamageController.Damage(25);
+    }
+
+    private void SetAnimation(bool idle = false, bool lookAround = false, bool walk = false, bool speedWalk = false,
+        bool attackType1 = false, bool attackType2 = false, bool agony = false)
+    {
+        _enemyAnimator.SetBool(EnemyAnimatorParameters.Idle.ToString(), idle);
+        _enemyAnimator.SetBool(EnemyAnimatorParameters.LookAround.ToString(), lookAround);
+        _enemyAnimator.SetBool(EnemyAnimatorParameters.Walk.ToString(), walk);
+        _enemyAnimator.SetBool(EnemyAnimatorParameters.SpeedWalk.ToString(), speedWalk);
+        _enemyAnimator.SetBool(EnemyAnimatorParameters.AttackType1.ToString(), attackType1);
+        _enemyAnimator.SetBool(EnemyAnimatorParameters.AttackType2.ToString(), attackType2);
+        _enemyAnimator.SetBool(EnemyAnimatorParameters.Agony.ToString(), agony);
+    }
+    
+}
+
+
+
+#region MUTANT
+
+
+// public class EnemyAI : MonoBehaviour
+// {
+//     [SerializeField] private GameObject waypointsContainer;
+//     [SerializeField] private float walkSpeed = 4;
+//     [SerializeField] private float runSpeed = 7;
+//     [SerializeField] private float viewRadius = 15;
+//     [SerializeField] private float viewAngle = 90;
+//     [SerializeField] private LayerMask playerMask;
+//     [SerializeField] private LayerMask obstacleMask;
+//     [SerializeField] private GameObject eyeLights;
+//     [SerializeField] private float waitTime = 5.15f;
+//     private Animator _enemyAnimator;
+//     private List<Transform> waypoints;
+//     private NavMeshAgent _agent;
+//     private int _waypointIndex;
+//     private Vector3 _playerPosition;
+//     private Vector3 target;
+//     private bool choosingDestination;
+//     private bool _isPatrol;
+//     private bool _playerInViewRange;
+//     private bool _playerNear;
+//     private bool _playerCaught;
+//     private float _timeToRotate = 2;
+//     private float _waitTime;
+//     private bool _chaseFinished;
+//     private bool _startOfChase;
+//     private bool _isInAgony;
+//     private Transform player;
+//     private GameController _gameController;
+//     private GameManager _gameManager;
+//
+//     private enum EnemyAnimatorParameters
+//     {
+//         Idle,
+//         IdleProb,
+//         Walk,
+//         Run,
+//         Punch,
+//         Turn,
+//         Agony
+//     }
+//
+//     private void Start()
+//     {
+//         _agent = GetComponent<NavMeshAgent>();
+//         _enemyAnimator = GetComponent<Animator>();
+//         _isPatrol = true;
+//         _playerInViewRange = false;
+//         _playerNear = false;
+//         _playerCaught = false;
+//         _chaseFinished = false;
+//         _startOfChase = true;
+//         _isInAgony = false;
+//         _agent.speed = walkSpeed;
+//         _waitTime = waitTime;
+//         _gameController = GameController.instance;
+//         _gameManager = GameManager.instance;
+//         eyeLights.SetActive(false);
+//         waypoints = waypointsContainer.GetComponentsInChildren<Transform>().ToList();
+//         waypoints.RemoveAt(0);
+//         choosingDestination = true;
+//         StartCoroutine(UpdateDestination());
+//     }
+//
+//     private void OnTriggerEnter(Collider other)
+//     {
+//         if (other.CompareTag("MutantInteractableArea"))
+//         {
+//             other.transform.parent.GetComponent<Door>().ChangeDoorState(true);
+//         }
+//     }
+//     
+//     private void OnTriggerStay(Collider other)
+//     {
+//         if (other.CompareTag("MutantInteractableArea"))
+//         {
+//             Door door = other.transform.parent.GetComponent<Door>();
+//             door.ChangeDoorState(true);  
+//         }
+//     }
+//     
+//     private void OnTriggerExit(Collider other)
+//     {
+//         if (other.CompareTag("MutantInteractableArea") && _isPatrol)
+//         {
+//             other.transform.parent.GetComponent<Door>().ChangeDoorState(false);
+//         }
+//     }
+//
+//     private void Update()
+//     {
+//         if (_gameController.DamageController.isPlayerDead)
+//         {
+//             _enemyAnimator.SetBool(EnemyAnimatorParameters.Punch.ToString(), false);
+//             Stop();
+//             return;   
+//         }
+//         
+//         EnviromentView();
+//         
+//         if (_isPatrol)
+//         {
+//             _startOfChase = true;
+//             Patrol();
+//         }
+//         else
+//         {
+//             Chase();
+//         }
+//     }
+//
+//
+//     private void Patrol()
+//     {
+//         if (_chaseFinished || Vector3.Distance(transform.position, target) < _agent.stoppingDistance && !choosingDestination)
+//         {
+//             _chaseFinished = false;
+//             StartCoroutine(UpdateDestination());
+//         }   
+//     }
+//
+//     private void Chase()
+//     {
+//         StartCoroutine(ChaseProcess());
+//     }
+//     
+//     private IEnumerator ChaseProcess()
+//     {
+//         if (_startOfChase)
+//         {
+//             eyeLights.SetActive(true);
+//             _enemyAnimator.SetBool(EnemyAnimatorParameters.Agony.ToString(), true);
+//             _agent.isStopped = true;
+//             yield return new WaitForSeconds(3.35f);
+//             _enemyAnimator.SetBool(EnemyAnimatorParameters.Agony.ToString(), false);
+//             _startOfChase = false;
+//         }
+//         _enemyAnimator.SetBool(EnemyAnimatorParameters.Punch.ToString(), false);
+//         _isPatrol = false;
+//         _playerNear = false;
+//  
+//         if (!_playerCaught && !_isInAgony)
+//         {
+//             Move(runSpeed);
+//             _agent.SetDestination(_playerPosition);
+//         }
+//         if (_agent.remainingDistance <= _agent.stoppingDistance)
+//         {
+//             if (Vector3.Distance(transform.position, player.position) < _agent.stoppingDistance)
+//             {
+//                 transform.rotation = Quaternion.LookRotation(player.position - transform.position);
+//                 _enemyAnimator.SetBool(EnemyAnimatorParameters.Punch.ToString(), true);
+//                 _isInAgony = true;
+//                 yield return new WaitForSeconds(.8f);
+//                 _enemyAnimator.SetBool(EnemyAnimatorParameters.Agony.ToString(), true);
+//                 _enemyAnimator.SetBool(EnemyAnimatorParameters.Punch.ToString(), false);
+//                 _agent.isStopped = true;
+//                 yield return new WaitForSeconds(3.35f);
+//                 _enemyAnimator.SetBool(EnemyAnimatorParameters.Agony.ToString(), false);
+//                 _isInAgony = false;
+//                 
+//             }
+//             else if (_waitTime <= 0 && !_playerCaught && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)
+//             {
+//                 _isPatrol = true;
+//                 _playerNear = false;
+//                 _waitTime = waitTime;
+//                 // Move(walkSpeed);
+//                 eyeLights.SetActive(false);
+//             }
+//             else
+//             {
+//                 if (Vector3.Distance(transform.position,
+//                         GameObject.FindGameObjectWithTag("Player").transform.position) >= 2.5f)
+//                 {
+//                     Stop();
+//                     _chaseFinished = true;
+//                 }
+//                 _waitTime -= Time.deltaTime;
+//             }
+//         }
+//     }
+//     
+//     private IEnumerator UpdateDestination()
+//     {
+//         ChooseIdleAnimation();
+//         choosingDestination = true;
+//         int newIndex = Random.Range(0, waypoints.Count);
+//         if (_waypointIndex == newIndex)
+//         {
+//             if (newIndex == waypoints.Count - 1)
+//                 _waypointIndex--;
+//             else
+//                 _waypointIndex++;
+//         }
+//         else
+//         {
+//             _waypointIndex = newIndex;
+//         }
+//         yield return new WaitForSeconds(_waitTime);
+//         _enemyAnimator.SetBool(EnemyAnimatorParameters.Walk.ToString(), true);
+//         Debug.Log(_waypointIndex);
+//         target = waypoints[_waypointIndex].position;
+//         Debug.Log(target);
+//         Move(walkSpeed);
+//         _agent.SetDestination(target);
+//         yield return new WaitForSeconds(_timeToRotate);
+//         choosingDestination = false;
+//     }
+//
+//     void EnviromentView()
+//     {
+//         Collider[] playerInRange = Physics.OverlapSphere(transform.position, viewRadius, playerMask);
+//  
+//         for (int i = 0; i < playerInRange.Length; i++)
+//         {
+//             player = playerInRange[i].transform;
+//             Vector3 dirToPlayer = (player.position - transform.position).normalized;
+//             float dstToPlayer = Vector3.Distance(transform.position, player.position);
+//             if (dstToPlayer < 2)
+//             {
+//                 _playerInViewRange = true;
+//                 _isPatrol = false;
+//             }
+//             else if (Vector3.Angle(transform.forward, dirToPlayer) < viewAngle / 2)
+//             {
+//                 if (!Physics.Raycast(transform.position, dirToPlayer, dstToPlayer, obstacleMask))
+//                 {
+//                     _playerInViewRange = true;
+//                     _isPatrol = false;
+//                 }
+//                 else
+//                 {
+//                     _playerInViewRange = false;
+//                 }
+//             }
+//             if (Vector3.Distance(transform.position, player.position) > viewRadius)
+//             {
+//                 _playerInViewRange = false;
+//             }
+//             if (_playerInViewRange)
+//             {
+//                 _playerPosition = player.transform.position;
+//             }
+//         }
+//     }
+//
+//     private void ChooseIdleAnimation()
+//     {
+//         float rnd = Random.Range(0, 100);
+//         _enemyAnimator.SetBool(EnemyAnimatorParameters.Walk.ToString(), false);
+//         _enemyAnimator.SetBool(EnemyAnimatorParameters.Run.ToString(), false);
+//         _enemyAnimator.SetBool(EnemyAnimatorParameters.Agony.ToString(), false);
+//         _enemyAnimator.SetBool(EnemyAnimatorParameters.Idle.ToString(), true);
+//         _enemyAnimator.SetFloat(EnemyAnimatorParameters.IdleProb.ToString(), rnd);
+//     }
+//     
+//     void Stop()
+//     {
+//         _agent.isStopped = true;
+//         ChooseIdleAnimation();
+//         _agent.speed = 0;
+//     }
+//  
+//     void Move(float speed)
+//     {
+//         _agent.isStopped = false;
+//         _agent.speed = speed;
+//         if (_playerInViewRange || _playerNear || speed == runSpeed)
+//         {
+//             _enemyAnimator.SetBool(EnemyAnimatorParameters.Run.ToString(), true);
+//             _enemyAnimator.SetBool(EnemyAnimatorParameters.Walk.ToString(), false);
+//             _enemyAnimator.SetBool(EnemyAnimatorParameters.Idle.ToString(), false);
+//             _enemyAnimator.SetBool(EnemyAnimatorParameters.Agony.ToString(), false);
+//             
+//         }
+//         else
+//         {
+//             _enemyAnimator.SetBool(EnemyAnimatorParameters.Walk.ToString(), true);
+//             _enemyAnimator.SetBool(EnemyAnimatorParameters.Run.ToString(), false);
+//             _enemyAnimator.SetBool(EnemyAnimatorParameters.Idle.ToString(), false);
+//             _enemyAnimator.SetBool(EnemyAnimatorParameters.Agony.ToString(), false);
+//         }
+//     }
+//  
+//     void CaughtPlayer()
+//     {
+//         _playerCaught = true;
+//     }
+//
+//     public void Steps()
+//     {
+//         _gameManager.AudioManager.play("FootStep");
+//     }
+//
+//     public void Punch()
+//     {
+//         _gameController.DamageController.Damage(25);
+//     }
+//     
+// }
+
+#endregion

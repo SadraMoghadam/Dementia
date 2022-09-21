@@ -6,6 +6,10 @@ using UnityEngine.Timeline;
 
 public class Level2 : MonoBehaviour, ILevels
 {
+    public GameObject cutsceneTrigger;
+    [SerializeField] private Transform doctorStartPosition;
+    [SerializeField] private Transform doctorEndPosition;
+    [SerializeField] private Door kitchenDoor;
     [HideInInspector] public bool cutsceneTriggered;
     private GameController _gameController;
     private GameManager _gameManager;
@@ -19,7 +23,7 @@ public class Level2 : MonoBehaviour, ILevels
         Setup();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         Process();
     }
@@ -27,27 +31,35 @@ public class Level2 : MonoBehaviour, ILevels
     public void Setup()
     {
         _gameController.QuestAndHintController.ShowQuest(_level);
-    }
-
-    private void OnCutsceneStart(PlayableDirector obj)
-    {
-    }
-    
-    private void OnCutsceneEnd(PlayableDirector obj)
-    {
+        cutsceneTrigger.SetActive(true);
     }
     
     public void Process()
     {
         if (cutsceneTriggered)
         {
-            _gameController.DisableAllKeys();
-            _gameController.PlayerController.animator.Play("FearBackwards");
+            cutsceneTriggered = false;
+            StartCoroutine(Cutscene());
         }
+    }
+
+    private IEnumerator Cutscene()
+    {
+        cutsceneTrigger.SetActive(false);
+        cutsceneTriggered = false;
+        _gameController.PlayerController.SetStickyCamera(true);
+        kitchenDoor.ChangeDoorState(true, false);
+        _gameController.DisableAllKeys();
+        _gameController.PlayerController.transform.LookAt((doctorStartPosition.position + doctorEndPosition.position) / 2);
+        _gameController.PlayerController.animator.Play("FearBackwards");
+        
+        _gameController.EnemyStaticSystem.MoveToPosition(doctorStartPosition.position, doctorEndPosition.position, 2);
+        yield return new WaitForSeconds(10f);
     }
 
     public void EndOfLevel()
     {
+        cutsceneTriggered = false;
         _gameController.EnableAllKeys();
         _gameController.PlayerController.animator.Play("BaseState");
         _gameManager.playerPrefsManager.SaveGame(_level);
