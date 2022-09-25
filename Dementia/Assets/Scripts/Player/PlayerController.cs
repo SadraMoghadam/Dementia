@@ -269,11 +269,12 @@ public class PlayerController : MonoBehaviour
         camera.gameObject.SetActive(!enable);
     }
 
-    public IEnumerator Blur(float maxVal, float minVal, float duration)
+    public IEnumerator BlurOutOverTime(float maxVal, float minVal, float duration)
     {
-        postProcessVolumeMainCam.enabled = true;
+        // postProcessVolumeMainCam.enabled = true;
         postProcessVolumeStickyCam.enabled = true;
-        PostProcessProfile postProcessProfile = stickyCamera.activeSelf ? postProcessVolumeStickyCam.profile : postProcessVolumeMainCam.profile;
+        // PostProcessProfile postProcessProfile = stickyCamera.activeSelf ? postProcessVolumeStickyCam.profile : postProcessVolumeMainCam.profile;
+        PostProcessProfile postProcessProfile = postProcessVolumeStickyCam.profile;
         DepthOfField dph;
         float time = 0;
         if (postProcessProfile.TryGetSettings<DepthOfField>(out dph))
@@ -288,7 +289,7 @@ public class PlayerController : MonoBehaviour
                 yield return null;
             }
         }
-        postProcessVolumeMainCam.enabled = false;
+        // postProcessVolumeMainCam.enabled = false;
         postProcessVolumeStickyCam.enabled = false;
     }
 

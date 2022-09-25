@@ -36,7 +36,7 @@ public class Level0 : MonoBehaviour, ILevels
         _gameController.PlayerController.SetStickyCamera(true);
         _gameController.SetPlayerTransform(spawnTransform);
         _gameController.PlayerController.animator.Play("StandUp");
-        StartCoroutine(_gameController.PlayerController.Blur(40, 0, 15));
+        StartCoroutine(_gameController.PlayerController.BlurOutOverTime(40, 0, 15));
     }
 
     public void Process()
