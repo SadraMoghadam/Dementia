@@ -91,7 +91,7 @@ public class DamageController : MonoBehaviour
 
     public float GetHealth()
     {
-        return _health;
+        return _gameManager.playerPrefsManager.GetFloat(PlayerPrefsKeys.Health, _health);;
     }
     
 }

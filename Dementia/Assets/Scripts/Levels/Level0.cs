@@ -34,6 +34,7 @@ public class Level0 : MonoBehaviour, ILevels
         _gameController.DisableAllKeys();
         _timer = 0;
         _gameController.PlayerController.SetStickyCamera(true);
+        // StartCoroutine(_gameController.PlayerController.CutSceneColliderActivation(true));
         _gameController.SetPlayerTransform(spawnTransform);
         _gameController.PlayerController.animator.Play("StandUp");
         StartCoroutine(_gameController.PlayerController.BlurOutOverTime(40, 0, 15));
@@ -47,6 +48,7 @@ public class Level0 : MonoBehaviour, ILevels
             _gameController.EnableAllKeys();
             _gameController.PlayerController.animator.Play("BaseState");
             _gameController.PlayerController.SetStickyCamera(false);
+            // StartCoroutine(_gameController.PlayerController.CutSceneColliderActivation(false));
             _gameController.QuestAndHintController.ShowQuest(0);
         }
         bool hasFlashlight = _gameManager.playerPrefsManager.GetBool(PlayerPrefsKeys.HasFlashlight, false);

@@ -10,20 +10,39 @@ using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
+    [HideInInspector] public Animator animator;
     [HideInInspector] public bool isStopped;
+    
     [SerializeField] private float animBlendSpeed = 8.9f;
     [SerializeField] private Transform cameraRoot;
     [SerializeField] private Transform camera;
     [SerializeField] private GameObject stickyCamera;
+    [SerializeField] private List<Collider> cutsceneColliders;
+
+    [Space(5)]
     [SerializeField] private float upperLimit = -40f;
     [SerializeField] private float bottomLimit = 70f;
     [SerializeField] private float mouseSensitivity = 20f;
+    
+    [Space(5)]
     [SerializeField] private float _walkSpeed = 3f;
     [SerializeField] private float _runSpeed = 7f;
+    
+    [Space(5)]
     [SerializeField] private PostProcessVolume postProcessVolumeMainCam;
     [SerializeField] private PostProcessVolume postProcessVolumeStickyCam;
-    [HideInInspector] public Animator animator;
+    
+    [Header("Controller Adjustments")]
+    [SerializeField] private float normalHeight = 2.0f;
+    [SerializeField] private float crouchHeight = 1.4f;
+    
+    [Space(5)]
+    [SerializeField] private Vector3 normalCenter = new Vector3(0, 1f, 0);
+    [SerializeField] private Vector3 crouchCenter = new Vector3(0, .5f, 0);
+    
+    
     private Rigidbody _playerRigidbody;
+    private CapsuleCollider _collider;
     private InputManager _inputManager;
     private bool _grounded = false;
     private bool _hasAnimator;
@@ -45,12 +64,15 @@ public class PlayerController : MonoBehaviour
     {
         _hasAnimator = TryGetComponent<Animator>(out animator);
         _playerRigidbody = GetComponent<Rigidbody>();
+        _collider = GetComponent<CapsuleCollider>();
         _inputManager = GetComponent<InputManager>();
         _xVelocityHash = Animator.StringToHash("XVelocity");
         _yVelocityHash = Animator.StringToHash("YVelocity");
         _gameController = GameController.instance;
         _gameManager = GameManager.instance;
         _uiController = UIController.instance;
+        _collider.enabled = true;
+        StartCoroutine(CutSceneColliderActivation(false));
     }
 
     private void Update()
@@ -64,9 +86,10 @@ public class PlayerController : MonoBehaviour
     {
         if(_gameController.KeysDisabled)
             return;
-        if (GameController.instance.DamageController.isPlayerDead)
+        if (_gameController.DamageController.isPlayerDead || _gameController.DamageController.GetHealth() <= 0)
         {
             SetStickyCamera(true);
+            StartCoroutine(CutSceneColliderActivation(true));
             return;
         }
         CameraMovement();
@@ -321,6 +344,28 @@ public class PlayerController : MonoBehaviour
         else
         {
             _keyTimer = 0;
+        }
+    }
+
+    public IEnumerator CutSceneColliderActivation(bool active)
+    {
+        if (active)
+        {
+            foreach (var cutsceneCollider in cutsceneColliders)
+            {
+                cutsceneCollider.enabled = active;
+            }
+            yield return new WaitForSeconds(.3f);
+            _collider.enabled = !active;
+        }
+        else
+        {
+            _collider.enabled = !active;
+            yield return new WaitForSeconds(.3f);
+            foreach (var cutsceneCollider in cutsceneColliders)
+            {
+                cutsceneCollider.enabled = active;
+            }
         }
     }
     
