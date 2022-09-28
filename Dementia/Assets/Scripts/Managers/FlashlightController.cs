@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class FlashlightController : MonoBehaviour
 {
+    public GameObject flashlight;
     private float _battery;
     private GameManager _gameManager;
     private FlashlightPanel _flashlightPanel;
@@ -48,6 +49,7 @@ public class FlashlightController : MonoBehaviour
     public void ChangeFlashlightState(bool flashlightOn)
     {
         _flashlightPanel.flashlightImage.sprite = flashlightOn ? _flashlightPanel.flashlightOn : _flashlightPanel.flashlightOff;
+        flashlight.SetActive(flashlightOn);
     }
 
     public float GetBatteryAmount()

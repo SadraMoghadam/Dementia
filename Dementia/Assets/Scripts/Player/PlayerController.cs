@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float upperLimit = -40f;
     [SerializeField] private float bottomLimit = 70f;
     [SerializeField] private float mouseSensitivity = 20f;
-    [SerializeField] private GameObject flashlight;
     [SerializeField] private float _walkSpeed = 3f;
     [SerializeField] private float _runSpeed = 7f;
     [SerializeField] private PostProcessVolume postProcessVolumeMainCam;
@@ -73,7 +72,7 @@ public class PlayerController : MonoBehaviour
         CameraMovement();
         if(!isStopped)
             Move();
-        if (flashlight.activeSelf)
+        if (_gameController.FlashlightController.flashlight.activeSelf)
         {
             _gameController.FlashlightController.ReduceBatteryOverTime(0.022f);
         }
@@ -169,8 +168,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    bool flashLightsOn = !flashlight.activeSelf;
-                    flashlight.SetActive(flashLightsOn);
+                    bool flashLightsOn = !_gameController.FlashlightController.flashlight.activeSelf;
                     _gameController.FlashlightController.ChangeFlashlightState(flashLightsOn);   
                 }
             }
@@ -290,7 +288,7 @@ public class PlayerController : MonoBehaviour
             }
         }
         // postProcessVolumeMainCam.enabled = false;
-        postProcessVolumeStickyCam.enabled = false;
+        // postProcessVolumeStickyCam.enabled = false;
     }
 
     private void CallHints()

@@ -2527,6 +2527,7 @@ GameObject:
   - component: {fileID: 1109629197}
   - component: {fileID: 1109629198}
   - component: {fileID: 3851386622817693860}
+  - component: {fileID: 4580462401913751901}
   m_Layer: 6
   m_Name: MainPlayer
   m_TagString: Player
@@ -2649,11 +2650,11 @@ MonoBehaviour:
   upperLimit: -40
   bottomLimit: 70
   mouseSensitivity: 20
-  flashlight: {fileID: 4064132427232507305}
   _walkSpeed: 3
   _runSpeed: 5.5
   postProcessVolumeMainCam: {fileID: 8567517061862791293}
   postProcessVolumeStickyCam: {fileID: 7902319667102088790}
+  animator: {fileID: 0}
 --- !u!54 &469959688
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2720,6 +2721,24 @@ MonoBehaviour:
   maxStamina: 100
   staminaModeTime: 20
   regenerationDelay: 3
+--- !u!143 &4580462401913751901
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7571525411234056726}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.25
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &7698656669681772877
 GameObject:
   m_ObjectHideFlags: 0
