@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
+    public GameObject canvas;
     public InventoryPanel inventoryPanel;
     public FlashlightPanel flashlightPanel;
     public StaminaBar staminaBar;
@@ -30,6 +31,7 @@ public class UIController : MonoBehaviour
         darkBackground.gameObject.SetActive(false);
         diedPanel.gameObject.SetActive(false);
         _gameController = GameController.instance;
+        ShowGUI();
     }
 
     public void ShowDiedPanel()
@@ -60,5 +62,14 @@ public class UIController : MonoBehaviour
     {
         settingsPanel.gameObject.SetActive(true);
     }
-    
+
+    public void HideGUI()
+    {
+        canvas.SetActive(false);
+    }
+
+    public void ShowGUI()
+    {
+        canvas.SetActive(true);
+    }
 }

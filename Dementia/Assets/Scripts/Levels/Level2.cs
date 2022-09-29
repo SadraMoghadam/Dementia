@@ -47,19 +47,24 @@ public class Level2 : MonoBehaviour, ILevels
     {
         cutsceneTrigger.SetActive(false);
         cutsceneTriggered = false;
-        _gameController.PlayerController.SetStickyCamera(true);
+        PlayerController playerController = _gameController.PlayerController;
+        playerController.SetStickyCamera(true);
         kitchenDoor.ChangeDoorState(true, false);
         _gameController.DisableAllKeys();
-        _gameController.PlayerController.transform.LookAt((doctorStartPosition.position + doctorEndPosition.position) / 2);
-        _gameController.PlayerController.animator.Play("FearBackwards");
+        StartCoroutine(playerController.CameraBlur(true));
+        playerController.transform.LookAt((doctorStartPosition.position + doctorEndPosition.position) / 2);
+        playerController.animator.Play("FearBackwards");
+        StartCoroutine(playerController.StepBack(2));
         
-        _gameController.EnemyStaticSystem.MoveToPosition(doctorStartPosition.position, doctorEndPosition.position, 2);
-        yield return new WaitForSeconds(10f);
+        _gameController.EnemyStaticSystem.MoveToPosition(doctorStartPosition.position, doctorEndPosition.position, 4);
+        yield return new WaitForSeconds(cutsceneTime);
+        EndOfLevel();
     }
 
     public void EndOfLevel()
     {
         cutsceneTriggered = false;
+        _gameController.PlayerController.SetStickyCamera(false);
         _gameController.EnableAllKeys();
         _gameController.PlayerController.animator.Play("BaseState");
         _gameManager.playerPrefsManager.SaveGame(_level);

@@ -368,6 +368,44 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    public IEnumerator CameraOnJumpScare()
+    {
+        Animator cameraAnimator = camera.GetComponent<Animator>();
+        cameraAnimator.enabled = true;
+        cameraAnimator.Play("CameraJumpScare");
+        while ((cameraAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime) % 1 < 0.99f)
+        {
+            yield return null;
+        }
+
+        cameraAnimator.enabled = false;
+    }
+    
+    public IEnumerator CameraBlur(bool isStickyCamera = false)
+    {
+        Animator cameraAnimator = isStickyCamera ? stickyCamera.GetComponent<Animator>() : camera.GetComponent<Animator>();
+        cameraAnimator.enabled = true;
+        cameraAnimator.Play("Blur");
+        while ((cameraAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime) % 1 < 0.99f)
+        {
+            yield return null;
+        }
+
+        cameraAnimator.enabled = false;
+    }
+
+    public IEnumerator StepBack(int numOfSteps = 2)
+    {
+        float speed = 1.5f;
+        Vector3 destination = transform.position - numOfSteps * transform.forward;
+        while (Vector3.Distance(transform.position, destination) > .5f)
+        {
+            var step =  speed * Time.deltaTime / 2; 
+            transform.position = Vector3.MoveTowards(transform.position, destination, step);
+            yield return null;            
+        }
+    }
     
     // private void Move()
     // {

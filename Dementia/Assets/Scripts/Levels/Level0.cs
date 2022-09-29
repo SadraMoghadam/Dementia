@@ -30,6 +30,7 @@ public class Level0 : MonoBehaviour, ILevels
 
     public void Setup()
     {
+        UIController.instance.HideGUI();
         collider.SetActive(true);
         _gameController.DisableAllKeys();
         _timer = 0;
@@ -46,6 +47,7 @@ public class Level0 : MonoBehaviour, ILevels
         if (_timer >= cutsceneTime && _gameController.KeysDisabled)
         {
             _gameController.EnableAllKeys();
+            UIController.instance.ShowGUI();
             _gameController.PlayerController.animator.Play("BaseState");
             _gameController.PlayerController.SetStickyCamera(false);
             // StartCoroutine(_gameController.PlayerController.CutSceneColliderActivation(false));

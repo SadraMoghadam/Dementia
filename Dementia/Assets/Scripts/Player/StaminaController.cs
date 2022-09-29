@@ -15,15 +15,19 @@ public class StaminaController : MonoBehaviour
     private float _staminaRegenStartTime;
     private int _counter = 0;
     private float _staminaModeTimer = 20;
+    private UIController _uiController;
 
     private void Start()
     {
         _stamina = maxStamina;
-        _staminaBar = UIController.instance.staminaBar;
+        _uiController = UIController.instance;
+        _staminaBar = _uiController.staminaBar;
     }
     
     private void FixedUpdate()
     {
+        if(!_uiController.canvas.activeSelf)
+            return;
         if (isInStaminaMode)
         {
             _staminaModeTimer -= Time.fixedDeltaTime;
