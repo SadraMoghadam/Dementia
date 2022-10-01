@@ -14,7 +14,7 @@ public class Level2 : MonoBehaviour, ILevels
     private GameController _gameController;
     private GameManager _gameManager;
     private int _level = 2;
-    private float cutsceneTime = 3.41f;
+    private float cutsceneTime = 3.41f * 1.2f;
     
     private void Start()
     {
@@ -52,9 +52,9 @@ public class Level2 : MonoBehaviour, ILevels
         kitchenDoor.ChangeDoorState(true, false);
         _gameController.DisableAllKeys();
         StartCoroutine(playerController.CameraBlur(true));
-        playerController.transform.LookAt((doctorStartPosition.position + doctorEndPosition.position) / 2);
+        playerController.transform.LookAt(doctorEndPosition);
         playerController.animator.Play("FearBackwards");
-        StartCoroutine(playerController.StepBack(2));
+        StartCoroutine(playerController.StepBack());
         
         _gameController.EnemyStaticSystem.MoveToPosition(doctorStartPosition.position, doctorEndPosition.position, 4);
         yield return new WaitForSeconds(cutsceneTime);
@@ -66,7 +66,7 @@ public class Level2 : MonoBehaviour, ILevels
         cutsceneTriggered = false;
         _gameController.PlayerController.SetStickyCamera(false);
         _gameController.EnableAllKeys();
-        _gameController.PlayerController.animator.Play("BaseState");
+        _gameController.PlayerController.animator.SetTrigger("DefaultState");
         _gameManager.playerPrefsManager.SaveGame(_level);
         _gameController.LevelsController.SetLevelActive(_level + 1);
     }

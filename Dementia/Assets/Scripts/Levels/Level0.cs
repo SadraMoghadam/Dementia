@@ -48,7 +48,7 @@ public class Level0 : MonoBehaviour, ILevels
         {
             _gameController.EnableAllKeys();
             UIController.instance.ShowGUI();
-            _gameController.PlayerController.animator.Play("BaseState");
+            _gameController.PlayerController.animator.SetTrigger("DefaultState");
             _gameController.PlayerController.SetStickyCamera(false);
             // StartCoroutine(_gameController.PlayerController.CutSceneColliderActivation(false));
             _gameController.QuestAndHintController.ShowQuest(0);

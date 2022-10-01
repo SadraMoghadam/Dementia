@@ -395,16 +395,22 @@ public class PlayerController : MonoBehaviour
         cameraAnimator.enabled = false;
     }
 
-    public IEnumerator StepBack(int numOfSteps = 2)
+    public IEnumerator StepBack(float speed = 2, int numOfSteps = 2)
     {
-        float speed = 1.5f;
-        Vector3 destination = transform.position - numOfSteps * transform.forward;
-        while (Vector3.Distance(transform.position, destination) > .5f)
+        _playerRigidbody.velocity = Vector3.zero;
+        Vector3 destination = transform.position - numOfSteps * transform.forward * speed;
+        while (Vector3.Distance(transform.position, destination) > .1f)
         {
             var step =  speed * Time.deltaTime / 2; 
             transform.position = Vector3.MoveTowards(transform.position, destination, step);
             yield return null;            
         }
+    }
+    
+    public void ThrownBack(float force = .1f)
+    {
+        float speed = 1.5f;
+        _playerRigidbody.AddForce(transform.TransformVector(-1 * transform.forward * force * 10), ForceMode.VelocityChange);
     }
     
     // private void Move()
