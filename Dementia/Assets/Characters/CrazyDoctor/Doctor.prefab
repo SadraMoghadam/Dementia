@@ -3661,6 +3661,8 @@ GameObject:
   - component: {fileID: 9099448133935276028}
   - component: {fileID: 9099448133935276029}
   - component: {fileID: 3150175396956336940}
+  - component: {fileID: 8231929693337505726}
+  - component: {fileID: 4374085692715457691}
   m_Layer: 0
   m_Name: Doctor
   m_TagString: Untagged
@@ -3891,8 +3893,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce99dde6d4989e346acfd16a86ff9d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyAnimator: {fileID: 0}
   EyeLights: {fileID: 0}
+--- !u!114 &8231929693337505726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4496697008593232484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4a4c03656f1f842948bbc5b20cbf6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointsContainer: {fileID: 0}
+  nearestPointPickRange: 3
+--- !u!114 &4374085692715457691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4496697008593232484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9807a59fffa3bc54cbff79547b09fe72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerController: {fileID: 0}
+  _initialState: {fileID: 11400000, guid: 6f5772057a20e7042902a8cd6c397655, type: 2}
+  _speed: 2.5
+  _runSpeed: 6
+  CurrentState: {fileID: 0}
+  NavMeshAgent: {fileID: 0}
+  MovingPoints: {fileID: 0}
+  WaitTime: 10.15
+  AttackCoolDown: 5.08
 --- !u!1 &4619438123363778368
 GameObject:
   m_ObjectHideFlags: 0

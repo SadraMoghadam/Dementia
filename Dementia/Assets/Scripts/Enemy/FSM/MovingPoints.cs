@@ -11,23 +11,39 @@ public class MovingPoints : MonoBehaviour
     [SerializeField] private GameObject pointsContainer;
     [SerializeField] private int nearestPointPickRange = 3;
     private List<Transform> points;
-    private Transform _currentPoint;
+    private static int pointIndex;
+    private static Transform _currentPoint;
     private int recentlyViewedPointIndex;
 
     private void Awake()
     {
         points = pointsContainer.GetComponentsInChildren<Transform>().ToList();
         points.RemoveAt(0);
-        int rnd = Random.Range(0, points.Count);
-        _currentPoint = points[rnd];
-        recentlyViewedPointIndex = rnd;
+        pointIndex = Random.Range(0, points.Count);
+        _currentPoint = points[pointIndex];
+        recentlyViewedPointIndex = pointIndex;
     }
 
     public Transform GetNext(NavMeshAgent agent)
     {
-        if (agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0 && agent.remainingDistance != Mathf.Infinity)
-            return _currentPoint;
-        _currentPoint = points[Random.Range(0, 2)];
+        int rnd = Random.Range(0, points.Count);
+        pointIndex = rnd;
+        if (pointIndex == rnd)
+        {
+            if (rnd == points.Count - 1)
+            {
+                pointIndex = rnd - 1;
+            }
+            else if (rnd == 0)
+            {
+                pointIndex = 1;
+            }
+            else
+            {
+                pointIndex = rnd + 1;
+            }
+        }
+        _currentPoint = points[pointIndex];
         return _currentPoint;
         // Dictionary<Transform, float> nearestPoints = new Dictionary<Transform, float>();
         // for (int i = 0; i < points.Count; i++)
@@ -44,7 +60,7 @@ public class MovingPoints : MonoBehaviour
 
     public bool HasReached(NavMeshAgent agent)
     {
-        if (agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0 && agent.remainingDistance != Mathf.Infinity)
+        if (agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0 && agent.remainingDistance != Mathf.Infinity && Vector3.Distance(agent.transform.position, _currentPoint.position) < agent.stoppingDistance * 2)
         {
             return true;
         }

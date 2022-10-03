@@ -47,6 +47,10 @@ public class QuestDataReader : MonoBehaviour
 
     public QuestData GetQuestData(int id)
     {
+        if (id >= questsData.Count)
+        {
+            return questsData[questsData.Count - 1];
+        }
         return questsData[id];
     }
     

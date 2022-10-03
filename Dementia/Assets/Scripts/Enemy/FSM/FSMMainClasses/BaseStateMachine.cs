@@ -72,4 +72,12 @@ public class BaseStateMachine : MonoBehaviour
         }
     }
     
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("MutantInteractableArea"))
+        {
+            other.transform.parent.GetComponent<Door>().ChangeDoorState(true, true);
+        }
+    }
+    
 }

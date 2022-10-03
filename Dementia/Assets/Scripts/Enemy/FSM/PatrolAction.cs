@@ -8,7 +8,7 @@ using UnityEngine.AI;
 public class PatrolAction : FSMAction
 {
     [NonSerialized] private float timer = 0;
-    [NonSerialized] private bool isStartOfPatrol = true;
+    [NonSerialized] private static bool isStartOfPatrol = true;
     [NonSerialized] private bool stopAnimationChoose = false;
 
 
@@ -21,19 +21,31 @@ public class PatrolAction : FSMAction
         {
             EnemyUtility.Instance.SetEyeLights(false);
             navMeshAgent.SetDestination(movingPoints.GetNext(navMeshAgent).position);
+            machine.Move();
+            timer = 0;
             isStartOfPatrol = false;
         }
 
-        timer += Time.deltaTime;
-        if (movingPoints.HasReached(navMeshAgent) && timer < machine.WaitTime)
+        if (movingPoints.HasReached(navMeshAgent))
         {
-            if(!stopAnimationChoose)
+            timer += Time.deltaTime;
+            if (timer < machine.WaitTime)
             {
-                machine.Stop();
-                stopAnimationChoose = true;
+                if(!stopAnimationChoose)
+                {
+                    machine.Stop();
+                    stopAnimationChoose = true;
+                }   
+            }
+            else
+            {
+                navMeshAgent.SetDestination(movingPoints.GetNext(navMeshAgent).position);
+                machine.Move();
+                timer = 0;
+                stopAnimationChoose = false;             
             }
         }
-        else
+        else if (timer > machine.WaitTime)
         {
             navMeshAgent.SetDestination(movingPoints.GetNext(navMeshAgent).position);
             machine.Move();
@@ -41,5 +53,5 @@ public class PatrolAction : FSMAction
             stopAnimationChoose = false;
         }
     }
-    
+
 }

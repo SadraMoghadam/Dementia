@@ -73,9 +73,9 @@ public class Door : MonoBehaviour
         }
     }
     
-    public void ChangeDoorState(bool open, bool unlockDoor = false)
+    public void ChangeDoorState(bool open, bool isEnemy = false)
     {
-        if (IsLocked)
+        if (IsLocked && ! isEnemy)
         {
             _gameController.QuestAndHintController.ShowHint(8);
             return;
