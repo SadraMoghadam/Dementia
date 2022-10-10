@@ -24,6 +24,7 @@ public class PatrolAction : FSMAction
             machine.Move();
             timer = 0;
             isStartOfPatrol = false;
+            machine.GetComponent<EnemySightSensor>().ChangeEscapedState(false);
         }
 
         if (movingPoints.HasReached(navMeshAgent))

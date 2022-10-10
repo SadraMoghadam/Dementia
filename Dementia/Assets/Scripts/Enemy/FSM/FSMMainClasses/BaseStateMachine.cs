@@ -17,19 +17,28 @@ public class BaseStateMachine : MonoBehaviour
     [HideInInspector] public MovingPoints MovingPoints;
     [HideInInspector] public float WaitTime = 10.15f;
     [HideInInspector] public float AttackCoolDown = 5.08f;
+    [HideInInspector] public float AlertTime = 1.4f;
     private Dictionary<Type, Component> _cachedComponents;
+    private int _updateCounter;
 
     private void Awake()
     {
         CurrentState = _initialState;
         _cachedComponents = new Dictionary<Type, Component>();
+        _updateCounter = 0;
         NavMeshAgent = GetComponent<NavMeshAgent>();
         MovingPoints = GetComponent<MovingPoints>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         CurrentState.Execute(this);
+        // _updateCounter++;
+        // if (_updateCounter == 300)
+        // {
+        //     CurrentState.Execute(this);
+        //     _updateCounter = 0;
+        // }
     }
     
     public new T GetComponent<T>() where T : Component
@@ -60,11 +69,10 @@ public class BaseStateMachine : MonoBehaviour
     public void Move(bool isRunning = false)
     {
         NavMeshAgent.isStopped = false;
-        NavMeshAgent.speed = _speed;
+        NavMeshAgent.speed = isRunning ? _runSpeed : _speed;
         if (isRunning)
         {
-            EnemyUtility.Instance.SetAnimation(speedWalk:true);
-            
+            EnemyUtility.Instance.SetAnimation(speedWalk:true);   
         }
         else
         {

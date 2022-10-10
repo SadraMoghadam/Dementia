@@ -75,7 +75,7 @@ public class EnemyAI_Old : MonoBehaviour
     {
         if (other.CompareTag("MutantInteractableArea"))
         {
-            other.transform.parent.GetComponent<Door>().ChangeDoorState(true, false);
+            other.transform.parent.GetComponent<Door>().ChangeDoorState(true, true);
         }
     }
     

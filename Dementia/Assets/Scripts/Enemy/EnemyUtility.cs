@@ -19,7 +19,12 @@ public enum EnemyAnimatorParameters
 
 public class EnemyUtility : MonoBehaviour
 {
-    [SerializeField] private GameObject EyeLights;
+    [SerializeField] private GameObject eyeLights;
+    public float viewRadius = 25;
+    public float viewAngle = 150;
+    public float waitTime = 25;
+    public LayerMask playerMask;
+    public LayerMask obstacleMask;
     private Animator EnemyAnimator;
 
     public static EnemyUtility Instance;
@@ -75,7 +80,7 @@ public class EnemyUtility : MonoBehaviour
 
     public void SetEyeLights(bool active)
     {
-        EyeLights.SetActive(active);
+        eyeLights.SetActive(active);
     }
     
 }

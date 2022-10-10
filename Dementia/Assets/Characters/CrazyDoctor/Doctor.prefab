@@ -3658,11 +3658,11 @@ GameObject:
   - component: {fileID: 5779810912451933393}
   - component: {fileID: 3376804206162885303}
   - component: {fileID: 9099448133935276031}
-  - component: {fileID: 9099448133935276028}
   - component: {fileID: 9099448133935276029}
   - component: {fileID: 3150175396956336940}
   - component: {fileID: 8231929693337505726}
   - component: {fileID: 4374085692715457691}
+  - component: {fileID: 3659392218284627923}
   m_Layer: 0
   m_Name: Doctor
   m_TagString: Untagged
@@ -3759,32 +3759,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &9099448133935276028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4496697008593232484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02e4eab67e69436479a45ed5f8476d4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypointsContainer: {fileID: 0}
-  walkSpeed: 4
-  runSpeed: 7
-  viewRadius: 15
-  viewAngle: 90
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 384
-  eyeLights: {fileID: 1159327953699538959}
-  waitTime: 5.15
-  attackCoolDown: 5.15
 --- !u!82 &9099448133935276029
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3893,7 +3867,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce99dde6d4989e346acfd16a86ff9d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EyeLights: {fileID: 0}
+  eyeLights: {fileID: 0}
+  viewRadius: 15
+  viewAngle: 90
+  waitTime: 25
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &8231929693337505726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3929,6 +3912,19 @@ MonoBehaviour:
   MovingPoints: {fileID: 0}
   WaitTime: 10.15
   AttackCoolDown: 5.08
+  AlertTime: 1.4
+--- !u!114 &3659392218284627923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4496697008593232484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb473315f06048f4c8cb551d5cb09b3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4619438123363778368
 GameObject:
   m_ObjectHideFlags: 0

@@ -60,7 +60,17 @@ public class MovingPoints : MonoBehaviour
 
     public bool HasReached(NavMeshAgent agent)
     {
-        if (agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance == 0 && agent.remainingDistance != Mathf.Infinity && Vector3.Distance(agent.transform.position, _currentPoint.position) < agent.stoppingDistance * 2)
+        if (agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance != Mathf.Infinity && Vector3.Distance(agent.transform.position, _currentPoint.position) < agent.stoppingDistance * 2)
+        {
+            return true;
+        }
+
+        return false;
+    }
+    
+    public bool HasReached(NavMeshAgent agent, Transform playerTransform)
+    {
+        if (agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance != Mathf.Infinity && Vector3.Distance(agent.transform.position, playerTransform.position) < agent.stoppingDistance * 2)
         {
             return true;
         }
