@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2cbdef611df4fd4b9a39235163b8511, type: 3}
+  m_Name: StateAttack
+  m_EditorClassIdentifier: 
+  Actions:
+  - {fileID: 11400000, guid: 2ec6527eb223b2c438f24cff7e306909, type: 2}
+  Transitions:
+  - {fileID: 11400000, guid: 25c055b4aaf1cee48afefeebabec5f5c, type: 2}

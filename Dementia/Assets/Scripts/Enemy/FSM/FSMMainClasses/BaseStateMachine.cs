@@ -12,12 +12,17 @@ public class BaseStateMachine : MonoBehaviour
     [SerializeField] private BaseState _initialState;
     [SerializeField] private float _speed;
     [SerializeField] private float _runSpeed;
-    [HideInInspector] public BaseState CurrentState;
-    [HideInInspector] public NavMeshAgent NavMeshAgent;
-    [HideInInspector] public MovingPoints MovingPoints;
-    [HideInInspector] public float WaitTime = 10.15f;
-    [HideInInspector] public float AttackCoolDown = 5.08f;
-    [HideInInspector] public float AlertTime = 1.4f;
+    [NonSerialized] public BaseState CurrentState;
+    [NonSerialized] public NavMeshAgent NavMeshAgent;
+    [NonSerialized] public MovingPoints MovingPoints;
+    [NonSerialized] public float WaitTime = 10.15f;
+    [NonSerialized] public float AttackCoolDown = 2.25f;
+    [NonSerialized] public float AlertTime = 1.4f;
+    [NonSerialized] public float AgonyTime = 5.84f;
+    [NonSerialized] public bool isStartOfChase;
+    [NonSerialized] public bool isStartOfPatrol;
+    [NonSerialized] public bool isStartOfAttack;
+    [NonSerialized] public bool isStartOfAgony; 
     private Dictionary<Type, Component> _cachedComponents;
     private int _updateCounter;
 
@@ -28,6 +33,12 @@ public class BaseStateMachine : MonoBehaviour
         _updateCounter = 0;
         NavMeshAgent = GetComponent<NavMeshAgent>();
         MovingPoints = GetComponent<MovingPoints>();
+        AttackCoolDown /= 1.5f;
+        AgonyTime /= 1.5f;
+        isStartOfChase = true;
+        isStartOfPatrol = true;
+        isStartOfAttack = true;
+        isStartOfAgony = true;
     }
 
     private void LateUpdate()
@@ -88,4 +99,8 @@ public class BaseStateMachine : MonoBehaviour
         }
     }
     
+    public void Punch()
+    {
+        GameController.instance.DamageController.Damage(25);
+    }
 }

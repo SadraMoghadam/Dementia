@@ -836,8 +836,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 5
-  m_Range: 20
+  m_Intensity: 4
+  m_Range: 25
   m_SpotAngle: 50
   m_InnerSpotAngle: 1
   m_CookieSize: 10
@@ -3663,6 +3663,7 @@ GameObject:
   - component: {fileID: 8231929693337505726}
   - component: {fileID: 4374085692715457691}
   - component: {fileID: 3659392218284627923}
+  - component: {fileID: 3642961253442084935}
   m_Layer: 0
   m_Name: Doctor
   m_TagString: Untagged
@@ -3709,7 +3710,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4496697008593232484}
   serializedVersion: 2
-  m_Mass: 75
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -3726,7 +3727,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4496697008593232484}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: d8bb4efa3717ee5458290b46d3737608, type: 3}
   m_Controller: {fileID: 9100000, guid: d0f921c87f9d622458de28f434fe42dc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -3751,7 +3752,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 240
-  m_StoppingDistance: 4
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -3867,16 +3868,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce99dde6d4989e346acfd16a86ff9d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyeLights: {fileID: 0}
-  viewRadius: 15
-  viewAngle: 90
+  eyeLights: {fileID: 1159327953699538959}
+  viewRadius: 25
+  viewAngle: 150
   waitTime: 25
   playerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
 --- !u!114 &8231929693337505726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3906,13 +3907,14 @@ MonoBehaviour:
   PlayerController: {fileID: 0}
   _initialState: {fileID: 11400000, guid: 6f5772057a20e7042902a8cd6c397655, type: 2}
   _speed: 2.5
-  _runSpeed: 6
+  _runSpeed: 5
   CurrentState: {fileID: 0}
   NavMeshAgent: {fileID: 0}
   MovingPoints: {fileID: 0}
   WaitTime: 10.15
   AttackCoolDown: 5.08
   AlertTime: 1.4
+  AgonyTime: 5.84
 --- !u!114 &3659392218284627923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3923,6 +3925,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb473315f06048f4c8cb551d5cb09b3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3642961253442084935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4496697008593232484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8420166d1f81f24a844ed6774f03607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4619438123363778368

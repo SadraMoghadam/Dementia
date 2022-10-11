@@ -9,7 +9,6 @@ using UnityEngine.AI;
 [CreateAssetMenu(menuName = "FSM/Actions/Chase")]
 public class ChaseAction : FSMAction
 {
-    [NonSerialized] private bool isStartOfChase = true;
     [NonSerialized] private float timer = 0;
     [NonSerialized] private float waitTime = 0;
 
@@ -18,13 +17,17 @@ public class ChaseAction : FSMAction
         NavMeshAgent navMeshAgent = machine.GetComponent<NavMeshAgent>();
         MovingPoints movingPoints = machine.GetComponent<MovingPoints>();
         EnemySightSensor enemySightSensor = machine.GetComponent<EnemySightSensor>();
+        var enemyAttackSensor = machine.GetComponent<EnemyAttackSensor>();
         EnemyUtility enemyUtility = EnemyUtility.Instance;
         Transform playerTransform = machine.PlayerController.transform;
-        if (isStartOfChase)
+        if (machine.isStartOfChase)
         {
             enemyUtility.SetEyeLights(true);
             navMeshAgent.SetDestination(playerTransform.position);
-            isStartOfChase = false;
+            machine.isStartOfChase = false;
+            machine.isStartOfPatrol = true;
+            machine.isStartOfAttack = true;
+            machine.isStartOfAgony = true;
             machine.Stop();
             enemyUtility.SetAnimation(alert: true);
         }
@@ -33,7 +36,7 @@ public class ChaseAction : FSMAction
         {
             if (movingPoints.HasReached(navMeshAgent, playerTransform))
             {
-                machine.Stop();
+                enemyAttackSensor.StartAttack = true;
             }
             else
             {
@@ -52,6 +55,7 @@ public class ChaseAction : FSMAction
                 if (waitTime <= .1f)
                 {
                     enemySightSensor.ChangeEscapedState(true);
+                    machine.isStartOfChase = true;
                 }
             }
         }

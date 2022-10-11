@@ -8,7 +8,6 @@ using UnityEngine.AI;
 public class PatrolAction : FSMAction
 {
     [NonSerialized] private float timer = 0;
-    [NonSerialized] private static bool isStartOfPatrol = true;
     [NonSerialized] private bool stopAnimationChoose = false;
 
 
@@ -16,14 +15,19 @@ public class PatrolAction : FSMAction
     {
         NavMeshAgent navMeshAgent = machine.GetComponent<NavMeshAgent>();
         MovingPoints movingPoints = machine.GetComponent<MovingPoints>();
+        EnemySightSensor enemySightSensor = machine.GetComponent<EnemySightSensor>();
 
-        if (isStartOfPatrol)
+        
+        if (machine.isStartOfPatrol)
         {
             EnemyUtility.Instance.SetEyeLights(false);
             navMeshAgent.SetDestination(movingPoints.GetNext(navMeshAgent).position);
             machine.Move();
             timer = 0;
-            isStartOfPatrol = false;
+            machine.isStartOfPatrol = false;
+            machine.isStartOfChase = true;
+            machine.isStartOfAttack = true;
+            machine.isStartOfAgony = true;
             machine.GetComponent<EnemySightSensor>().ChangeEscapedState(false);
         }
 
@@ -53,6 +57,11 @@ public class PatrolAction : FSMAction
             timer = 0;
             stopAnimationChoose = false;
         }
+        
+        // if (enemySightSensor.Ping())
+        // {
+        //     machine.isStartOfPatrol = true;
+        // }
     }
 
 }
