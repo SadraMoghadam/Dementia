@@ -24,6 +24,7 @@ public class PatrolAction : FSMAction
             navMeshAgent.SetDestination(movingPoints.GetNext(navMeshAgent).position);
             machine.Move();
             timer = 0;
+            stopAnimationChoose = false;
             machine.isStartOfPatrol = false;
             machine.isStartOfChase = true;
             machine.isStartOfAttack = true;

@@ -10,7 +10,9 @@ using UnityEngine.AI;
 public class ChaseAction : FSMAction
 {
     [NonSerialized] private float timer = 0;
+    [NonSerialized] private float alertTimer = 0;
     [NonSerialized] private float waitTime = 0;
+    [NonSerialized] private bool stopAnimationChoose = false;
 
     public override void Execute(BaseStateMachine machine)
     {
@@ -24,12 +26,14 @@ public class ChaseAction : FSMAction
         {
             enemyUtility.SetEyeLights(true);
             navMeshAgent.SetDestination(playerTransform.position);
+            stopAnimationChoose = false;
             machine.isStartOfChase = false;
             machine.isStartOfPatrol = true;
             machine.isStartOfAttack = true;
             machine.isStartOfAgony = true;
             machine.Stop();
             enemyUtility.SetAnimation(alert: true);
+            timer = 0;
         }
         timer += Time.deltaTime;
         if (timer > machine.AlertTime)
@@ -46,16 +50,21 @@ public class ChaseAction : FSMAction
                     machine.Move(true);
                     navMeshAgent.SetDestination(playerTransform.position);   
                 }
-                else
+                else 
                 {
                     waitTime -= Time.deltaTime;
-                    machine.Stop();
+                    if (!stopAnimationChoose)
+                    {
+                        machine.Stop(false);
+                        stopAnimationChoose = true;   
+                    }
                 }
 
                 if (waitTime <= .1f)
                 {
                     enemySightSensor.ChangeEscapedState(true);
                     machine.isStartOfChase = true;
+                    stopAnimationChoose = false;
                 }
             }
         }

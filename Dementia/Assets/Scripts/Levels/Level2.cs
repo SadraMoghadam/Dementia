@@ -10,6 +10,7 @@ public class Level2 : MonoBehaviour, ILevels
     [SerializeField] private Transform doctorStartPosition;
     [SerializeField] private Transform doctorEndPosition;
     [SerializeField] private Door kitchenDoor;
+    [SerializeField] private float doctorSpeed = 2;
     [HideInInspector] public bool cutsceneTriggered;
     private GameController _gameController;
     private GameManager _gameManager;
@@ -56,7 +57,7 @@ public class Level2 : MonoBehaviour, ILevels
         playerController.animator.Play("FearBackwards");
         StartCoroutine(playerController.StepBack());
         
-        _gameController.EnemyStaticSystem.MoveToPosition(doctorStartPosition.position, doctorEndPosition.position, 4);
+        _gameController.EnemyStaticSystem.MoveToPosition(doctorStartPosition.position, doctorEndPosition.position, doctorSpeed);
         yield return new WaitForSeconds(cutsceneTime);
         EndOfLevel();
     }
