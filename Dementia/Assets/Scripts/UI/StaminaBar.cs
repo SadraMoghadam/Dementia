@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class StaminaBar : MonoBehaviour
 {
     public Slider slider;
+    public TMP_Text staminaText;
     [SerializeField] private Image background;
     [SerializeField] private Image fillRect;
     private float _fadeTime = 1f;
@@ -14,6 +16,7 @@ public class StaminaBar : MonoBehaviour
     private void Start()
     {
         slider.value = GameController.instance.StaminaController.maxStamina;
+        staminaText.text = ((int)GameController.instance.StaminaController.maxStamina).ToString();
         background.color = new Color(background.color.r, background.color.g, background.color.b, 0);
         fillRect.color = new Color(fillRect.color.r, fillRect.color.g, fillRect.color.b, 0);
     }

@@ -33,6 +33,7 @@ public class StaminaController : MonoBehaviour
             _staminaModeTimer -= Time.fixedDeltaTime;
             _stamina = maxStamina;
             _staminaBar.slider.value = maxStamina;
+            _staminaBar.staminaText.text = ((int)_stamina).ToString();
             if (_staminaModeTimer <= 0)
             {
                 _staminaModeTimer = staminaModeTime;
@@ -44,7 +45,7 @@ public class StaminaController : MonoBehaviour
             if (_stamina >= maxStamina)
             {
                 _stamina = maxStamina;
-                _staminaBar.FadeOut();
+                // _staminaBar.FadeOut();
                 return;
             }
             _staminaRegenStartTime += Time.fixedDeltaTime;
@@ -54,6 +55,8 @@ public class StaminaController : MonoBehaviour
                 // _counter = 0;
                 _stamina = _stamina < maxStamina ? _stamina + .2f : maxStamina;
                 _staminaBar.slider.value = _stamina;
+                _staminaBar.staminaText.text = ((int)_stamina).ToString();
+                
             }    
         }
         
@@ -68,7 +71,8 @@ public class StaminaController : MonoBehaviour
             _stamina = 0;
         }
         _staminaBar.slider.value = _stamina;
-        _staminaBar.FadeIn();
+        _staminaBar.staminaText.text = ((int)_stamina).ToString();
+        // _staminaBar.FadeIn();
         Debug.Log(_stamina);
     }
 

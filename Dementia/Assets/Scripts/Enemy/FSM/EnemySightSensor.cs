@@ -22,7 +22,7 @@ public class EnemySightSensor : MonoBehaviour
             Transform player = playerInRange[i].transform;
             Vector3 dirToPlayer = (player.position - transform.position).normalized;
             float dstToPlayer = Vector3.Distance(transform.position, player.position);
-            if (dstToPlayer < 2)
+            if (dstToPlayer < 6)
             {
                 return true;
             }

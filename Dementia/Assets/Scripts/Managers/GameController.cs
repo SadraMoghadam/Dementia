@@ -184,19 +184,19 @@ public class GameController : MonoBehaviour
             if (tempSPRenderer != null)
             {
                 currentColor = tempSPRenderer.color;
-                tempSPRenderer.color = new Color(currentColor.r, currentColor.g, currentColor.b, alpha);
+                tempSPRenderer.color = new Color(currentColor.r, currentColor.g, currentColor.b, alpha / 3f);
             }
             
             if (tempImage != null)
             {
                 currentColor = tempImage.color;
-                tempImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, alpha);
+                tempImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, alpha / 3f);
             }
             
             if (tempRawImage != null)
             {
                 currentColor = tempRawImage.color;
-                tempRawImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, alpha);
+                tempRawImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, alpha / 3f);
             }
             
             if (tempText != null)

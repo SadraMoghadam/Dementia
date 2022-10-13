@@ -15,6 +15,7 @@ public class DiedPanel : MonoBehaviour
         _gameManager = GameManager.instance;
         checkpointButton.onClick.AddListener(OnCheckpointClick);
         quitButton.onClick.AddListener(OnQuitClick);
+        _gameManager.playerPrefsManager.SetFloat(PlayerPrefsKeys.Health, GameController.instance.DamageController.maxHealth);
     }
 
     private void OnCheckpointClick()
