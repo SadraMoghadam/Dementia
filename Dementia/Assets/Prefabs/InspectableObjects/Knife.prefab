@@ -48,6 +48,7 @@ MonoBehaviour:
   id: 0
   name: Knife
   prefab: {fileID: 8714174860261946014}
+  rotationSpeed: 1000
   transform: {fileID: 0}
 --- !u!1001 &4274664270166058916
 PrefabInstance:
@@ -124,9 +125,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knife
       objectReference: {fileID: 0}
+    - target: {fileID: 8956489323831571309, guid: ce224c95d2b59fa4a8a34ef679cc38ad, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 918206929093201897, guid: ce224c95d2b59fa4a8a34ef679cc38ad, type: 3}
+    - {fileID: 1585435143727900614, guid: ce224c95d2b59fa4a8a34ef679cc38ad, type: 3}
+    - {fileID: 1855433529498968537, guid: ce224c95d2b59fa4a8a34ef679cc38ad, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ce224c95d2b59fa4a8a34ef679cc38ad, type: 3}
+--- !u!1 &5123265789092320457 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8956489323831571309, guid: ce224c95d2b59fa4a8a34ef679cc38ad, type: 3}
+  m_PrefabInstance: {fileID: 4274664270166058916}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &786762153
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5123265789092320457}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.049204756, y: 0.064502895, z: 0.2510591}
+  m_Center: {x: -0.0000000016112995, y: -0.0000000055879354, z: 0.06747223}
 --- !u!4 &8161128148056188634 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5336922027483316606, guid: ce224c95d2b59fa4a8a34ef679cc38ad, type: 3}
