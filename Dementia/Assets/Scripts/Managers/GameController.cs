@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour
     [HideInInspector] public QuestDataReader QuestDataReader;
     [HideInInspector] public HintDataReader HintDataReader;
     [HideInInspector] public EnemyStaticSystem EnemyStaticSystem;
+    [HideInInspector] public InspectObjectProcess InspectObjectProcess;
     [HideInInspector] public Transform PlayerTransform;
     [HideInInspector] public bool KeysDisabled;
 
@@ -62,6 +63,7 @@ public class GameController : MonoBehaviour
         QuestDataReader = DataReaders.GetComponent<QuestDataReader>();
         HintDataReader = DataReaders.GetComponent<HintDataReader>();
         EnemyStaticSystem = GetComponent<EnemyStaticSystem>();
+        InspectObjectProcess = GetComponent<InspectObjectProcess>();
         PlayerTransform = PlayerController.transform;
         isInInventory = false;
         Time.timeScale = 1;

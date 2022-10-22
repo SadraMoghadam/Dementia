@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -122,6 +123,7 @@ public class PlayerRaycast : MonoBehaviour
                     rightDoor.localEulerAngles = temp;
                 }
                 InteractableItemsProcess(hit);
+                InspectableItemsProcess(hit);
             }
         }
         else
@@ -165,6 +167,11 @@ public class PlayerRaycast : MonoBehaviour
         _gameController.Inventory.AddItem(type);
         InteractableItemInfo itemInfo = hit.collider.gameObject.GetComponent<InteractableItemInfo>();
         _gameManager.playerPrefsManager.AddDestroyedInteractableItem(itemInfo);
+    }
+
+    private void InspectableItemsProcess(RaycastHit hit)
+    {
+        _gameController.InspectObjectProcess.Inspect(hit.collider.transform.parent.gameObject);
     }
     
 }

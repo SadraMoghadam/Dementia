@@ -18,6 +18,7 @@ TagManager:
   - JumpScare
   - Level
   - Cutscene
+  - Inspectable
   layers:
   - Default
   - TransparentFX
@@ -32,7 +33,7 @@ TagManager:
   - InteractableItem
   - Transparent
   - PostProcessing
-  - 
+  - Inspectable
   - 
   - 
   - 
