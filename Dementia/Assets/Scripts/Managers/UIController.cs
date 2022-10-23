@@ -17,6 +17,7 @@ public class UIController : MonoBehaviour
     public Sprite keyDownSprite;
     public Sprite keyUpSprite;
     public Image darkBackground;
+    public InspectPanel inspectPanel;
     private GameController _gameController;
     
     
