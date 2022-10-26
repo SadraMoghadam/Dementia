@@ -124,6 +124,7 @@ public class PlayerRaycast : MonoBehaviour
                 }
                 InteractableItemsProcess(hit);
                 InspectableItemsProcess(hit);
+                BreakableItemsProcess(hit);
             }
         }
         else
@@ -171,7 +172,17 @@ public class PlayerRaycast : MonoBehaviour
 
     private void InspectableItemsProcess(RaycastHit hit)
     {
-        _gameController.InspectObjectProcess.Inspect(hit.collider.transform.parent.gameObject);
+        if(hit.collider.CompareTag("Inspectable"))
+            _gameController.InspectObjectProcess.Inspect(hit.collider.transform.parent.gameObject);
+    }
+    
+    private void BreakableItemsProcess(RaycastHit hit)
+    {
+        if (hit.collider.CompareTag("Breakable"))
+        {
+            BreakableObject breakableObject = hit.collider.gameObject.GetComponent<BreakableObject>();
+            breakableObject.Break();
+        }
     }
     
 }

@@ -2927,6 +2927,8 @@ MonoBehaviour:
   isPlayerDead: 0
   maxHealth: 100
   damageBackground: {fileID: 0}
+  damageSlider: {fileID: 0}
+  damageText: {fileID: 0}
   regenerationDelay: 10
 --- !u!114 &1109629198
 MonoBehaviour:
@@ -2944,7 +2946,7 @@ MonoBehaviour:
   rayLength: 3
   layerMaskInteract:
     serializedVersion: 2
-    m_Bits: 1792
+    m_Bits: 26368
   camera: {fileID: 7336961855177154696}
 --- !u!114 &3851386622817693860
 MonoBehaviour:
