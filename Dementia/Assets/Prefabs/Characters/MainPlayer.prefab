@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 957039383}
   - component: {fileID: 1967517177171231484}
   - component: {fileID: 1750418095326935631}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: StickyCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 957039382}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 4096
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
   antialiasingMode: 0
@@ -159,7 +159,7 @@ Animator:
   m_GameObject: {fileID: 957039381}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f07b5d0268a31534980c11ac51316c71, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -211,7 +211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9160671340696227615}
   - component: {fileID: 8567517061862791293}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,12 +240,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193553146560699638}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 51e0f7dafa53cfe45bc88813b17e2b11, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 367bd21b037ad794f990a5c7d1e250ee, type: 2}
   isGlobal: 1
   blendDistance: 0
   weight: 1
@@ -1306,7 +1306,7 @@ GameObject:
   - component: {fileID: 6785797101187137725}
   - component: {fileID: 5430949050461443100}
   - component: {fileID: 340570976}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: Flashlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1341,7 +1341,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 3
-  m_Range: 20
+  m_Range: 35
   m_SpotAngle: 50
   m_InnerSpotAngle: 1
   m_CookieSize: 10
@@ -1420,7 +1420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2171884060170072909}
   - component: {fileID: 7902319667102088790}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1449,12 +1449,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4467406768393746916}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 51e0f7dafa53cfe45bc88813b17e2b11, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 5548e71b171c95c4d84bba688350cd3c, type: 2}
   isGlobal: 1
   blendDistance: 0
   weight: 1
@@ -2038,7 +2038,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.1
-  m_Height: 0.5
+  m_Height: 0.3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5977566389900463195
@@ -2179,10 +2179,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.1
-  m_Height: 0.1
+  m_Radius: 0.03
+  m_Height: 0.01
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0.08}
+  m_Center: {x: 0, y: 0, z: 0.02}
 --- !u!1 &6339885202279925070
 GameObject:
   m_ObjectHideFlags: 0
@@ -2503,7 +2503,9 @@ GameObject:
   - component: {fileID: 8505423189307448314}
   - component: {fileID: 7336961855177154702}
   - component: {fileID: 8558370461530177009}
-  m_Layer: 6
+  - component: {fileID: 1986331762}
+  - component: {fileID: 1986331768}
+  m_Layer: 12
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -2518,7 +2520,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7336961855177154701}
   m_LocalRotation: {x: 0.0000000014890702, y: -0, z: 6.9283234e-12, w: 1}
-  m_LocalPosition: {x: 0.0058333073, y: 1.6458331, z: 0.122}
+  m_LocalPosition: {x: 0.0058333073, y: 1.645833, z: 0.122}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2560,7 +2562,7 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingPath: -1
+  m_RenderingPath: 3
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
@@ -2606,10 +2608,10 @@ MonoBehaviour:
   volumeTrigger: {fileID: 7336961855177154696}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 4096
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
-  antialiasingMode: 0
+  antialiasingMode: 1
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25
@@ -2618,8 +2620,8 @@ MonoBehaviour:
   subpixelMorphologicalAntialiasing:
     quality: 2
   fastApproximateAntialiasing:
-    fastMode: 0
-    keepAlpha: 0
+    fastMode: 1
+    keepAlpha: 1
   fog:
     enabled: 1
     excludeSkybox: 1
@@ -2651,6 +2653,40 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!136 &1986331762
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7336961855177154701}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.05
+  m_Height: 0.05
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &1986331768
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7336961855177154701}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d9a3189bfd90c324cb17609c282e5933, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7346086766436678078
 GameObject:
   m_ObjectHideFlags: 0
@@ -2819,7 +2855,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.25
+  m_Radius: 0.2
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.98, z: 0}
@@ -2884,18 +2920,23 @@ MonoBehaviour:
   cameraRoot: {fileID: 2546452395978444594}
   camera: {fileID: 7336961855177154696}
   stickyCamera: {fileID: 957039381}
-  cutsceneColliders: []
+  cutsceneColliders:
+  - {fileID: 1477393722}
+  - {fileID: 7336961854516088324}
+  - {fileID: 7336961854516088322}
+  - {fileID: 7336961854516088323}
   upperLimit: -40
   bottomLimit: 70
-  mouseSensitivity: 20
+  mouseSensitivity: 10
   _walkSpeed: 3
-  _runSpeed: 5.5
+  _runSpeed: 4
+  _crouchSpeed: 2
   postProcessVolumeMainCam: {fileID: 8567517061862791293}
-  postProcessVolumeStickyCam: {fileID: 7902319667102088790}
+  postProcessVolumeStickyCam: {fileID: 4617828562692322010}
   normalHeight: 2
-  crouchHeight: 1.4
-  normalCenter: {x: 0, y: 1, z: 0}
-  crouchCenter: {x: 0, y: 0.5, z: 0}
+  crouchHeight: 1.2
+  normalCenter: {x: 0, y: 0.98, z: 0}
+  crouchCenter: {x: 0, y: 0.6, z: 0}
 --- !u!54 &469959688
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2904,7 +2945,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7571525411234056726}
   serializedVersion: 2
-  m_Mass: 1000
+  m_Mass: 70
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -3009,10 +3050,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.2
+  m_Radius: 0.1
   m_Height: 0.2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: -0.07}
 --- !u!1 &7763204200171183666
 GameObject:
   m_ObjectHideFlags: 0
@@ -3183,10 +3224,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.1
-  m_Height: 0.1
+  m_Radius: 0.03
+  m_Height: 0.01
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0.08}
+  m_Center: {x: 0, y: 0, z: 0.02}
 --- !u!1 &8657087182385876595
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     [Space(5)]
     [SerializeField] private float _walkSpeed = 3f;
     [SerializeField] private float _runSpeed = 7f;
+    [SerializeField] private float _crouchSpeed = 1.5f;
     
     [Space(5)]
     [SerializeField] private PostProcessVolume postProcessVolumeMainCam;
@@ -34,11 +35,11 @@ public class PlayerController : MonoBehaviour
     
     [Header("Controller Adjustments")]
     [SerializeField] private float normalHeight = 2.0f;
-    [SerializeField] private float crouchHeight = 1.4f;
+    [SerializeField] private float crouchHeight = 1.2f;
     
     [Space(5)]
-    [SerializeField] private Vector3 normalCenter = new Vector3(0, 1f, 0);
-    [SerializeField] private Vector3 crouchCenter = new Vector3(0, .5f, 0);
+    [SerializeField] private Vector3 normalCenter = new Vector3(0, 98f, 0);
+    [SerializeField] private Vector3 crouchCenter = new Vector3(0, .6f, 0);
     
     
     private Rigidbody _playerRigidbody;
@@ -57,9 +58,10 @@ public class PlayerController : MonoBehaviour
     private float _medkitNotificationTime = 20;
     private float _keyTimer;
     private float _keyNotificationTime = 5 * 60;
-    
-    
-        
+    private bool isCrouched = false;
+    private static readonly int Crouch = Animator.StringToHash("Crouch");
+
+
     private void Awake() 
     {
         _hasAnimator = TryGetComponent<Animator>(out animator);
@@ -114,26 +116,56 @@ public class PlayerController : MonoBehaviour
     {
         if(!_hasAnimator) 
             return;
-        float targetSpeed = _inputManager.Run ? _runSpeed : _walkSpeed;
-        if (_gameController.StaminaController.GetStamina() < 1)
+        if (!_inputManager.Crouch)
         {
-            targetSpeed = _walkSpeed;
+            if (isCrouched)
+            {
+                isCrouched = false;
+                animator.SetBool("Crouch", false);
+                _collider.height = normalHeight;
+                _collider.center = normalCenter;
+            }
+            float targetSpeed = _inputManager.Run ? _runSpeed :_walkSpeed;
+            if (_gameController.StaminaController.GetStamina() < 1)
+            {
+                targetSpeed = _walkSpeed;
+            }
+            if(_inputManager.Move ==Vector2.zero) 
+                targetSpeed = 0;
+            _currentVelocity.x = Mathf.Lerp(_currentVelocity.x, _inputManager.Move.x * targetSpeed, animBlendSpeed * Time.fixedDeltaTime);
+            _currentVelocity.y = Mathf.Lerp(_currentVelocity.y, _inputManager.Move.y * targetSpeed, animBlendSpeed * Time.fixedDeltaTime);
+            float step = targetSpeed * Time.deltaTime;
+            var newPos = new Vector3(_currentVelocity.x, 0, _currentVelocity.y);
+            _playerRigidbody.velocity = transform.TransformVector(step * 20 * newPos);
+            // var direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+            // _playerRigidbody.AddForce(transform.TransformVector(direction * step * 10), ForceMode.VelocityChange);
+            // transform.position += transform.TransformDirection (newPos / 40);
+            animator.SetFloat(_xVelocityHash, _currentVelocity.x);
+            animator.SetFloat(_yVelocityHash, _currentVelocity.y);
+            if (_inputManager.Run && (_currentVelocity.x > 1 || _currentVelocity.y > 1))
+            {
+                _gameController.StaminaController.ReduceStaminaOverTime(.1f);   
+            }
         }
-        if(_inputManager.Move ==Vector2.zero) 
-            targetSpeed = 0;
-        _currentVelocity.x = Mathf.Lerp(_currentVelocity.x, _inputManager.Move.x * targetSpeed, animBlendSpeed * Time.fixedDeltaTime);
-        _currentVelocity.y = Mathf.Lerp(_currentVelocity.y, _inputManager.Move.y * targetSpeed, animBlendSpeed * Time.fixedDeltaTime);
-        float step = targetSpeed * Time.deltaTime;
-        var newPos = new Vector3(_currentVelocity.x, 0, _currentVelocity.y);
-        _playerRigidbody.velocity = transform.TransformVector(newPos * step * 20);
-        // var direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
-        // _playerRigidbody.AddForce(transform.TransformVector(direction * step * 10), ForceMode.VelocityChange);
-        // transform.position += transform.TransformDirection (newPos / 40);
-        animator.SetFloat(_xVelocityHash, _currentVelocity.x);
-        animator.SetFloat(_yVelocityHash, _currentVelocity.y);
-        if (_inputManager.Run && (_currentVelocity.x > 1 || _currentVelocity.y > 1))
+        else
         {
-            _gameController.StaminaController.ReduceStaminaOverTime(.1f);   
+            if (!isCrouched)
+            {
+                isCrouched = true;
+                animator.SetBool(Crouch, true);
+                _collider.height = crouchHeight;
+                _collider.center = crouchCenter;
+            }
+            float targetSpeed = _crouchSpeed;
+            if(_inputManager.Move ==Vector2.zero) 
+                targetSpeed = 0;
+            _currentVelocity.x = Mathf.Lerp(_currentVelocity.x, _inputManager.Move.x * targetSpeed, animBlendSpeed * Time.fixedDeltaTime);
+            _currentVelocity.y = Mathf.Lerp(_currentVelocity.y, _inputManager.Move.y * targetSpeed, animBlendSpeed * Time.fixedDeltaTime);
+            float step = targetSpeed * Time.deltaTime;
+            var newPos = new Vector3(_currentVelocity.x, 0, _currentVelocity.y);
+            _playerRigidbody.velocity = transform.TransformVector(step * 20 * newPos);
+            animator.SetFloat(_xVelocityHash, _currentVelocity.x);
+            animator.SetFloat(_yVelocityHash, _currentVelocity.y);
         }
     }
 
