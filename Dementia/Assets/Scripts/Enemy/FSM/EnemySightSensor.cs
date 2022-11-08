@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySightSensor : MonoBehaviour
@@ -20,9 +21,10 @@ public class EnemySightSensor : MonoBehaviour
         for (int i = 0; i < playerInRange.Length; i++)
         {
             Transform player = playerInRange[i].transform;
+            PlayerController playerController = player.GetComponent<PlayerController>();
             Vector3 dirToPlayer = (player.position - transform.position).normalized;
             float dstToPlayer = Vector3.Distance(transform.position, player.position);
-            if (dstToPlayer < 6)
+            if (dstToPlayer < 5 && !playerController.isHiding)
             {
                 return true;
             }

@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 {
     [HideInInspector] public Animator animator;
     [HideInInspector] public bool isStopped;
+    [HideInInspector] public bool isHiding;
     
     [SerializeField] private float animBlendSpeed = 8.9f;
     [SerializeField] private Transform cameraRoot;

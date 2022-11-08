@@ -3877,7 +3877,7 @@ MonoBehaviour:
     m_Bits: 64
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 33152
 --- !u!114 &8231929693337505726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3908,13 +3908,6 @@ MonoBehaviour:
   _initialState: {fileID: 11400000, guid: 6f5772057a20e7042902a8cd6c397655, type: 2}
   _speed: 2.5
   _runSpeed: 5
-  CurrentState: {fileID: 0}
-  NavMeshAgent: {fileID: 0}
-  MovingPoints: {fileID: 0}
-  WaitTime: 10.15
-  AttackCoolDown: 5.08
-  AlertTime: 1.4
-  AgonyTime: 5.84
 --- !u!114 &3659392218284627923
 MonoBehaviour:
   m_ObjectHideFlags: 0
