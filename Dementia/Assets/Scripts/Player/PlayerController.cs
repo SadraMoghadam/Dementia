@@ -464,7 +464,6 @@ public class PlayerController : MonoBehaviour
     //     _animator.SetFloat(_xVelocityHash, _currentVelocity.x);
     //     _animator.SetFloat(_yVelocityHash, _currentVelocity.y);
     // }
-    //
     // private void CameraMovement()
     // {
     //     if(!_hasAnimator) 
