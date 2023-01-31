@@ -31,7 +31,6 @@ public class PlayerRaycast : MonoBehaviour
     private UIController _uiController;
     private PlayerController _playerController;
     
-
     private void Start()
     {
         _inputManager = GetComponent<InputManager>();
@@ -131,7 +130,6 @@ public class PlayerRaycast : MonoBehaviour
             _leftMouseClickImage.gameObject.SetActive(false);
         }
     }
-
 
     private void InteractableItemsProcess(RaycastHit hit)
     {
