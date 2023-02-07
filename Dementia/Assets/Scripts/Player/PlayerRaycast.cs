@@ -11,7 +11,8 @@ public enum InteractableObjects
     Door,
     LeftDoor,
     RightDoor,
-    Battery
+    Battery,
+
 }
 
 public class PlayerRaycast : MonoBehaviour
