@@ -160,15 +160,6 @@ public class PlayerRaycast : MonoBehaviour
         }
     }
 
-    private void BreakableItemsProcess(RaycastHit hit)
-    {
-        if (hit.collider.CompareTag("Breakable"))
-        {
-            BreakableObject breakableObject = hit.collider.gameObject.GetComponent<BreakableObject>();
-            breakableObject.Break();
-        }
-    }
-
     private void InteractableItemOnClick(RaycastHit hit, InteractableItemType type)
     {
         Destroy(hit.collider.gameObject, .1f);
@@ -182,6 +173,17 @@ public class PlayerRaycast : MonoBehaviour
         if(hit.collider.CompareTag("Inspectable"))
             _gameController.InspectObjectProcess.Inspect(hit.collider.transform.parent.gameObject);
     }
+    
+
+    private void BreakableItemsProcess(RaycastHit hit)
+    {
+        if (hit.collider.CompareTag("Breakable"))
+        {
+            BreakableObject breakableObject = hit.collider.gameObject.GetComponent<BreakableObject>();
+            breakableObject.Break();
+        }
+    }
+
     
     
     
